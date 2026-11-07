@@ -13,12 +13,12 @@ export const GlobalNavbar: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-40 bg-[#fbfbf9]/95 backdrop-blur-md border-b border-stone-200/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex items-center justify-between gap-4">
         
         {/* A la izquierda: El nombre de la autora enlazando a la Home / */}
         <Link
           to="/"
-          className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-stone-900 hover:text-stone-700 transition-colors whitespace-nowrap"
+          className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold tracking-tight text-stone-900 hover:text-stone-700 transition-colors whitespace-nowrap leading-none"
         >
           Victoria Maciass
         </Link>
@@ -31,10 +31,10 @@ export const GlobalNavbar: React.FC = () => {
               <Link
                 key={cat.slug}
                 to={cat.route}
-                className={`px-3 py-1.5 text-xs xl:text-[13px] font-medium rounded-md transition-colors whitespace-nowrap ${
+                className={`px-3.5 py-2 text-[15px] xl:text-[16px] font-medium rounded-lg transition-colors whitespace-nowrap ${
                   active
-                    ? 'text-stone-900 bg-stone-200/70 font-semibold shadow-2xs'
-                    : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100/70'
+                    ? 'text-stone-950 bg-stone-200/80 font-semibold shadow-2xs'
+                    : 'text-stone-700 hover:text-stone-950 hover:bg-stone-100/90'
                 }`}
               >
                 {cat.navLabel}
@@ -48,18 +48,18 @@ export const GlobalNavbar: React.FC = () => {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-stone-700 hover:text-stone-950 hover:bg-stone-100 rounded-lg transition-colors cursor-pointer"
+            className="p-2.5 text-stone-700 hover:text-stone-950 hover:bg-stone-100 rounded-lg transition-colors cursor-pointer"
             aria-label={mobileMenuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
       {/* Menú desplegable en móvil */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-stone-200 bg-[#fbfbf9] px-4 py-4 space-y-1 shadow-lg animate-in slide-in-from-top-2 duration-150">
-          <p className="px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-stone-400 font-semibold">
+        <div className="lg:hidden border-t border-stone-200 bg-[#fbfbf9] px-4 py-4 space-y-1.5 shadow-lg animate-in slide-in-from-top-2 duration-150">
+          <p className="px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-stone-600 font-sans">
             Categorías principales
           </p>
           {CATEGORIES_LIST.map((cat) => {
@@ -69,14 +69,14 @@ export const GlobalNavbar: React.FC = () => {
                 key={cat.slug}
                 to={cat.route}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`flex items-center justify-between px-3 py-2.5 text-sm rounded-lg transition-colors ${
+                className={`flex items-center justify-between px-3.5 py-3 text-[15px] sm:text-base rounded-lg transition-colors ${
                   active
-                    ? 'text-stone-950 bg-stone-200/70 font-semibold'
+                    ? 'text-stone-950 bg-stone-200/80 font-semibold'
                     : 'text-stone-700 hover:text-stone-950 hover:bg-stone-100'
                 }`}
               >
                 <span>{cat.title}</span>
-                <span className="text-xs text-stone-400 font-mono">→</span>
+                <span className="text-sm text-stone-500 font-mono">→</span>
               </Link>
             );
           })}
@@ -84,7 +84,7 @@ export const GlobalNavbar: React.FC = () => {
             <Link
               to="/"
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 text-xs text-stone-500 hover:text-stone-900 text-center font-medium"
+              className="block px-3.5 py-2.5 text-[14px] sm:text-[15px] text-stone-600 hover:text-stone-900 text-center font-medium"
             >
               Ir a la página de inicio
             </Link>

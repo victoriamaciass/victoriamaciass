@@ -92,26 +92,26 @@ export const HomePage: React.FC = () => {
             ==================================================================== */}
         <section className="py-20 sm:py-28 md:py-36 border-b border-stone-200/80">
           <div className="max-w-3xl mx-auto px-6 text-center">
-            <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-stone-900 leading-[1.05]">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-[44px] lg:text-[48px] font-bold tracking-tight text-stone-900 leading-[1.15]">
               Victoria Maciass
             </h1>
 
-            <p className="mt-4 sm:mt-5 text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-stone-500 font-sans">
+            <p className="mt-3.5 sm:mt-4 text-xs sm:text-[14px] font-semibold tracking-[0.16em] uppercase text-stone-600 font-sans">
               Biblioteca práctica de Victoria Maciass
             </p>
 
-            <p className="mt-6 sm:mt-7 text-xl sm:text-2xl md:text-3xl text-stone-800 leading-snug font-serif italic max-w-2xl mx-auto">
+            <p className="mt-6 sm:mt-8 text-xl sm:text-2xl md:text-[26px] text-stone-800 leading-snug font-serif italic max-w-2xl mx-auto">
               "Guías reales para cuidar tu cuerpo, tu mente, tus animales y tu mesa."
             </p>
 
-            <p className="mt-6 sm:mt-7 text-sm sm:text-base text-stone-600 leading-relaxed max-w-2xl mx-auto font-sans">
+            <p className="mt-6 sm:mt-7 text-[16px] sm:text-[17px] md:text-[18px] text-stone-700 leading-relaxed max-w-2xl mx-auto font-sans">
               Este sitio reúne una biblioteca de guías prácticas escritas para resolver problemas concretos del día a día. Los libros están estructurados por áreas temáticas, con explicaciones directas, pautas paso a paso, sin páginas de relleno y sin promesas infladas: información honesta para consultar y aplicar desde la primera lectura.
             </p>
 
             <div className="mt-10 sm:mt-12">
               <a
                 href="#categorias"
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 text-xs sm:text-sm font-medium text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors shadow-2xs cursor-pointer"
+                className="inline-flex items-center gap-2.5 px-7 py-3.5 text-[15px] sm:text-[16px] font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors shadow-2xs cursor-pointer"
               >
                 <span>Explorar la biblioteca</span>
                 <ArrowDown className="w-4 h-4" />
@@ -125,10 +125,10 @@ export const HomePage: React.FC = () => {
             ==================================================================== */}
         <section id="categorias" className="py-20 sm:py-28 max-w-5xl mx-auto px-6">
           <div className="mb-14 sm:mb-18 text-center max-w-2xl mx-auto">
-            <span className="text-xs font-semibold tracking-widest uppercase text-stone-500 block mb-2 font-mono">
+            <span className="text-xs sm:text-[14px] font-semibold tracking-widest uppercase text-stone-600 block mb-2.5 font-mono">
               Catálogo temático
             </span>
-            <p className="font-serif text-2xl sm:text-3xl text-stone-900">
+            <p className="font-serif text-[26px] sm:text-[30px] md:text-[32px] lg:text-[34px] text-stone-900 leading-snug">
               Seis áreas prácticas organizadas para orientar tu búsqueda
             </p>
           </div>
@@ -140,18 +140,18 @@ export const HomePage: React.FC = () => {
                 className="bg-white border border-stone-200/90 rounded-2xl p-7 sm:p-9 flex flex-col justify-between shadow-2xs hover:border-stone-300 transition-colors"
               >
                 <div>
-                  <h2 className="font-serif text-2xl sm:text-3xl font-bold text-stone-900 tracking-tight">
+                  <h2 className="font-serif text-2xl sm:text-[28px] lg:text-[30px] font-bold text-stone-900 tracking-tight leading-snug">
                     {cat.title}
                   </h2>
 
-                  <p className="mt-3 sm:mt-4 text-xs sm:text-sm text-stone-600 leading-relaxed">
+                  <p className="mt-3.5 sm:mt-4 text-[15px] sm:text-[16px] md:text-[17px] text-stone-700 leading-relaxed">
                     {cat.description}
                   </p>
 
                   <div className="mt-6 pt-5 border-t border-stone-100">
-                    <p className="text-xs sm:text-sm text-stone-700">
+                    <p className="text-[14px] sm:text-[15px] text-stone-800 leading-normal">
                       <strong className="font-semibold text-stone-900">Qué incluye:</strong>{' '}
-                      <span className="text-stone-600">{cat.includes}</span>
+                      <span className="text-stone-700">{cat.includes}</span>
                     </p>
                   </div>
                 </div>
@@ -159,7 +159,7 @@ export const HomePage: React.FC = () => {
                 <div className="mt-8 pt-4">
                   <Link
                     to={cat.route}
-                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-stone-900 hover:text-stone-700 transition-colors group"
+                    className="inline-flex items-center gap-2 text-[15px] sm:text-[16px] font-semibold text-stone-900 hover:text-stone-700 transition-colors group"
                   >
                     <span>{cat.buttonLabel}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -176,13 +176,13 @@ export const HomePage: React.FC = () => {
         <section className="py-20 sm:py-28 bg-[#f5f4ef] border-y border-stone-200/80">
           <div className="max-w-5xl mx-auto px-6">
             <div className="max-w-2xl mb-12">
-              <span className="text-xs font-semibold tracking-widest uppercase text-stone-500 block mb-2 font-mono">
+              <span className="text-xs sm:text-[14px] font-semibold tracking-widest uppercase text-stone-600 block mb-2.5 font-mono">
                 Subsección especial
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-[44px] font-bold text-stone-900 tracking-tight leading-tight">
                 Cocina y recetas
               </h2>
-              <p className="mt-4 text-sm sm:text-base text-stone-700 leading-relaxed">
+              <p className="mt-4 text-[16px] sm:text-[17px] md:text-[18px] text-stone-700 leading-relaxed">
                 La biblioteca culinaria reúne 18 recetarios organizados en tres series temáticas definidas. Está pensada tanto para quienes buscan optimizar su tiempo semanal con preparaciones ligeras y equilibradas, como para quienes desean perfeccionar la cocina mediterránea tradicional o resolver los menús del hogar con herramientas actuales como la freidora de aire.
               </p>
             </div>
@@ -190,28 +190,28 @@ export const HomePage: React.FC = () => {
             {/* Tres subbloques de texto (sin imágenes) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
               <div className="bg-white border border-stone-200 rounded-xl p-6 sm:p-7 shadow-2xs">
-                <h3 className="font-serif text-xl font-bold text-stone-900 mb-2">
+                <h3 className="font-serif text-[21px] sm:text-[22px] lg:text-[24px] font-bold text-stone-900 mb-2.5 leading-snug">
                   Cocina Saludable
                 </h3>
-                <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                <p className="text-[14px] sm:text-[15px] text-stone-700 leading-relaxed">
                   Propuestas nutricionales para el bienestar diario: ensaladas completas, recetas fitness ricas en proteínas, platos con quinoa y aderezos ligeros sin aditivos.
                 </p>
               </div>
 
               <div className="bg-white border border-stone-200 rounded-xl p-6 sm:p-7 shadow-2xs">
-                <h3 className="font-serif text-xl font-bold text-stone-900 mb-2">
+                <h3 className="font-serif text-[21px] sm:text-[22px] lg:text-[24px] font-bold text-stone-900 mb-2.5 leading-snug">
                   Cocina Mediterránea / Española
                 </h3>
-                <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                <p className="text-[14px] sm:text-[15px] text-stone-700 leading-relaxed">
                   El saber culinario tradicional llevado a la práctica doméstica: paellas valencianas auténticas, arroces de mar y montaña, caldos y guisos de herencia.
                 </p>
               </div>
 
               <div className="bg-white border border-stone-200 rounded-xl p-6 sm:p-7 shadow-2xs">
-                <h3 className="font-serif text-xl font-bold text-stone-900 mb-2">
+                <h3 className="font-serif text-[21px] sm:text-[22px] lg:text-[24px] font-bold text-stone-900 mb-2.5 leading-snug">
                   Recetas generales
                 </h3>
-                <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                <p className="text-[14px] sm:text-[15px] text-stone-700 leading-relaxed">
                   Soluciones versátiles para cualquier mesa familiar: técnicas para freidora de aire (air fryer), carnes rojas al punto, platos con pollo y repostería casera.
                 </p>
               </div>
@@ -220,7 +220,7 @@ export const HomePage: React.FC = () => {
             <div className="pt-2">
               <Link
                 to="/cocina"
-                className="inline-flex items-center gap-2 px-6 py-3.5 text-xs sm:text-sm font-medium text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors shadow-2xs"
+                className="inline-flex items-center gap-2 px-7 py-3.5 text-[15px] sm:text-[16px] font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors shadow-2xs"
               >
                 <span>Ver todos los libros de cocina</span>
                 <ArrowRight className="w-4 h-4" />
@@ -234,10 +234,10 @@ export const HomePage: React.FC = () => {
             ==================================================================== */}
         <section className="py-20 sm:py-24 max-w-3xl mx-auto px-6 border-b border-stone-200/80">
           <div className="text-center">
-            <span className="text-xs font-semibold tracking-widest uppercase text-stone-500 block mb-3 font-mono">
+            <span className="text-xs sm:text-[14px] font-semibold tracking-widest uppercase text-stone-600 block mb-3 font-mono">
               Sobre la autora
             </span>
-            <p className="font-serif text-xl sm:text-2xl text-stone-900 leading-relaxed">
+            <p className="font-serif text-xl sm:text-2xl md:text-[26px] text-stone-900 leading-relaxed">
               Victoria Maciass reúne en un mismo espacio guías prácticas sobre salud, bienestar, mascotas, cocina y manualidades. Su objetivo es proporcionar herramientas concretas y explicaciones claras para problemas del día a día, prescindiendo de promesas vacías y centrándose en el contenido útil.
             </p>
           </div>
@@ -247,13 +247,13 @@ export const HomePage: React.FC = () => {
             5. SUSCRIPCIÓN (email + botón "Avisadme de nuevos libros")
             ==================================================================== */}
         <section className="py-20 sm:py-24 max-w-2xl mx-auto px-6 text-center">
-          <span className="text-xs font-semibold tracking-widest uppercase text-stone-500 block mb-2 font-mono">
+          <span className="text-xs sm:text-[14px] font-semibold tracking-widest uppercase text-stone-600 block mb-2.5 font-mono">
             Actualizaciones editoriales
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-stone-900">
+          <h2 className="font-serif text-2xl sm:text-[30px] md:text-[32px] font-bold text-stone-900 leading-snug">
             Novedades de la biblioteca
           </h2>
-          <p className="mt-3 text-xs sm:text-sm text-stone-600 leading-relaxed max-w-md mx-auto">
+          <p className="mt-3.5 text-[15px] sm:text-[16px] text-stone-700 leading-relaxed max-w-md mx-auto">
             Introduce tu correo electrónico si deseas recibir un aviso puntual cuando se publique una nueva guía o se actualice un recetario. Sin publicidad ni promociones innecesarias.
           </p>
 
@@ -265,18 +265,18 @@ export const HomePage: React.FC = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="tu@correo.com"
                 required
-                className="flex-1 px-4 py-3 text-xs sm:text-sm bg-white border border-stone-300 rounded-lg focus:outline-none focus:border-stone-900 focus:ring-1 focus:ring-stone-900 placeholder:text-stone-400"
+                className="flex-1 px-4 py-3 text-[15px] sm:text-base bg-white border border-stone-300 rounded-lg focus:outline-none focus:border-stone-900 focus:ring-1 focus:ring-stone-900 placeholder:text-stone-500 text-stone-900"
               />
               <button
                 type="submit"
-                className="px-5 py-3 text-xs sm:text-sm font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors whitespace-nowrap cursor-pointer shadow-2xs"
+                className="px-6 py-3 text-[15px] sm:text-base font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors whitespace-nowrap cursor-pointer shadow-2xs"
               >
                 Avisadme de nuevos libros
               </button>
             </div>
 
             {subscribed && (
-              <div className="mt-4 p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg text-xs flex items-center justify-center gap-2">
+              <div className="mt-4 p-3.5 bg-emerald-50 border border-emerald-200 text-emerald-900 rounded-lg text-[14px] flex items-center justify-center gap-2">
                 <Check className="w-4 h-4 text-emerald-600 shrink-0" />
                 <span>Gracias. Te avisaremos únicamente cuando haya una nueva publicación disponible.</span>
               </div>
@@ -286,30 +286,30 @@ export const HomePage: React.FC = () => {
       </main>
 
       {/* Pie de página sencillo y sobrio */}
-      <footer className="border-t border-stone-200 py-10 bg-[#fbfbf9]">
-        <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
+      <footer className="border-t border-stone-200 py-12 bg-[#fbfbf9]">
+        <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-[14px] text-stone-600">
           <div>
-            <p className="font-serif text-sm font-bold text-stone-800">
+            <p className="font-serif text-[20px] sm:text-[22px] font-bold text-stone-900 leading-none">
               Victoria Maciass
             </p>
-            <p className="text-[11px] mt-0.5">
+            <p className="text-[14px] text-stone-600 mt-1.5">
               Biblioteca práctica de guías y recetarios
             </p>
           </div>
 
-          <div className="flex items-center gap-6">
-            <a href="#categorias" className="hover:text-stone-900 transition-colors">
+          <div className="flex items-center gap-6 text-[15px] font-medium text-stone-700">
+            <a href="#categorias" className="hover:text-stone-950 transition-colors">
               Categorías
             </a>
-            <Link to="/cocina" className="hover:text-stone-900 transition-colors">
+            <Link to="/cocina" className="hover:text-stone-950 transition-colors">
               Cocina
             </Link>
-            <a href="#categorias" className="hover:text-stone-900 transition-colors">
+            <a href="#categorias" className="hover:text-stone-950 transition-colors">
               Explorar
             </a>
           </div>
 
-          <p className="text-[11px]">
+          <p className="text-[14px] text-stone-600">
             © {new Date().getFullYear()} Victoria Maciass. Todos los derechos reservados.
           </p>
         </div>

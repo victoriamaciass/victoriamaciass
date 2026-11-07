@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { GlobalNavbar } from '../components/GlobalNavbar';
 import { BOOKS_DATA } from '../data/booksData';
 import { getCategoryBySlug, CATEGORIES_LIST, CategoryInfo } from '../data/categoriesData';
+import { getBookCover } from '../data/bookCovers';
 import { Book } from '../types/book';
 import { ArrowRight, ChevronRight, BookOpen, Utensils, Salad, ChefHat, Sparkles } from 'lucide-react';
 
@@ -86,12 +87,12 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug: propSl
       <GlobalNavbar />
 
       {/* 2. Migas de pan (Breadcrumbs): Inicio > [Nombre de la Categoría] */}
-      <div className="border-b border-stone-200/70 bg-[#fbfbf9]/90 py-3">
-        <div className="max-w-6xl mx-auto px-6 flex items-center gap-2 text-xs text-stone-500">
-          <Link to="/" className="hover:text-stone-900 transition-colors">
+      <div className="border-b border-stone-200/70 bg-[#fbfbf9]/90 py-3.5">
+        <div className="max-w-6xl mx-auto px-6 flex items-center gap-2 text-sm text-stone-600">
+          <Link to="/" className="hover:text-stone-900 transition-colors font-medium">
             Inicio
           </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-stone-400" />
+          <ChevronRight className="w-4 h-4 text-stone-400" />
           <span className="text-stone-900 font-semibold">{categoryInfo.title}</span>
         </div>
       </div>
@@ -100,31 +101,31 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug: propSl
         
         {/* Encabezado editorial de la categoría */}
         <section className="max-w-3xl mb-12 sm:mb-16">
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-stone-500 mb-2 font-mono">
+          <div className="flex items-center gap-2 text-xs sm:text-[13px] font-semibold uppercase tracking-wider text-stone-600 mb-2.5 font-sans">
             <span>Catálogo Nivel 2</span>
             <span>·</span>
             <span>{categoryBooks.length} {categoryBooks.length === 1 ? 'título disponible' : 'títulos disponibles'}</span>
           </div>
 
-          <h1 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-stone-900 leading-[1.1]">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-[44px] lg:text-[48px] font-bold tracking-tight text-stone-900 leading-[1.12]">
             {categoryInfo.title}
           </h1>
 
-          <p className="mt-4 text-sm sm:text-base text-stone-700 leading-relaxed font-sans">
+          <p className="mt-4 text-[16px] sm:text-[17px] md:text-[18px] text-stone-700 leading-relaxed font-sans">
             {categoryInfo.description}
           </p>
 
-          <p className="mt-3 text-xs sm:text-sm text-stone-500">
-            <strong className="text-stone-800 font-semibold">Temas que incluye:</strong> {categoryInfo.includes}
+          <p className="mt-3.5 text-sm sm:text-[15px] text-stone-600 font-sans">
+            <strong className="text-stone-900 font-semibold">Temas que incluye:</strong> {categoryInfo.includes}
           </p>
 
           {/* Filtros especiales para Cocina */}
           {categoryInfo.slug === 'cocina' && (
             <div className="mt-8 pt-6 border-t border-stone-200/80">
-              <span className="text-xs font-semibold text-stone-600 block mb-2 font-mono uppercase tracking-wider">
+              <span className="text-xs sm:text-sm font-semibold text-stone-700 block mb-2.5 font-sans uppercase tracking-wider">
                 Filtrar por colección culinaria:
               </span>
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2.5">
                 {[
                   { id: 'todas', label: 'Todos los recetarios', count: 18 },
                   { id: 'Cocina Saludable', label: 'Cocina Saludable', count: 6 },
@@ -134,14 +135,14 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug: propSl
                   <button
                     key={s.id}
                     onClick={() => setSelectedCookingSeries(s.id)}
-                    className={`px-3 py-1.5 text-xs rounded-lg transition-all cursor-pointer font-medium ${
+                    className={`px-3.5 py-2 text-xs sm:text-sm rounded-lg transition-all cursor-pointer font-medium ${
                       selectedCookingSeries === s.id
                         ? 'bg-stone-900 text-white shadow-2xs font-semibold'
                         : 'bg-white border border-stone-200/90 text-stone-700 hover:border-stone-400'
                     }`}
                   >
                     <span>{s.label}</span>
-                    <span className="ml-1.5 opacity-70 font-mono text-[11px]">({s.count})</span>
+                    <span className="ml-1.5 opacity-80 font-mono text-[11px]">({s.count})</span>
                   </button>
                 ))}
               </div>
@@ -153,7 +154,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug: propSl
         <section>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {displayedBooks.map((book) => {
-              const coverUrl = book.coverImage || book.portada;
+              const coverUrl = getBookCover(book.slug, book.coverImage || book.portada);
 
               return (
                 <article
@@ -210,13 +211,13 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug: propSl
 
                     {/* Subtítulo / Serie pill si aplica */}
                     {book.serie && (
-                      <span className="inline-block text-[11px] font-semibold text-amber-800 uppercase tracking-wider mb-2 font-mono">
+                      <span className="inline-block text-xs font-semibold text-amber-900 uppercase tracking-wider mb-2 font-sans">
                         {book.serie}
                       </span>
                     )}
 
-                    {/* Título del libro */}
-                    <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 leading-snug">
+                    {/* Título del libro (H2 21-24px) */}
+                    <h2 className="font-serif text-xl sm:text-[22px] lg:text-[24px] font-bold text-stone-900 leading-snug">
                       <Link
                         to={`/${book.slug}`}
                         className="hover:text-stone-700 transition-colors"
@@ -227,11 +228,11 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug: propSl
 
                     {/* Subtítulo */}
                     {book.subtitle ? (
-                      <p className="mt-2 text-xs sm:text-sm text-stone-600 line-clamp-2 leading-relaxed">
+                      <p className="mt-2.5 text-sm sm:text-[15px] text-stone-600 line-clamp-2 leading-relaxed font-sans">
                         {book.subtitle}
                       </p>
                     ) : (
-                      <p className="mt-2 text-xs text-stone-400 italic">
+                      <p className="mt-2.5 text-sm text-stone-500 italic font-sans">
                         Guía práctica oficial por Victoria Maciass
                       </p>
                     )}
@@ -239,13 +240,13 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug: propSl
 
                   {/* Botón que enlace a la página individual del libro */}
                   <div className="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
-                    <span className="text-[11px] font-mono text-stone-400">/{book.slug}</span>
+                    <span className="text-xs font-mono text-stone-400">/{book.slug}</span>
                     <Link
                       to={`/${book.slug}`}
-                      className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors shadow-2xs group"
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm sm:text-[15px] font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors shadow-2xs group"
                     >
                       <span>Ver libro</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                     </Link>
                   </div>
                 </article>
@@ -259,13 +260,13 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug: propSl
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <Link
               to="/"
-              className="text-xs sm:text-sm font-semibold text-stone-800 hover:text-stone-950 transition-colors inline-flex items-center gap-1.5"
+              className="text-sm sm:text-[15px] font-semibold text-stone-800 hover:text-stone-950 transition-colors inline-flex items-center gap-1.5"
             >
               <span>← Volver a la página de inicio</span>
             </Link>
 
-            <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-stone-500">
-              <span className="font-semibold text-stone-700">Otras categorías:</span>
+            <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-stone-600">
+              <span className="font-semibold text-stone-800">Otras categorías:</span>
               {CATEGORIES_LIST.filter((c) => c.slug !== categoryInfo.slug).map((c) => (
                 <Link
                   key={c.slug}
@@ -282,16 +283,16 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug: propSl
 
       {/* Pie de página sencillo */}
       <footer className="border-t border-stone-200 py-10 bg-white">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
-          <p className="font-serif text-sm font-bold text-stone-800">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-stone-600">
+          <p className="font-serif text-lg sm:text-[20px] font-bold text-stone-900">
             Victoria Maciass
           </p>
           <p>
-            <Link to="/" className="hover:text-stone-900 underline transition-colors">
+            <Link to="/" className="hover:text-stone-900 underline transition-colors font-medium">
               Ir a la página de inicio (/)
             </Link>
           </p>
-          <p className="text-[11px]">
+          <p className="text-xs sm:text-sm text-stone-500">
             © {new Date().getFullYear()} Victoria Maciass. Todos los derechos reservados.
           </p>
         </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getBookBySlug, BOOKS_DATA } from '../data/booksData';
 import { getCategoryByInternalId, getCategoryBySlug } from '../data/categoriesData';
+import { getBookCover } from '../data/bookCovers';
 import { GlobalNavbar } from '../components/GlobalNavbar';
 import { Book, BookPurchaseLinks } from '../types/book';
 import { ArrowLeft, Edit3, Check, X, ExternalLink, ChevronRight } from 'lucide-react';
@@ -339,7 +340,7 @@ export const BookDetailPage: React.FC = () => {
     finalRelated.push(...others);
   }
 
-  const coverUrl = book.coverImage || book.portada;
+  const coverUrl = getBookCover(book.slug, book.coverImage || book.portada);
 
   const categoryInfo = getCategoryByInternalId(book.category) || getCategoryBySlug(book.category);
   const categoryTitle = categoryInfo ? categoryInfo.title : book.categoryLabel;
@@ -417,18 +418,18 @@ export const BookDetailPage: React.FC = () => {
       <GlobalNavbar />
 
       {/* 2. Enlace de retorno y migas de pan (Breadcrumbs) */}
-      <div className="border-b border-stone-200/70 bg-[#fbfbf9]/90 py-3">
+      <div className="border-b border-stone-200/70 bg-[#fbfbf9]/90 py-3.5">
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 overflow-x-auto whitespace-nowrap">
             <Link
               to="/victoriamaciass"
-              className="text-xs text-stone-600 hover:text-stone-950 inline-flex items-center gap-1.5 transition-colors font-sans mr-1"
+              className="text-[14px] sm:text-[15px] text-stone-700 hover:text-stone-950 font-medium inline-flex items-center gap-1.5 transition-colors font-sans mr-1"
             >
-              <ArrowLeft className="w-3.5 h-3.5" />
+              <ArrowLeft className="w-4 h-4" />
               <span>Volver a todos los libros</span>
             </Link>
             <span className="text-stone-300">|</span>
-            <nav aria-label="Migas de pan" className="flex items-center gap-2 text-xs text-stone-500">
+            <nav aria-label="Migas de pan" className="flex items-center gap-2 text-[14px] sm:text-[15px] text-stone-600">
               <Link to="/" className="hover:text-stone-900 transition-colors">
                 Inicio
               </Link>
@@ -443,7 +444,7 @@ export const BookDetailPage: React.FC = () => {
 
           <button
             onClick={() => setIsEditingLinks(!isEditingLinks)}
-            className="text-[11px] font-semibold text-stone-600 hover:text-stone-950 inline-flex items-center gap-1 cursor-pointer transition-colors shrink-0"
+            className="text-[13px] sm:text-[14px] font-medium text-stone-700 hover:text-stone-950 inline-flex items-center gap-1.5 cursor-pointer transition-colors shrink-0"
             title="Configurar los enlaces de compra"
           >
             <Edit3 className="w-3.5 h-3.5" />
@@ -594,7 +595,7 @@ export const BookDetailPage: React.FC = () => {
             <div className="lg:col-span-7 w-full flex flex-col justify-center">
               
               {/* Texto breve en la parte superior: "Disponible en:" */}
-              <p className="text-xs sm:text-sm font-semibold tracking-wider uppercase text-stone-700 mb-6 font-mono">
+              <p className="text-sm sm:text-[15px] font-semibold tracking-wider uppercase text-stone-700 mb-6 font-sans">
                 Disponible en:
               </p>
 
@@ -720,21 +721,21 @@ export const BookDetailPage: React.FC = () => {
           ==================================================================== */}
       <section className="py-14 sm:py-20 max-w-4xl mx-auto px-6 border-b border-stone-200/80">
         
-        {/* 1. Título del libro (h1, grande) */}
-        <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-stone-900 leading-[1.08]">
+        {/* 1. Título del libro (h1: 42-48px en escritorio) */}
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-[44px] lg:text-[48px] font-bold tracking-tight text-stone-900 leading-[1.12]">
           {book.title}
         </h1>
 
         {/* 2. Subtítulo (tipografía menor) */}
         {book.subtitle && (
-          <p className="mt-4 text-lg sm:text-2xl text-stone-700 font-serif italic leading-relaxed">
+          <p className="mt-4 text-lg sm:text-xl md:text-[22px] text-stone-700 font-serif italic leading-relaxed">
             {book.subtitle}
           </p>
         )}
 
         {/* 3. Autora: "Victoria Maciass" */}
-        <div className="mt-4 pb-8 border-b border-stone-200/80">
-          <p className="text-xs sm:text-sm font-semibold tracking-widest uppercase text-stone-500 font-sans">
+        <div className="mt-5 pb-8 border-b border-stone-200/80">
+          <p className="text-sm sm:text-[15px] font-semibold tracking-wider uppercase text-stone-600 font-sans">
             Autora: <span className="text-stone-900 font-bold">Victoria Maciass</span>
           </p>
         </div>
@@ -742,7 +743,7 @@ export const BookDetailPage: React.FC = () => {
         {/* 4. Descripción completa */}
         <div className="pt-10">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-stone-900 tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-[30px] font-bold text-stone-900 tracking-tight">
               Descripción completa
             </h2>
             <button
@@ -750,7 +751,7 @@ export const BookDetailPage: React.FC = () => {
                 setDraftDescription(resolvedParagraphs.join('\n\n'));
                 setIsEditingDescription(!isEditingDescription);
               }}
-              className="text-xs text-stone-500 hover:text-stone-900 inline-flex items-center gap-1 cursor-pointer transition-colors"
+              className="text-xs sm:text-sm text-stone-600 hover:text-stone-900 inline-flex items-center gap-1 cursor-pointer transition-colors"
             >
               <Edit3 className="w-3.5 h-3.5" />
               <span>{isEditingDescription ? 'Cerrar editor' : 'Editar texto'}</span>
@@ -765,27 +766,27 @@ export const BookDetailPage: React.FC = () => {
                 value={draftDescription}
                 onChange={(e) => setDraftDescription(e.target.value)}
                 placeholder="Escribe la descripción completa en párrafos separados por doble salto..."
-                className="w-full p-4 text-xs sm:text-sm bg-white border border-stone-300 rounded-lg focus:outline-none focus:border-stone-900 font-sans leading-relaxed"
+                className="w-full p-4 text-sm sm:text-[15px] bg-white border border-stone-300 rounded-lg focus:outline-none focus:border-stone-900 font-sans leading-relaxed"
               />
               <div className="flex items-center justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setIsEditingDescription(false)}
-                  className="px-3 py-1.5 text-xs text-stone-600 hover:text-stone-900 cursor-pointer"
+                  className="px-3 py-1.5 text-xs sm:text-sm text-stone-600 hover:text-stone-900 cursor-pointer"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-md transition-colors cursor-pointer"
+                  className="px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-md transition-colors cursor-pointer"
                 >
                   Guardar descripción
                 </button>
               </div>
             </form>
           ) : resolvedParagraphs.length > 0 ? (
-            /* Texto del campo descripcion sin truncar, con párrafos separados y legibles */
-            <div className="space-y-6 text-sm sm:text-base text-stone-700 leading-relaxed font-sans">
+            /* Texto del campo descripcion sin truncar, con párrafos separados y legibles (16-18px) */
+            <div className="space-y-6 text-[16px] sm:text-[17px] md:text-[18px] text-stone-700 leading-relaxed font-sans">
               {resolvedParagraphs.map((parr, idx) => (
                 <p key={idx} className="leading-relaxed">
                   {parr}
@@ -794,10 +795,10 @@ export const BookDetailPage: React.FC = () => {
             </div>
           ) : (
             <div className="p-8 bg-stone-50 border border-dashed border-stone-300 rounded-xl text-center">
-              <p className="text-sm font-serif italic text-stone-600 mb-2">
+              <p className="text-base sm:text-lg font-serif italic text-stone-700 mb-2">
                 [ Descripción completa en preparación para este título ]
               </p>
-              <p className="text-xs text-stone-500 max-w-md mx-auto">
+              <p className="text-sm text-stone-600 max-w-md mx-auto leading-relaxed">
                 Esta sección mostrará el texto completo del libro con sus capítulos, temas abordados y pautas prácticas sin truncar.
               </p>
             </div>
@@ -813,69 +814,97 @@ export const BookDetailPage: React.FC = () => {
       <section className="py-14 sm:py-20 max-w-5xl mx-auto px-6">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <span className="text-xs font-semibold tracking-widest uppercase text-stone-500 block mb-1 font-mono">
+            <span className="text-xs sm:text-[13px] font-semibold tracking-widest uppercase text-stone-600 block mb-1 font-sans">
               Recomendaciones
             </span>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-stone-900 tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-[30px] font-bold text-stone-900 tracking-tight">
               Otros libros de esta categoría
             </h2>
           </div>
           <Link
-            to="/victoriamaciass"
-            className="text-xs sm:text-sm font-medium text-stone-600 hover:text-stone-950 transition-colors"
+            to="/"
+            className="text-sm sm:text-[15px] font-medium text-stone-700 hover:text-stone-950 transition-colors"
           >
             Ver biblioteca completa →
           </Link>
         </div>
 
-        {/* 3 tarjetas placeholder */}
+        {/* 3 tarjetas de libros relacionados */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {finalRelated.map((relBook) => (
-            <div
-              key={relBook.slug}
-              className="bg-white border border-stone-200/90 rounded-2xl p-5 flex flex-col justify-between shadow-2xs hover:border-stone-300 transition-colors text-left"
-            >
-              <div>
-                {/* Portada pequeña de marcador de posición (2:3) */}
-                <div
-                  className="aspect-[2/3] w-full max-w-[140px] mx-auto bg-stone-100 border border-stone-200 rounded-lg p-3 mb-4 flex flex-col justify-between text-center select-none shadow-2xs"
-                  role="img"
-                  aria-label={relBook.title}
-                >
-                  <span className="text-[8px] uppercase tracking-wider text-stone-400 font-mono">
-                    Victoria Maciass
-                  </span>
-                  <span className="font-serif text-xs font-bold text-stone-700 line-clamp-3 my-auto">
-                    {relBook.title}
-                  </span>
-                  <span className="text-[8px] uppercase tracking-wider text-stone-400 font-mono">
-                    [ Portada 2:3 ]
-                  </span>
+          {finalRelated.map((relBook) => {
+            const relCoverUrl = getBookCover(relBook.slug, relBook.coverImage || relBook.portada);
+
+            return (
+              <div
+                key={relBook.slug}
+                className="bg-white border border-stone-200/90 rounded-2xl p-5 flex flex-col justify-between shadow-2xs hover:border-stone-300 transition-colors text-left"
+              >
+                <div>
+                  {/* Portada en proporción 2:3: real si existe o marcador si no */}
+                  <div className="w-full flex justify-center mb-4">
+                    <Link
+                      to={`/${relBook.slug}`}
+                      className="w-full max-w-[140px] block transition-transform duration-200 hover:scale-[1.02]"
+                      title={`Ver detalles de ${relBook.title}`}
+                    >
+                      {relCoverUrl ? (
+                        <div
+                          className="w-full aspect-[2/3] rounded-lg overflow-hidden bg-white select-none flex items-center justify-center shadow-2xs"
+                        >
+                          <img
+                            src={relCoverUrl}
+                            alt={relBook.title}
+                            loading="lazy"
+                            referrerPolicy="no-referrer"
+                            className="w-full h-full object-contain block"
+                          />
+                        </div>
+                      ) : (
+                        <div
+                          className="aspect-[2/3] w-full max-w-[140px] mx-auto bg-stone-100 border border-stone-200 rounded-lg p-3 flex flex-col justify-between text-center select-none shadow-2xs"
+                          role="img"
+                          aria-label={relBook.title}
+                        >
+                          <span className="text-[10px] uppercase tracking-wider text-stone-500 font-sans">
+                            Victoria Maciass
+                          </span>
+                          <span className="font-serif text-sm font-bold text-stone-800 line-clamp-3 my-auto leading-snug">
+                            {relBook.title}
+                          </span>
+                          <span className="text-[10px] uppercase tracking-wider text-stone-500 font-sans">
+                            [ Portada 2:3 ]
+                          </span>
+                        </div>
+                      )}
+                    </Link>
+                  </div>
+
+                  {/* Título */}
+                  <h3 className="font-serif text-base sm:text-[18px] font-bold text-stone-900 line-clamp-2 leading-snug">
+                    <Link to={`/${relBook.slug}`} className="hover:text-stone-700 transition-colors">
+                      {relBook.title}
+                    </Link>
+                  </h3>
+                  {relBook.subtitle && (
+                    <p className="text-sm text-stone-600 line-clamp-2 mt-1.5 leading-relaxed font-sans">
+                      {relBook.subtitle}
+                    </p>
+                  )}
                 </div>
 
-                {/* Título */}
-                <h3 className="font-serif text-base sm:text-lg font-bold text-stone-900 line-clamp-2">
-                  {relBook.title}
-                </h3>
-                {relBook.subtitle && (
-                  <p className="text-xs text-stone-500 line-clamp-2 mt-1">
-                    {relBook.subtitle}
-                  </p>
-                )}
+                {/* Botón "Ver libro" */}
+                <div className="mt-5 pt-3 border-t border-stone-100">
+                  <Link
+                    to={`/${relBook.slug}`}
+                    className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-3.5 text-sm sm:text-[15px] font-semibold text-stone-900 hover:text-white bg-stone-100 hover:bg-stone-900 rounded-lg transition-colors text-center"
+                  >
+                    <span>Ver libro</span>
+                    <span>→</span>
+                  </Link>
+                </div>
               </div>
-
-              {/* Botón "Ver libro" */}
-              <div className="mt-5 pt-3 border-t border-stone-100">
-                <Link
-                  to={`/${relBook.slug}`}
-                  className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 text-xs font-semibold text-stone-900 hover:text-white bg-stone-100 hover:bg-stone-900 rounded-lg transition-colors text-center"
-                >
-                  <span>Ver libro</span>
-                  <span>→</span>
-                </Link>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -883,16 +912,16 @@ export const BookDetailPage: React.FC = () => {
           PIE DE PÁGINA SENCILLO
           ==================================================================== */}
       <footer className="border-t border-stone-200 py-10 bg-white">
-        <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
-          <p className="font-serif text-sm font-bold text-stone-800">
+        <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-stone-600">
+          <p className="font-serif text-lg sm:text-[20px] font-bold text-stone-900">
             Victoria Maciass
           </p>
           <p>
-            <Link to="/victoriamaciass" className="hover:text-stone-900 underline transition-colors">
-              Ir a la página de inicio (/victoriamaciass)
+            <Link to="/" className="hover:text-stone-900 underline transition-colors font-medium">
+              Ir a la página de inicio (/)
             </Link>
           </p>
-          <p className="text-[11px]">
+          <p className="text-xs sm:text-sm text-stone-500">
             © {new Date().getFullYear()} Victoria Maciass. Todos los derechos reservados.
           </p>
         </div>
