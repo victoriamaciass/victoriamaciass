@@ -1,0 +1,6 @@
+{
+  "name": "Victoria Maciass — Libros y Publicaciones Oficiales",
+  "description": "Sitio oficial de exhibición de libros de Victoria Maciass. Descubre su catálogo de bienestar, salud, cocina, mascotas y desarrollo personal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
