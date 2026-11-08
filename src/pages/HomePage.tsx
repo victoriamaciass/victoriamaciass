@@ -17,13 +17,13 @@ export const HomePage: React.FC = () => {
   const [subscribed, setSubscribed] = useState(false);
 
   useEffect(() => {
-    document.title = 'Libros y Guías Prácticas de Cocina, Salud y Bienestar | Victoria Maciass';
+    document.title = 'Libros y Guías Prácticas | Victoria Maciass';
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.setAttribute(
         'content',
-        'Descubre libros y guías prácticas sobre cocina, mascotas, salud, bienestar, crecimiento personal y creatividad. Explora las publicaciones de Victoria Maciass.'
+        'Descubre 39 libros y guías prácticas sobre mascotas, cocina, salud, bienestar, crecimiento personal y creatividad. Explora la biblioteca de Victoria Maciass.'
       );
     }
 
@@ -57,8 +57,8 @@ export const HomePage: React.FC = () => {
       title: 'Mascotas',
       route: '/mascotas',
       description:
-        'Guías concebidas para quien convive con animales y quiere cuidarlos bien: gallinas, gatos y perros. Explica cómo alimentarlos, educarlos y entender su comportamiento, con pautas prácticas y respetuosas para resolver los retos cotidianos de convivencia.',
-      includes: 'Guías sobre gallinas, gatos y perros.',
+        'Libros y guías sobre el cuidado de perros, gatos y gallinas. Una colección para quienes conviven con animales y desean conocer mejor sus necesidades, alimentación, educación y comportamiento, con contenidos orientados a la convivencia y al cuidado cotidiano.',
+      includes: 'guías sobre gallinas, gatos y perros.',
       buttonLabel: 'Ver los libros de Mascotas',
     },
     {
@@ -66,8 +66,8 @@ export const HomePage: React.FC = () => {
       title: 'Mente y emociones',
       route: '/mente-emociones',
       description:
-        'Libros sobre ansiedad, ataques de pánico, sueños y calma. Pensados para quien quiere entender qué le pasa a su cuerpo y a su mente en momentos de sobrecarga, y disponer de herramientas concretas y contrastadas, explicadas con absoluta claridad.',
-      includes: 'Ansiedad, ataques de pánico, interpretación de sueños y serenidad diaria.',
+        'Publicaciones sobre ansiedad, ataques de pánico, sueños y bienestar emocional. Una colección para explorar diferentes aspectos de la relación entre la mente, las emociones y las experiencias cotidianas, mediante explicaciones y contenidos prácticos.',
+      includes: 'libros sobre ansiedad, ataques de pánico, interpretación de sueños y serenidad diaria.',
       buttonLabel: 'Ver los libros de Mente y emociones',
     },
     {
@@ -75,8 +75,8 @@ export const HomePage: React.FC = () => {
       title: 'Crecimiento personal',
       route: '/crecimiento-personal',
       description:
-        'Guías sobre hábitos, motivación, mente y numerología. Métodos estructurados para ordenar rutinas personales, comprender los resortes de la propia motivación y explorar el simbolismo tradicional de los números desde un prisma analítico y reflexivo.',
-      includes: 'Hábitos diarios, disciplina mental, motivación y numerología reflexiva.',
+        'Libros sobre hábitos, motivación, disciplina mental y numerología. Guías que abordan la organización de las rutinas, el desarrollo de la motivación y la reflexión personal, junto con el simbolismo de los números.',
+      includes: 'hábitos diarios, motivación, disciplina mental y numerología.',
       buttonLabel: 'Ver los libros de Crecimiento personal',
     },
     {
@@ -84,8 +84,8 @@ export const HomePage: React.FC = () => {
       title: 'Cuerpo y salud',
       route: '/cuerpo-salud',
       description:
-        'Información práctica y rigurosa sobre varices, metabolismo, celulitis, fertilidad, desintoxicación y bienestar corporal. Aborda problemas específicos con un enfoque preventivo basado en hábitos, nutrición funcional y cuidado físico continuado.',
-      includes: 'Varices, metabolismo activo, celulitis, fertilidad y desintoxicación.',
+        'Una colección dedicada al cuidado corporal y a diferentes temas relacionados con la salud y el bienestar. Incluye publicaciones sobre varices, metabolismo, celulitis, fertilidad y desintoxicación, con contenidos centrados en cada temática.',
+      includes: 'libros sobre varices, metabolismo, celulitis, fertilidad y desintoxicación.',
       buttonLabel: 'Ver los libros de Cuerpo y salud',
     },
     {
@@ -93,8 +93,8 @@ export const HomePage: React.FC = () => {
       title: 'Cocina y recetas',
       route: '/cocina',
       description:
-        '18 recetarios organizados en tres series temáticas (Cocina Saludable, Cocina Mediterránea / Española y recetas generales). Propuestas prácticas para el día a día, pensadas para comer mejor y cocinar con ingredientes reales, air fryer, quinoa, carnes o repostería.',
-      includes: '18 títulos estructurados en tres colecciones culinarias completas.',
+        'Una biblioteca de 18 libros de cocina organizados en tres colecciones: cocina saludable, cocina mediterránea y española, y recetas generales. Incluye propuestas para preparar ensaladas, platos con quinoa, carnes, pollo, arroces, paellas, galletas y recetas con freidora de aire.',
+      includes: '18 recetarios con diferentes estilos de cocina e ideas para el día a día.',
       buttonLabel: 'Ver los libros de Cocina y recetas',
     },
     {
@@ -102,8 +102,8 @@ export const HomePage: React.FC = () => {
       title: 'Manos y misterio',
       route: '/manos-misterio',
       description:
-        'Guías dedicadas a las velas artesanales, la costura práctica y los conjuros conscientes. Obras que invitan a crear con las manos, recuperar oficios tradicionales y explorar prácticas simbólicas y rituales cotidianos desde una perspectiva reflexiva.',
-      includes: 'Velas aromáticas artesanales, costura básica y rituales simbólicos.',
+        'Libros sobre manualidades, costura, velas artesanales y prácticas simbólicas. Una colección para quienes disfrutan creando con sus manos, aprendiendo técnicas y explorando actividades creativas y tradicionales.',
+      includes: 'elaboración de velas aromáticas, costura y conjuros conscientes.',
       buttonLabel: 'Ver los libros de Manos y misterio',
     },
   ];
@@ -130,7 +130,7 @@ export const HomePage: React.FC = () => {
         <section className="py-14 sm:py-18 md:py-24 border-b border-stone-200/80">
           <div className="max-w-3xl mx-auto px-6 text-center">
             <h1 className="font-serif text-3xl sm:text-4xl md:text-[44px] lg:text-[48px] font-bold tracking-tight text-stone-900 leading-[1.12]">
-              Descubre los libros de Victoria Maciass
+              Libros y guías prácticas sobre cocina, salud, mascotas y bienestar
             </h1>
 
             <p className="mt-3 sm:mt-3.5 text-xs sm:text-[14px] font-semibold tracking-[0.16em] uppercase text-stone-600 font-sans">
@@ -141,9 +141,14 @@ export const HomePage: React.FC = () => {
               "Guías reales para cuidar tu cuerpo, tu mente, tus animales y tu mesa."
             </p>
 
-            <p className="mt-5 sm:mt-6 text-[16px] sm:text-[17px] md:text-[18px] text-stone-700 leading-relaxed max-w-2xl mx-auto font-sans">
-              Este sitio reúne una biblioteca de guías prácticas escritas para resolver problemas concretos del día a día. Los libros están estructurados por áreas temáticas, con explicaciones directas, pautas paso a paso, sin páginas de relleno y sin promesas infladas: información honesta para consultar y aplicar desde la primera lectura.
-            </p>
+            <div className="mt-5 sm:mt-6 space-y-4 text-[16px] sm:text-[17px] md:text-[18px] text-stone-700 leading-relaxed max-w-2xl mx-auto font-sans">
+              <p>
+                Esta biblioteca reúne 39 libros y guías prácticas organizados en seis áreas temáticas. Sus publicaciones abordan cuestiones cotidianas relacionadas con el cuidado personal, el bienestar emocional, los animales, la cocina y la creatividad.
+              </p>
+              <p>
+                Cada colección ofrece contenidos específicos, explicaciones claras y propuestas prácticas para quienes desean aprender, consultar información y descubrir nuevas ideas. Explora las diferentes temáticas y encuentra los libros que mejor se ajusten a tus intereses.
+              </p>
+            </div>
 
             {/* Botón principal con presencia reforzada en verde bosque */}
             <div className="mt-8 sm:mt-10">
@@ -188,7 +193,7 @@ export const HomePage: React.FC = () => {
 
                   <div className="mt-6 pt-5 border-t border-stone-100">
                     <p className="text-[14px] sm:text-[15px] text-stone-800 leading-normal font-sans">
-                      <strong className="font-semibold text-stone-900">Qué incluye:</strong>{' '}
+                      <strong className="font-semibold text-stone-900">Qué encontrarás:</strong>{' '}
                       <span className="text-stone-700">{cat.includes}</span>
                     </p>
                   </div>
@@ -218,10 +223,10 @@ export const HomePage: React.FC = () => {
                 Subsección especial
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl md:text-[44px] font-bold text-stone-900 tracking-tight leading-tight">
-                Cocina y recetas
+                Libros de cocina y recetas
               </h2>
               <p className="mt-4 text-[16px] sm:text-[17px] md:text-[18px] text-stone-700 leading-relaxed font-sans">
-                La biblioteca culinaria reúne 18 recetarios organizados en tres series temáticas definidas. Está pensada tanto para quienes buscan optimizar su tiempo semanal con preparaciones ligeras y equilibradas, como para quienes desean perfeccionar la cocina mediterránea tradicional o resolver los menús del hogar con herramientas actuales como la freidora de aire.
+                La colección de cocina reúne 18 recetarios agrupados en tres series. Encontrarás propuestas para preparar comidas variadas, descubrir ingredientes y explorar diferentes formas de cocinar, desde recetas saludables hasta platos tradicionales y preparaciones para el hogar.
               </p>
             </div>
 
@@ -229,19 +234,19 @@ export const HomePage: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
               <div className="bg-white border border-stone-200 rounded-xl p-6 sm:p-7 shadow-2xs">
                 <h3 className="font-serif text-[21px] sm:text-[22px] lg:text-[24px] font-bold text-stone-900 mb-2.5 leading-snug">
-                  Cocina Saludable
+                  Cocina saludable
                 </h3>
                 <p className="text-[14px] sm:text-[15px] text-stone-700 leading-relaxed font-sans">
-                  Propuestas nutricionales para el bienestar diario: ensaladas completas, recetas fitness ricas en proteínas, platos con quinoa y aderezos ligeros sin aditivos.
+                  Recetarios dedicados a ensaladas, recetas fitness, preparaciones con quinoa y aderezos para acompañar diferentes platos.
                 </p>
               </div>
 
               <div className="bg-white border border-stone-200 rounded-xl p-6 sm:p-7 shadow-2xs">
                 <h3 className="font-serif text-[21px] sm:text-[22px] lg:text-[24px] font-bold text-stone-900 mb-2.5 leading-snug">
-                  Cocina Mediterránea / Española
+                  Cocina mediterránea y española
                 </h3>
                 <p className="text-[14px] sm:text-[15px] text-stone-700 leading-relaxed font-sans">
-                  El saber culinario tradicional llevado a la práctica doméstica: paellas valencianas auténticas, arroces de mar y montaña, caldos y guisos de herencia.
+                  Libros centrados en paellas, arroces y otras preparaciones vinculadas con la cocina mediterránea y española.
                 </p>
               </div>
 
@@ -250,7 +255,7 @@ export const HomePage: React.FC = () => {
                   Recetas generales
                 </h3>
                 <p className="text-[14px] sm:text-[15px] text-stone-700 leading-relaxed font-sans">
-                  Soluciones versátiles para cualquier mesa familiar: técnicas para freidora de aire (air fryer), carnes rojas al punto, platos con pollo y repostería casera.
+                  Una selección de recetas de carnes, pollo, galletas y preparaciones con freidora de aire, entre otras propuestas para la cocina cotidiana.
                 </p>
               </div>
             </div>
@@ -276,7 +281,7 @@ export const HomePage: React.FC = () => {
               Sobre la autora
             </h2>
             <p className="font-serif text-xl sm:text-2xl md:text-[26px] text-stone-900 leading-relaxed">
-              Victoria Maciass reúne en un mismo espacio guías prácticas sobre salud, bienestar, mascotas, cocina y manualidades. Su objetivo es proporcionar herramientas concretas y explicaciones claras para problemas del día a día, prescindiendo de promesas vacías y centrándose en el contenido útil.
+              Victoria Maciass reúne en esta biblioteca publicaciones sobre salud, bienestar, mascotas, cocina, crecimiento personal y creatividad. Su propuesta editorial se centra en ofrecer guías prácticas y explicaciones claras, organizadas por temáticas para facilitar la búsqueda y consulta de cada libro.
             </p>
           </div>
         </section>
@@ -292,7 +297,7 @@ export const HomePage: React.FC = () => {
             Novedades de la biblioteca
           </h2>
           <p className="mt-3.5 text-[15px] sm:text-[16px] text-stone-700 leading-relaxed max-w-md mx-auto font-sans">
-            Introduce tu correo electrónico si deseas recibir un aviso puntual cuando se publique una nueva guía o se actualice un recetario. Sin publicidad ni promociones innecesarias.
+            Suscríbete con tu correo electrónico si deseas recibir un aviso cuando se publique una nueva guía o se actualice un recetario. Recibirás únicamente las novedades editoriales de la biblioteca.
           </p>
 
           <form onSubmit={handleSubscribe} className="mt-8 max-w-md mx-auto">
