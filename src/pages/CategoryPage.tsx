@@ -8,6 +8,7 @@ import { Book } from '../types/book';
 import { ArrowRight, ChevronRight, BookOpen, Utensils, Salad, ChefHat, Sparkles } from 'lucide-react';
 import { MascotasCategoryView } from '../components/MascotasCategoryView';
 import { MenteEmocionesCategoryView } from '../components/MenteEmocionesCategoryView';
+import { CrecimientoPersonalCategoryView } from '../components/CrecimientoPersonalCategoryView';
 
 interface CategoryPageProps {
   categorySlug?: string;
@@ -40,7 +41,12 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug: propSl
   // SEO dinámico para categorías generales
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (categoryInfo && categoryInfo.slug !== 'mascotas' && categoryInfo.slug !== 'mente-emociones') {
+    if (
+      categoryInfo &&
+      categoryInfo.slug !== 'mascotas' &&
+      categoryInfo.slug !== 'mente-emociones' &&
+      categoryInfo.slug !== 'crecimiento-personal'
+    ) {
       document.title = `${categoryInfo.title} — Libros de Victoria Maciass`;
 
       let metaDesc = document.querySelector('meta[name="description"]');
@@ -91,6 +97,11 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug: propSl
   // Vista especializada y optimizada para Mente y emociones
   if (categoryInfo.slug === 'mente-emociones') {
     return <MenteEmocionesCategoryView categoryInfo={categoryInfo} />;
+  }
+
+  // Vista especializada y optimizada para Crecimiento personal
+  if (categoryInfo.slug === 'crecimiento-personal') {
+    return <CrecimientoPersonalCategoryView categoryInfo={categoryInfo} />;
   }
 
   return (
