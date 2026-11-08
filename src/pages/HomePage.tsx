@@ -130,11 +130,11 @@ export const HomePage: React.FC = () => {
         <section className="py-14 sm:py-18 md:py-24 border-b border-stone-200/80">
           <div className="max-w-3xl mx-auto px-6 text-center">
             <h1 className="font-serif text-3xl sm:text-4xl md:text-[44px] lg:text-[48px] font-bold tracking-tight text-stone-900 leading-[1.12]">
-              Victoria Maciass
+              Descubre los libros de Victoria Maciass
             </h1>
 
             <p className="mt-3 sm:mt-3.5 text-xs sm:text-[14px] font-semibold tracking-[0.16em] uppercase text-stone-600 font-sans">
-              Biblioteca práctica de Victoria Maciass
+              Biblioteca práctica de guías y publicaciones
             </p>
 
             <p className="mt-5 sm:mt-6 text-xl sm:text-2xl md:text-[26px] text-stone-800 leading-snug font-serif italic max-w-2xl mx-auto">
@@ -166,9 +166,9 @@ export const HomePage: React.FC = () => {
             <span className="text-xs sm:text-[14px] font-semibold tracking-widest uppercase text-stone-600 block mb-2 font-sans">
               Catálogo temático
             </span>
-            <p className="font-serif text-[26px] sm:text-[30px] md:text-[32px] lg:text-[34px] font-bold text-stone-900 leading-snug">
+            <h2 className="font-serif text-[26px] sm:text-[30px] md:text-[32px] lg:text-[34px] font-bold text-stone-900 leading-snug">
               Seis áreas prácticas organizadas para orientar tu búsqueda
-            </p>
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
@@ -178,9 +178,9 @@ export const HomePage: React.FC = () => {
                 className="bg-white border border-stone-200/90 rounded-2xl p-7 sm:p-9 flex flex-col justify-between shadow-2xs hover:border-stone-400 hover:shadow-md transition-all duration-200"
               >
                 <div>
-                  <h2 className="font-serif text-2xl sm:text-[28px] lg:text-[30px] font-bold text-stone-900 tracking-tight leading-snug">
+                  <h3 className="font-serif text-2xl sm:text-[28px] lg:text-[30px] font-bold text-stone-900 tracking-tight leading-snug">
                     {cat.title}
-                  </h2>
+                  </h3>
 
                   <p className="mt-3.5 sm:mt-4 text-[15px] sm:text-[16px] md:text-[17px] text-stone-700 leading-relaxed font-sans">
                     {cat.description}
@@ -272,9 +272,9 @@ export const HomePage: React.FC = () => {
             ==================================================================== */}
         <section className="py-16 sm:py-20 max-w-3xl mx-auto px-6 border-b border-stone-200/80">
           <div className="text-center">
-            <span className="text-xs sm:text-[14px] font-semibold tracking-widest uppercase text-stone-600 block mb-3 font-sans">
+            <h2 className="text-xs sm:text-[14px] font-semibold tracking-widest uppercase text-stone-600 block mb-3 font-sans">
               Sobre la autora
-            </span>
+            </h2>
             <p className="font-serif text-xl sm:text-2xl md:text-[26px] text-stone-900 leading-relaxed">
               Victoria Maciass reúne en un mismo espacio guías prácticas sobre salud, bienestar, mascotas, cocina y manualidades. Su objetivo es proporcionar herramientas concretas y explicaciones claras para problemas del día a día, prescindiendo de promesas vacías y centrándose en el contenido útil.
             </p>

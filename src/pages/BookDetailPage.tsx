@@ -290,7 +290,7 @@ export const BookDetailPage: React.FC = () => {
             La ruta <code>/{slug}</code> no corresponde a ningún libro registrado en el catálogo central.
           </p>
           <Link
-            to="/victoriamaciass"
+            to="/"
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-stone-900 hover:bg-stone-800 text-white text-xs font-semibold rounded-lg shadow-2xs transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -301,7 +301,7 @@ export const BookDetailPage: React.FC = () => {
         <footer className="border-t border-stone-200 py-6 text-center text-xs text-stone-500">
           <p>
             Victoria Maciass ·{' '}
-            <Link to="/victoriamaciass" className="underline hover:text-stone-900">
+            <Link to="/" className="underline hover:text-stone-900">
               Ir a la página de inicio
             </Link>
           </p>
@@ -437,7 +437,7 @@ export const BookDetailPage: React.FC = () => {
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 overflow-x-auto whitespace-nowrap">
             <Link
-              to="/victoriamaciass"
+              to="/"
               className="text-[14px] sm:text-[15px] text-stone-700 hover:text-stone-950 font-medium inline-flex items-center gap-1.5 transition-colors font-sans mr-1"
             >
               <ArrowLeft className="w-4 h-4" />

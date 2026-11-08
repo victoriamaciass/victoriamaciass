@@ -17,7 +17,7 @@ export default function App() {
             NIVEL 1: Página de Inicio (Home)
             ================================================================== */}
         <Route path="/" element={<HomePage />} />
-        <Route path="/victoriamaciass" element={<HomePage />} />
+        <Route path="/victoriamaciass" element={<Navigate to="/" replace />} />
 
         {/* ==================================================================
             NIVEL 2: Páginas de Categoría
