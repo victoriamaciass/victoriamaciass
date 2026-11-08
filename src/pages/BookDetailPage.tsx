@@ -327,6 +327,21 @@ export const BookDetailPage: React.FC = () => {
     return [];
   })();
 
+  // Helper para renderizar negritas inline (**texto**) respetando el contenido
+  const renderFormattedParagraph = (text: string) => {
+    const parts = text.split(/(\*\*[^*]+\*\*)/g);
+    return parts.map((part, index) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return (
+          <strong key={index} className="font-bold text-stone-900">
+            {part.slice(2, -2)}
+          </strong>
+        );
+      }
+      return part;
+    });
+  };
+
   // Libros relacionados de la misma categoría (3 tarjetas placeholder)
   const relatedBooks = BOOKS_DATA
     .filter((b) => b.slug !== book.slug && (b.category === book.category || b.categoria === book.category))
@@ -789,7 +804,7 @@ export const BookDetailPage: React.FC = () => {
             <div className="space-y-6 text-[16px] sm:text-[17px] md:text-[18px] text-stone-700 leading-relaxed font-sans">
               {resolvedParagraphs.map((parr, idx) => (
                 <p key={idx} className="leading-relaxed">
-                  {parr}
+                  {renderFormattedParagraph(parr)}
                 </p>
               ))}
             </div>

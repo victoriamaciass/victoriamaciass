@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Home } from 'lucide-react';
 import { CATEGORIES_LIST } from '../data/categoriesData';
 
 export const GlobalNavbar: React.FC = () => {
@@ -15,13 +15,22 @@ export const GlobalNavbar: React.FC = () => {
     <header className="sticky top-0 z-40 bg-[#fbfbf9]/95 backdrop-blur-md border-b border-stone-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex items-center justify-between gap-4">
         
-        {/* A la izquierda: El nombre de la autora enlazando a la Home / */}
-        <Link
-          to="/"
-          className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold tracking-tight text-stone-900 hover:text-stone-700 transition-colors whitespace-nowrap leading-none"
-        >
-          Victoria Maciass
-        </Link>
+        {/* A la izquierda: Icono de inicio enlazando a la Home / */}
+        <div className="relative group flex items-center">
+          <Link
+            to="/"
+            aria-label="Inicio"
+            title="Inicio"
+            className="p-2 sm:p-2.5 text-stone-800 hover:text-stone-950 hover:bg-stone-200/60 rounded-xl transition-all inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-400"
+          >
+            <Home className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.8]" />
+            <span className="sr-only">Inicio</span>
+          </Link>
+          <div className="absolute left-1/2 -translate-x-1/2 top-full mt-1.5 px-2.5 py-1 bg-stone-900 text-white text-xs font-medium rounded-md shadow-md whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 pointer-events-none z-50">
+            Inicio
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-stone-900" />
+          </div>
+        </div>
 
         {/* A la derecha en escritorio: fila de enlaces directos a las 6 categorías */}
         <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
