@@ -6,6 +6,7 @@ import { getCategoryBySlug, CATEGORIES_LIST, CategoryInfo } from '../data/catego
 import { getBookCover } from '../data/bookCovers';
 import { Book } from '../types/book';
 import { ArrowRight, ChevronRight, BookOpen, Utensils, Salad, ChefHat, Sparkles } from 'lucide-react';
+import { MascotasCategoryView } from '../components/MascotasCategoryView';
 
 interface CategoryPageProps {
   categorySlug?: string;
@@ -35,10 +36,10 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug: propSl
       })
     : categoryBooks;
 
-  // SEO dinámico
+  // SEO dinámico para categorías generales
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (categoryInfo) {
+    if (categoryInfo && categoryInfo.slug !== 'mascotas') {
       document.title = `${categoryInfo.title} — Libros de Victoria Maciass`;
 
       let metaDesc = document.querySelector('meta[name="description"]');
@@ -79,6 +80,11 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug: propSl
         </footer>
       </div>
     );
+  }
+
+  // Vista especializada y optimizada para Mascotas
+  if (categoryInfo.slug === 'mascotas') {
+    return <MascotasCategoryView categoryInfo={categoryInfo} />;
   }
 
   return (
