@@ -1,8 +1,10 @@
+process.env.NODE_ENV = 'production';
+
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { build } from 'vite';
-import { getAllPublicRoutes, getSeoForRoute, RouteSeoData } from '../src/data/seoRegistry';
+import type { RouteSeoData } from '../src/data/seoRegistry';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,22 +31,31 @@ async function prerender() {
   }
   const rawTemplate = fs.readFileSync(templatePath, 'utf-8');
 
-  // 2. Compilar bundle SSR con Vite
+  // 2. Compilar bundle SSR con Vite estrictamente en modo production
   console.log('📦 Compilando bundle de servidor (entry-server.tsx)...');
   await build({
+    mode: 'production',
     logLevel: 'warn',
+    define: {
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    },
     build: {
       ssr: path.resolve(rootDir, 'src/entry-server.tsx'),
       outDir: distSsrDir,
       emptyOutDir: true,
     },
+    ssr: {
+      noExternal: ['react-router-dom', 'react-router'],
+    },
     configFile: path.resolve(rootDir, 'vite.config.ts'),
   });
 
-  // 3. Importar dinámicamente la función render de dist-ssr
+  // 3. Importar dinámicamente la función render de dist-ssr y el registro SEO
   const serverEntryFile = path.resolve(distSsrDir, 'entry-server.js');
   const serverEntryUrl = pathToFileURL(serverEntryFile).href;
   const { render } = await import(serverEntryUrl);
+
+  const { getAllPublicRoutes, getSeoForRoute } = await import('../src/data/seoRegistry');
 
   const routes = getAllPublicRoutes();
   console.log(`🌐 Prerenderizando ${routes.length} rutas públicas...`);
@@ -66,7 +77,7 @@ async function prerender() {
 
     // 1. Inyectar contenido en #root
     pageHtml = pageHtml.replace(
-      /<div id="root"><\/div>/,
+      /<div id="root">[\s\S]*?<\/div>/,
       `<div id="root">${appHtml}</div>`
     );
 
@@ -133,19 +144,19 @@ async function prerender() {
       `<script type="application/ld+json">\n${jsonLdString}\n    </script>`
     );
 
-    // Determinar ruta de salida
-    let outputPath: string;
+    // Guardar archivo HTML en disco
     if (route === '/') {
-      outputPath = path.resolve(distDir, 'index.html');
+      fs.writeFileSync(path.resolve(distDir, 'index.html'), pageHtml, 'utf-8');
     } else {
-      const routeSubDir = path.resolve(distDir, route.replace(/^\//, ''));
+      const clean = route.replace(/^\//, '');
+      const routeSubDir = path.resolve(distDir, clean);
       if (!fs.existsSync(routeSubDir)) {
         fs.mkdirSync(routeSubDir, { recursive: true });
       }
-      outputPath = path.resolve(routeSubDir, 'index.html');
+      // Generar tanto clean/index.html como clean.html para compatibilidad total con Vercel
+      fs.writeFileSync(path.resolve(routeSubDir, 'index.html'), pageHtml, 'utf-8');
+      fs.writeFileSync(path.resolve(distDir, `${clean}.html`), pageHtml, 'utf-8');
     }
-
-    fs.writeFileSync(outputPath, pageHtml, 'utf-8');
     processedCount++;
   }
 
@@ -165,6 +176,14 @@ async function prerender() {
     const filePath = route === '/'
       ? path.resolve(distDir, 'index.html')
       : path.resolve(distDir, route.replace(/^\//, ''), 'index.html');
+
+    if (route !== '/') {
+      const cleanFile = path.resolve(distDir, `${route.replace(/^\//, '')}.html`);
+      if (!fs.existsSync(cleanFile)) {
+        console.error(`❌ ERROR: Archivo .html no generado para ${route} en ${cleanFile}`);
+        failedChecks++;
+      }
+    }
 
     if (!fs.existsSync(filePath)) {
       console.error(`❌ ERROR: Archivo no generado para ${route} en ${filePath}`);
