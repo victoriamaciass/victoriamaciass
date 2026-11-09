@@ -7,34 +7,242 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- 6 Categorías del catálogo -->
+  <!-- 6 Categorías del catálogo editorial -->
   <url>
     <loc>https://victoriamaciass.vercel.app/mascotas</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://victoriamaciass.vercel.app/mente-emociones</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://victoriamaciass.vercel.app/crecimiento-personal</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://victoriamaciass.vercel.app/cuerpo-salud</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://victoriamaciass.vercel.app/cocina</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://victoriamaciass.vercel.app/manos-misterio</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 39 Fichas individuales de libros -->
+  <!-- Mascotas (3) -->
+  <url>
+    <loc>https://victoriamaciass.vercel.app/gallinas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/gatos</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/perros</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Mente y emociones (4) -->
+  <url>
+    <loc>https://victoriamaciass.vercel.app/ansiedad-vida</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/ansiedad-liberate</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/ansiedad-control</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/suenos</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Crecimiento personal (4) -->
+  <url>
+    <loc>https://victoriamaciass.vercel.app/habitos</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/mente</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/motivacion</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/numeros</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Cuerpo y salud (7) -->
+  <url>
+    <loc>https://victoriamaciass.vercel.app/desintoxica</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/desintoxicar-peso</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/metabolismo</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/celulitis</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/varices</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/sudoracion</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/fertilidad</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Cocina y recetas (18) -->
+  <url>
+    <loc>https://victoriamaciass.vercel.app/ensaladas-sabores</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/ensaladas-150</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/recetas-bajar-peso</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/recetas-fitness</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/recetas-quinoa</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/aderezos</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/arte-paella</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/paellas-100</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/arroces-alma</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/carnes-rojas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/recetas-pollo</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/sabores-irresistibles</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/recetas-variadas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/cocina-deliciosa</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/cocina-espanol</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/freidora-aire</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/galletas-epicas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/sistema-inmunologico</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Manos y misterio (3) -->
+  <url>
+    <loc>https://victoriamaciass.vercel.app/velas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/conjuros</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victoriamaciass.vercel.app/costura</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

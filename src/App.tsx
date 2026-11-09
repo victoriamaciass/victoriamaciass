@@ -4,39 +4,21 @@
  */
 
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { HomePage } from './pages/HomePage';
-import { CategoryPage } from './pages/CategoryPage';
-import { BookDetailPage } from './pages/BookDetailPage';
+import { BrowserRouter, useLocation } from 'react-router-dom';
+import { AppRoutes } from './AppRoutes';
+import { useApplyRouteSeo } from './data/seoRegistry';
+
+function SeoManager() {
+  const location = useLocation();
+  useApplyRouteSeo(location.pathname);
+  return null;
+}
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        {/* ==================================================================
-            NIVEL 1: Página de Inicio (Home)
-            ================================================================== */}
-        <Route path="/" element={<HomePage />} />
-        <Route path="/victoriamaciass" element={<Navigate to="/" replace />} />
-
-        {/* ==================================================================
-            NIVEL 2: Páginas de Categoría
-            ================================================================== */}
-        <Route path="/mascotas" element={<CategoryPage categorySlug="mascotas" />} />
-        <Route path="/mente-emociones" element={<CategoryPage categorySlug="mente-emociones" />} />
-        <Route path="/crecimiento-personal" element={<CategoryPage categorySlug="crecimiento-personal" />} />
-        <Route path="/cuerpo-salud" element={<CategoryPage categorySlug="cuerpo-salud" />} />
-        <Route path="/cocina" element={<CategoryPage categorySlug="cocina" />} />
-        <Route path="/manos-misterio" element={<CategoryPage categorySlug="manos-misterio" />} />
-
-        {/* ==================================================================
-            NIVEL 3: Páginas de Libro individuales (ej. /varices, /gallinas, /gatos)
-            ================================================================== */}
-        <Route path="/:slug" element={<BookDetailPage />} />
-
-        {/* Redirección por defecto */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <SeoManager />
+      <AppRoutes />
     </BrowserRouter>
   );
 }
