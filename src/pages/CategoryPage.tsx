@@ -10,6 +10,7 @@ import { MascotasCategoryView } from '../components/MascotasCategoryView';
 import { MenteEmocionesCategoryView } from '../components/MenteEmocionesCategoryView';
 import { CrecimientoPersonalCategoryView } from '../components/CrecimientoPersonalCategoryView';
 import { CuerpoSaludCategoryView } from '../components/CuerpoSaludCategoryView';
+import { CocinaCategoryView } from '../components/CocinaCategoryView';
 
 interface CategoryPageProps {
   categorySlug?: string;
@@ -47,7 +48,8 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug: propSl
       categoryInfo.slug !== 'mascotas' &&
       categoryInfo.slug !== 'mente-emociones' &&
       categoryInfo.slug !== 'crecimiento-personal' &&
-      categoryInfo.slug !== 'cuerpo-salud'
+      categoryInfo.slug !== 'cuerpo-salud' &&
+      categoryInfo.slug !== 'cocina'
     ) {
       document.title = `${categoryInfo.title} — Libros de Victoria Maciass`;
 
@@ -109,6 +111,11 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug: propSl
   // Vista especializada y optimizada para Cuerpo y salud
   if (categoryInfo.slug === 'cuerpo-salud') {
     return <CuerpoSaludCategoryView categoryInfo={categoryInfo} />;
+  }
+
+  // Vista especializada y optimizada para Cocina y recetas
+  if (categoryInfo.slug === 'cocina') {
+    return <CocinaCategoryView categoryInfo={categoryInfo} />;
   }
 
   return (
