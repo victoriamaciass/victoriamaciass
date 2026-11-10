@@ -143,6 +143,10 @@ function getBookSchema(book: Book): object {
 
   const shortDesc = rawDescription.slice(0, 200) || `Guía práctica de ${book.title} por Victoria Maciass.`;
 
+  const cat = CATEGORIES_LIST.find(c => c.categoryId === book.category || c.slug === book.category);
+  const catTitle = cat ? cat.title : (book.categoryLabel || 'Catálogo');
+  const catRoute = cat ? cat.route : `/${book.category}`;
+
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -180,8 +184,8 @@ function getBookSchema(book: Book): object {
           {
             '@type': 'ListItem',
             position: 2,
-            name: book.categoryLabel || 'Catálogo',
-            item: `${BASE_URL}/${book.category}`,
+            name: catTitle,
+            item: `${BASE_URL}${catRoute}`,
           },
           {
             '@type': 'ListItem',
@@ -339,6 +343,111 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
           : book.synopsis || '';
 
     const firstWords = rawDescription.slice(0, 155) || `Guía práctica de ${book.title} por Victoria Maciass.`;
+
+    if (book.slug === 'gatos') {
+      return {
+        title: 'El Arte de Amar a un Gato | Comprende y Cuida a tu Gato',
+        description: 'Descubre cómo entender el comportamiento de tu gato, interpretar su lenguaje corporal y mejorar vuestra convivencia con respeto, empatía y cuidados adecuados.',
+        canonical: `${BASE_URL}/gatos`,
+        ogTitle: 'El Arte de Amar a un Gato | Comprende y Cuida a tu Gato',
+        ogDescription: 'Descubre cómo entender el comportamiento de tu gato, interpretar su lenguaje corporal y mejorar vuestra convivencia con respeto, empatía y cuidados adecuados.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/20-gatos-libro.jpg',
+        ogUrl: `${BASE_URL}/gatos`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
+    if (book.slug === 'perros') {
+      return {
+        title: 'Adiestramiento Canino: Guía para Entrenar a tu Perro',
+        description: 'Aprende adiestramiento canino con refuerzo positivo, obediencia básica, educación y comportamiento. Mejora la comunicación y el vínculo con tu perro.',
+        canonical: `${BASE_URL}/perros`,
+        ogTitle: 'Adiestramiento Canino | Victoria Maciass',
+        ogDescription: 'Aprende adiestramiento canino con refuerzo positivo, obediencia básica, educación y comportamiento. Mejora la comunicación y el vínculo con tu perro.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/2-perros-libro.jpg',
+        ogUrl: `${BASE_URL}/perros`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
+    if (book.slug === 'ansiedad-vida') {
+      return {
+        title: 'Una Vida sin Ansiedad ni Ataques de Pánico | Victoria Maciass',
+        description: 'Descubre una guía cercana para comprender la ansiedad y los ataques de pánico, afrontar el miedo y recuperar la confianza mediante herramientas prácticas para el día a día.',
+        canonical: `${BASE_URL}/ansiedad-vida`,
+        ogTitle: 'Una Vida sin Ansiedad ni Ataques de Pánico | Victoria Maciass',
+        ogDescription: 'Descubre una guía cercana para comprender la ansiedad y los ataques de pánico, afrontar el miedo y recuperar la confianza mediante herramientas prácticas para el día a día.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/3-ansiedad1-libro.jpg',
+        ogUrl: `${BASE_URL}/ansiedad-vida`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
+    if (book.slug === 'ansiedad-liberate') {
+      return {
+        title: 'Libérate de la Ansiedad: Alimentación, Sueño y Relajación',
+        description: 'Descubre cómo alimentación, sueño, ejercicio, respiración y técnicas de relajación pueden ayudarte a gestionar la ansiedad y recuperar el equilibrio diario.',
+        canonical: `${BASE_URL}/ansiedad-liberate`,
+        ogTitle: 'Libérate de la Ansiedad | Victoria Maciass',
+        ogDescription: 'Descubre cómo alimentación, sueño, ejercicio, respiración y técnicas de relajación pueden ayudarte a gestionar la ansiedad y recuperar el equilibrio diario.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/4-ansiedad2-libro.jpg',
+        ogUrl: `${BASE_URL}/ansiedad-liberate`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
+    if (book.slug === 'ansiedad-control') {
+      return {
+        title: 'Cómo Controlar la Ansiedad: Relaciones y Bienestar Emocional',
+        description: 'Aprende a reconstruir tus relaciones, comunicar lo que sientes, establecer límites y recuperar tu propósito y bienestar emocional después de la ansiedad.',
+        canonical: `${BASE_URL}/ansiedad-control`,
+        ogTitle: 'Cómo Controlar La Ansiedad | Victoria Maciass',
+        ogDescription: 'Aprende a reconstruir tus relaciones, comunicar lo que sientes, establecer límites y recuperar tu propósito y bienestar emocional después de la ansiedad.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/5-ansiedad3-libro.jpg',
+        ogUrl: `${BASE_URL}/ansiedad-control`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
+    if (book.slug === 'suenos') {
+      return {
+        title: 'El Libro de los Sueños: Cuentos para Dormir y Leer en Familia',
+        description: 'Descubre cuentos clásicos y originales para niños y adultos. Historias para dormir, leer en familia y fomentar la imaginación, los valores y la inteligencia emocional.',
+        canonical: `${BASE_URL}/suenos`,
+        ogTitle: 'El Libro de los Sueños | Victoria Maciass',
+        ogDescription: 'Descubre cuentos clásicos y originales para niños y adultos. Historias para dormir, leer en familia y fomentar la imaginación, los valores y la inteligencia emocional.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/9-cuentos-libro.jpg',
+        ogUrl: `${BASE_URL}/suenos`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
+    if (book.slug === 'velas') {
+      return {
+        title: 'Cómo Hacer Velas Aromáticas | Guía de Velas Artesanales',
+        description: 'Aprende cómo hacer velas aromáticas y artesanales paso a paso. Descubre tipos de cera, mechas, fragancias, aceites esenciales y técnicas de elaboración.',
+        canonical: `${BASE_URL}/velas`,
+        ogTitle: 'Cómo hacer velas Artesanales aromáticas',
+        ogDescription: 'Aprende cómo hacer velas aromáticas y artesanales paso a paso. Descubre tipos de cera, mechas, fragancias, aceites esenciales y técnicas de elaboración.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/17-velas.jpg',
+        ogUrl: `${BASE_URL}/velas`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
 
     return {
       title: `${book.title} — Victoria Maciass`,

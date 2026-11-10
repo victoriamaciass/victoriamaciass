@@ -29,12 +29,12 @@ const MENTE_BOOKS: MenteBookItem[] = [
   },
   {
     slug: 'ansiedad-liberate',
-    title: 'Libérate de la Ansiedad y los Ataques de Pánico',
-    subtitle: 'Pautas prácticas y explicaciones claras para afrontar momentos de intensa inquietud.',
+    title: 'Libérate de la Ansiedad',
+    subtitle: 'Alimentación, sueño, ejercicio y técnicas de relajación para una mente tranquila.',
     description:
       'Contenidos centrados en identificar los detonantes del pánico y desarrollar recursos conscientes para recobrar la calma.',
     coverUrl: 'https://ik.imagekit.io/hr20qlpupi/victoria/4-ansiedad2-libro.jpg',
-    altText: 'Portada del libro Libérate de la Ansiedad y los Ataques de Pánico de Victoria Maciass',
+    altText: 'Portada del libro Libérate de la Ansiedad de Victoria Maciass',
   },
   {
     slug: 'ansiedad-control',
@@ -440,7 +440,7 @@ export const MenteEmocionesCategoryView: React.FC<MenteEmocionesCategoryViewProp
                 to="/ansiedad-liberate"
                 className="inline-flex items-center gap-1.5 text-sm sm:text-[15px] font-semibold text-stone-900 hover:text-[#163a2b] transition-colors group font-sans"
               >
-                <span>Libérate de la Ansiedad y los Ataques de Pánico</span>
+                <span>Libérate de la Ansiedad</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
               <Link

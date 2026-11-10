@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getBookBySlug, BOOKS_DATA } from '../data/booksData';
 import { getCategoryByInternalId, getCategoryBySlug } from '../data/categoriesData';
 import { getBookCover } from '../data/bookCovers';
+import { getSeoForRoute } from '../data/seoRegistry';
 import { GlobalNavbar } from '../components/GlobalNavbar';
 import { Book, BookPurchaseLinks } from '../types/book';
 import { ArrowLeft, Edit3, Check, X, ExternalLink, ChevronRight } from 'lucide-react';
@@ -12,13 +13,14 @@ import { ArrowLeft, Edit3, Check, X, ExternalLink, ChevronRight } from 'lucide-r
 // =============================================================================
 
 // Logos oficiales de plataformas de venta (128x128 píxeles oficiales)
-const LOGO_AMAZON_PAPERBACK = 'https://ik.imagekit.io/hr20qlpupi/victoria/tapa_blanda.jpg';
-const LOGO_AMAZON_HARDCOVER = 'https://ik.imagekit.io/hr20qlpupi/victoria/tapa_dura.jpg';
-const LOGO_AMAZON_KINDLE = 'https://ik.imagekit.io/hr20qlpupi/victoria/kindle.jpg';
-const LOGO_GOOGLE_PLAY_EBOOK = 'https://ik.imagekit.io/hr20qlpupi/victoria/google_play_ebook.jpg';
-const LOGO_GOOGLE_PLAY_AUDIO = 'https://ik.imagekit.io/hr20qlpupi/victoria/google_play_audiolibro.jpg';
+const LOGO_AMAZON_PAPERBACK = 'https://ik.imagekit.io/hr20qlpupi/victoria/amazon-tapa-blanda.png';
+const LOGO_AMAZON_HARDCOVER = 'https://ik.imagekit.io/hr20qlpupi/victoria/amazon-tapa-dura.png';
+const LOGO_AMAZON_KINDLE = 'https://ik.imagekit.io/hr20qlpupi/victoria/amazon-kindle-ebook.png';
+const LOGO_GOOGLE_PLAY_EBOOK = 'https://ik.imagekit.io/hr20qlpupi/victoria/google_play_ebook.png';
+const LOGO_GOOGLE_PLAY_AUDIO = 'https://ik.imagekit.io/hr20qlpupi/victoria/google_play_audiolibro.png';
 const LOGO_GOOGLE_PLAY_BOOK = 'https://ik.imagekit.io/hr20qlpupi/victoria/google_play_book.png';
 const LOGO_APPLE_BOOKS = 'https://ik.imagekit.io/hr20qlpupi/victoria/apple.png';
+const LOGO_BOOKS2READ = 'https://ik.imagekit.io/hr20qlpupi/victoria/books2read.com_logo.jpg';
 
 // Fallbacks de plataformas complementarias
 const LOGO_AUDIBLE =
@@ -80,28 +82,37 @@ export const ORDERED_COMMERCIAL_PLATFORMS: PlatformItem[] = [
     logo: LOGO_AMAZON_KINDLE,
     key: 'ebookAmazon',
   },
-  // 4. Google Play Libro Electrónico
+  // 4. Books2Read (justo a continuación de Amazon Kindle)
+  {
+    id: 'books2read',
+    order: 4,
+    tooltip: 'Books2Read',
+    alt: 'Books2Read',
+    logo: LOGO_BOOKS2READ,
+    key: 'books2read',
+  },
+  // 5. Google Play Libro Electrónico
   {
     id: 'gp-ebook',
-    order: 4,
+    order: 5,
     tooltip: 'google Ebook',
     alt: 'google Ebook',
     logo: LOGO_GOOGLE_PLAY_EBOOK,
     key: 'ebookGooglePlay',
   },
-  // 5. Google Play Audiolibro
+  // 6. Google Play Audiolibro
   {
     id: 'gp-audio',
-    order: 5,
+    order: 6,
     tooltip: 'google Audiolibro',
     alt: 'google Audiolibro',
     logo: LOGO_GOOGLE_PLAY_AUDIO,
     key: 'audiobookGooglePlay',
   },
-  // 6. Resto de plataformas disponibles
+  // 7. Resto de plataformas disponibles
   {
     id: 'gp-books',
-    order: 6,
+    order: 7,
     tooltip: 'Google Play Books',
     alt: 'Google Play Books',
     logo: LOGO_GOOGLE_PLAY_BOOK,
@@ -109,7 +120,7 @@ export const ORDERED_COMMERCIAL_PLATFORMS: PlatformItem[] = [
   },
   {
     id: 'apple-books',
-    order: 7,
+    order: 8,
     tooltip: 'Apple Books',
     alt: 'Apple Books',
     logo: LOGO_APPLE_BOOKS,
@@ -117,7 +128,7 @@ export const ORDERED_COMMERCIAL_PLATFORMS: PlatformItem[] = [
   },
   {
     id: 'audible',
-    order: 8,
+    order: 9,
     tooltip: 'Amazon Audiolibro (Libro Narrado)',
     alt: 'Audible / Amazon Audiolibro',
     logo: LOGO_AUDIBLE,
@@ -125,7 +136,7 @@ export const ORDERED_COMMERCIAL_PLATFORMS: PlatformItem[] = [
   },
   {
     id: 'kobo',
-    order: 9,
+    order: 10,
     tooltip: 'Kobo',
     alt: 'Kobo',
     logo: LOGO_KOBO,
@@ -133,7 +144,7 @@ export const ORDERED_COMMERCIAL_PLATFORMS: PlatformItem[] = [
   },
   {
     id: 'nook',
-    order: 10,
+    order: 11,
     tooltip: 'Nook',
     alt: 'Barnes & Noble Nook',
     logo: LOGO_BARNES_NOBLE,
@@ -141,7 +152,7 @@ export const ORDERED_COMMERCIAL_PLATFORMS: PlatformItem[] = [
   },
   {
     id: 'smashwords',
-    order: 11,
+    order: 12,
     tooltip: 'Smashwords',
     alt: 'Smashwords',
     logo: LOGO_SMASHWORDS,
@@ -203,8 +214,9 @@ export const BookDetailPage: React.FC = () => {
         setDraftDescription('');
       }
 
-      // SEO dinámico
-      document.title = `${book.title} — Victoria Maciass`;
+      // SEO dinámico sincronizado con la fuente central
+      const seo = getSeoForRoute(`/${book.slug}`);
+      document.title = seo ? seo.title : `${book.title} — Victoria Maciass`;
 
       const rawDescription =
         (book.fullDescription && book.fullDescription.length > 0)
@@ -213,7 +225,7 @@ export const BookDetailPage: React.FC = () => {
             ? book.descripcion.join(' ')
             : book.synopsis || '';
 
-      const firstWords = rawDescription.slice(0, 155) || `Guía práctica de ${book.title} por Victoria Maciass.`;
+      const firstWords = seo?.description || rawDescription.slice(0, 155) || `Guía práctica de ${book.title} por Victoria Maciass.`;
 
       let metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
@@ -221,11 +233,11 @@ export const BookDetailPage: React.FC = () => {
       }
       let ogDesc = document.querySelector('meta[property="og:description"]');
       if (ogDesc) {
-        ogDesc.setAttribute('content', firstWords);
+        ogDesc.setAttribute('content', seo?.ogDescription || firstWords);
       }
       let ogTitle = document.querySelector('meta[property="og:title"]');
       if (ogTitle) {
-        ogTitle.setAttribute('content', `${book.title} — Victoria Maciass`);
+        ogTitle.setAttribute('content', seo?.ogTitle || `${book.title} — Victoria Maciass`);
       }
     }
   }, [book?.slug]);
@@ -400,6 +412,8 @@ export const BookDetailPage: React.FC = () => {
         return check('ebookBarnesNoble') || check('nook') || check('barnesNoble') || '';
       case 'ebookSmashwords':
         return check('ebookSmashwords') || check('smashwords') || '';
+      case 'books2read':
+        return check('books2read') || check('books2Read') || '';
       default:
         return check(key);
     }
@@ -800,13 +814,56 @@ export const BookDetailPage: React.FC = () => {
               </div>
             </form>
           ) : resolvedParagraphs.length > 0 ? (
-            /* Texto del campo descripcion sin truncar, con párrafos separados y legibles (16-18px) */
+            /* Texto del campo descripcion sin truncar, con párrafos separados, subtítulos y viñetas legibles (16-18px) */
             <div className="space-y-6 text-[16px] sm:text-[17px] md:text-[18px] text-stone-700 leading-relaxed font-sans">
-              {resolvedParagraphs.map((parr, idx) => (
-                <p key={idx} className="leading-relaxed">
-                  {renderFormattedParagraph(parr)}
-                </p>
-              ))}
+              {resolvedParagraphs.map((parr, idx) => {
+                if (parr.startsWith('### ')) {
+                  return (
+                    <h3
+                      key={idx}
+                      className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight pt-4 pb-1"
+                    >
+                      {parr.replace(/^###\s*/, '')}
+                    </h3>
+                  );
+                }
+                if (parr.startsWith('✔ ')) {
+                  return (
+                    <div key={idx} className="flex items-start gap-3 pl-2 sm:pl-4">
+                      <span className="text-emerald-700 font-bold shrink-0 mt-0.5">✔</span>
+                      <div className="leading-relaxed flex-1">
+                        {renderFormattedParagraph(parr.replace(/^✔\s*/, ''))}
+                      </div>
+                    </div>
+                  );
+                }
+                const numMatch = parr.match(/^(\d+)\.\s+(.*)$/);
+                if (numMatch) {
+                  return (
+                    <div key={idx} className="flex items-start gap-3 pl-2 sm:pl-4">
+                      <span className="font-semibold text-stone-900 shrink-0 min-w-[1.75rem]">{numMatch[1]}.</span>
+                      <div className="leading-relaxed flex-1">
+                        {renderFormattedParagraph(numMatch[2])}
+                      </div>
+                    </div>
+                  );
+                }
+                if (parr.startsWith('- ') || parr.startsWith('• ')) {
+                  return (
+                    <div key={idx} className="flex items-start gap-3 pl-2 sm:pl-4">
+                      <span className="w-1.5 h-1.5 rounded-full bg-stone-700 mt-2.5 shrink-0" />
+                      <div className="leading-relaxed flex-1">
+                        {renderFormattedParagraph(parr.replace(/^[-•]\s*/, ''))}
+                      </div>
+                    </div>
+                  );
+                }
+                return (
+                  <p key={idx} className="leading-relaxed">
+                    {renderFormattedParagraph(parr)}
+                  </p>
+                );
+              })}
             </div>
           ) : (
             <div className="p-8 bg-stone-50 border border-dashed border-stone-300 rounded-xl text-center">

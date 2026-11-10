@@ -265,6 +265,160 @@ async function prerender() {
         }
       }
     }
+
+    // H. Comprobación exhaustiva específica para /gatos (El Arte de Amar a un Gato)
+    if (route === '/gatos') {
+      const requiredGatosStrings = [
+        'El Arte de Amar a un Gato',
+        'Una guía práctica, clara y sincera para entender, cuidar y vivir en armonía con tu compañero felino',
+        'https://www.amazon.com/dp/B0FPXR3P93',
+        'https://www.amazon.com/dp/B0FPXP3D8L',
+        'https://www.amazon.com/dp/B0FPTY88GR',
+        '20-gatos-libro.jpg',
+        '¿Qué estás pensando? ¿Por qué se acerca para luego alejarse?',
+        'En este libro aprenderás a:',
+        'Comprender el comportamiento felino y reconocer lo que tu gato expresa',
+        'Claves para entender y convivir con tu compañero felino',
+      ];
+      for (const str of requiredGatosStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /gatos no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+    }
+
+    // I. Comprobación exhaustiva específica para /perros (Adiestramiento Canino)
+    if (route === '/perros') {
+      const requiredPerrosStrings = [
+        'Adiestramiento Canino',
+        'Guía Completa para Entrenar a tu Perro con Éxito',
+        'https://www.amazon.com/dp/B0CYLZ1B3Z',
+        'https://www.amazon.com/dp/B0CYLMLX4X',
+        'https://www.amazon.com/dp/B0CYK66WSN',
+        '2-perros-libro.jpg',
+        'A lo largo de esta guía aprenderás:',
+        'Cómo comprender el comportamiento y el lenguaje corporal de los perros',
+        'Los principios del refuerzo positivo y por qué funcionan',
+      ];
+      for (const str of requiredPerrosStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /perros no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+    }
+
+    // J. Comprobación exhaustiva específica para /ansiedad-vida (Una Vida sin Ansiedad ni Ataques de Pánico)
+    if (route === '/ansiedad-vida') {
+      const requiredAnsiedadStrings = [
+        'Una Vida sin Ansiedad ni Ataques de Pánico',
+        'Detenga los ataques de Ansiedad de una vez por todas y viva una vida plena',
+        'https://www.amazon.com/dp/B08L4FL7NX',
+        'https://www.amazon.com/dp/B09S61YNX6',
+        'https://www.amazon.com/dp/B076KS2Z5X',
+        '3-ansiedad1-libro.jpg',
+        'Hay momentos en los que el cuerpo parece volverse en contra de uno mismo',
+        'Dejar de tenerle miedo al miedo no es solo una idea. Es un punto de partida.',
+      ];
+      for (const str of requiredAnsiedadStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /ansiedad-vida no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+    }
+
+    // K. Comprobación exhaustiva específica para /ansiedad-liberate (Libérate de la Ansiedad)
+    if (route === '/ansiedad-liberate') {
+      const requiredLiberateStrings = [
+        'Libérate de la Ansiedad',
+        'Alimentación, sueño, ejercicio y técnicas de relajación para una mente tranquila',
+        'https://www.amazon.com/dp/B0C6BZMH17',
+        'https://www.amazon.com/dp/B0D7LXW17T',
+        'https://www.amazon.com/dp/B0C66WP2DC',
+        '4-ansiedad2-libro.jpg',
+        'Hay días en los que uno se despierta ya cansado',
+        'Porque cuando el cuerpo aprende a calmarse, la mente también encuentra su espacio.',
+      ];
+      for (const str of requiredLiberateStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /ansiedad-liberate no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+    }
+
+    // L. Comprobación exhaustiva específica para /ansiedad-control (Cómo Controlar La Ansiedad)
+    if (route === '/ansiedad-control') {
+      const requiredControlStrings = [
+        'Cómo Controlar La Ansiedad',
+        'Relaciones, propósito y bienestar emocional después de la ansiedad',
+        'https://www.amazon.com/dp/B0G3H9V83R',
+        'https://www.amazon.com/dp/B0G3H2QV91',
+        'https://www.amazon.com/dp/B0G3CMY9CR',
+        'https://books2read.com/u/49dJXp',
+        '5-ansiedad3-libro.jpg',
+        'books2read.com_logo.jpg',
+        'Superar la ansiedad no termina cuando los síntomas físicos desaparecen',
+        'Entre sus páginas descubrirás:',
+        'Cómo sanar la comunicación con tus seres queridos y expresar lo que sientes con claridad',
+      ];
+      for (const str of requiredControlStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /ansiedad-control no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+    }
+
+    // M. Comprobación exhaustiva específica para /suenos (El Libro de los Sueños)
+    if (route === '/suenos') {
+      const requiredSuenosStrings = [
+        'El Libro de los Sueños',
+        'Cuentos clásicos cortos. Que cautivan niños y adultos llevándolos a mundos de fantasía que desatan su imaginación',
+        'https://www.amazon.com/dp/B0C6BWYRPH',
+        'https://www.amazon.com/dp/B0FVDNM2V7',
+        'https://www.amazon.com/dp/B0C6KS4SP8',
+        '9-cuentos-libro.jpg',
+        '¿Buscas un libro que una a tu familia, calme las noches agitadas y siembre valores sin sermones?',
+        'Dentro encontrarás una cuidadosa selección de cuentos clásicos adaptados con un enfoque moderno',
+        'Ayuda a los niños a manejar sus emociones a través de metáforas suaves y personajes entrañables.',
+        'Búsquedas relacionadas:',
+      ];
+      for (const str of requiredSuenosStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /suenos no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+    }
+
+    // N. Comprobación exhaustiva específica para /velas (Cómo hacer velas Artesanales aromáticas)
+    if (route === '/velas') {
+      const requiredVelasStrings = [
+        'Cómo hacer velas Artesanales aromáticas',
+        'Guía completa para crear velas perfumadas con aromas y aceites esenciales paso a paso',
+        'https://www.amazon.com/dp/B0F3JTB3NL',
+        'https://www.amazon.com/dp/B0F3JNF73F',
+        'https://www.amazon.com/dp/B0F3G1BK5P',
+        'https://play.google.com/store/books/details?id=iCEnEgAAQBAJ',
+        'https://play.google.com/store/audiobooks/details?id=AQAAAEDGfDE85M',
+        '17-velas.jpg',
+        '¿Alguna vez has soñado con crear tus propias velas aromáticas',
+        'Descubre el fascinante mundo de las velas aromáticas hechas a mano',
+        'Control total sobre los ingredientes: Usarás ceras naturales',
+        'Esta guía está estructurada en 12 capítulos detallados',
+        'Manos y misterio',
+        '/manos-misterio',
+      ];
+      for (const str of requiredVelasStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /velas no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+    }
   }
 
   if (failedChecks > 0) {

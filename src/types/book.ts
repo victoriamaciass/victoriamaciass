@@ -25,6 +25,7 @@ export interface BookPurchaseLinks {
   paperback?: string;
   audible?: string;
   storytel?: string;
+  books2read?: string;
 }
 
 export type PurchaseLinks = BookPurchaseLinks;
