@@ -6,7 +6,7 @@ import { getBookCover } from '../data/bookCovers';
 import { getSeoForRoute } from '../data/seoRegistry';
 import { GlobalNavbar } from '../components/GlobalNavbar';
 import { Book, BookPurchaseLinks } from '../types/book';
-import { ArrowLeft, Edit3, Check, X, ExternalLink, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Check, ExternalLink, ChevronRight } from 'lucide-react';
 
 // =============================================================================
 // PLACEHOLDERS DE IMAGEN CUADRADA CON BORDES REDONDEADOS (Estilo Books2Read)
@@ -164,55 +164,19 @@ export const BookDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const book = slug ? getBookBySlug(slug) : undefined;
 
-  // Enlaces editables guardados en localStorage
-  const [links, setLinks] = useState<Record<string, string>>({});
-  const [isEditingLinks, setIsEditingLinks] = useState(false);
-  const [draftLinks, setDraftLinks] = useState<Record<string, string>>({});
-  const [saveSuccess, setSaveSuccess] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // Favoritos
+  // Favoritos (preferencia local del visitante)
   const [isFavorite, setIsFavorite] = useState(false);
-
-  // Descripción editable
-  const [customDescription, setCustomDescription] = useState<string>('');
-  const [isEditingDescription, setIsEditingDescription] = useState(false);
-  const [draftDescription, setDraftDescription] = useState<string>('');
 
   // SEO dinámico y carga de datos
   useEffect(() => {
     if (book) {
       window.scrollTo(0, 0);
 
-      // Cargar enlaces
-      const defaultLinks = (book.purchaseLinks || book.enlaces || {}) as Record<string, string>;
-      const active: Record<string, string> = { ...defaultLinks };
-
-      const saved = localStorage.getItem(`b2r_links_${book.slug}`);
-      if (saved) {
-        try {
-          const parsed = JSON.parse(saved);
-          Object.assign(active, parsed);
-        } catch {
-          // ignore
-        }
-      }
-      setLinks(active);
-      setDraftLinks(active);
-
       // Cargar favoritos
       const fav = localStorage.getItem(`b2r_fav_${book.slug}`);
       setIsFavorite(fav === 'true');
-
-      // Cargar descripción personalizada
-      const savedDesc = localStorage.getItem(`custom_desc_${book.slug}`);
-      if (savedDesc) {
-        setCustomDescription(savedDesc);
-        setDraftDescription(savedDesc);
-      } else {
-        setCustomDescription('');
-        setDraftDescription('');
-      }
 
       // SEO dinámico sincronizado con la fuente central
       const seo = getSeoForRoute(`/${book.slug}`);
@@ -245,32 +209,6 @@ export const BookDetailPage: React.FC = () => {
   const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(null), 3500);
-  };
-
-  // Guardar enlaces
-  const handleSaveLinks = (e: React.FormEvent) => {
-    e.preventDefault();
-    setLinks(draftLinks);
-    if (book) {
-      localStorage.setItem(`b2r_links_${book.slug}`, JSON.stringify(draftLinks));
-    }
-    setSaveSuccess(true);
-    setTimeout(() => {
-      setSaveSuccess(false);
-      setIsEditingLinks(false);
-      showToast('¡Enlaces actualizados correctamente!');
-    }, 900);
-  };
-
-  // Guardar descripción personalizada
-  const handleSaveDescription = (e: React.FormEvent) => {
-    e.preventDefault();
-    setCustomDescription(draftDescription);
-    if (book) {
-      localStorage.setItem(`custom_desc_${book.slug}`, draftDescription);
-    }
-    setIsEditingDescription(false);
-    showToast('Descripción guardada.');
   };
 
 
@@ -322,11 +260,8 @@ export const BookDetailPage: React.FC = () => {
     );
   }
 
-  // Párrafos de la descripción completa
+  // Párrafos de la descripción completa (exclusivamente datos oficiales de la obra)
   const resolvedParagraphs: string[] = (() => {
-    if (customDescription.trim()) {
-      return customDescription.split('\n\n').filter(Boolean);
-    }
     if (book.fullDescription && book.fullDescription.length > 0) {
       return book.fullDescription;
     }
@@ -378,7 +313,6 @@ export const BookDetailPage: React.FC = () => {
     const rawLinks = {
       ...(book.purchaseLinks || {}),
       ...(book.enlaces || {}),
-      ...links,
     } as Record<string, string>;
 
     const check = (k: string) => {
@@ -470,95 +404,8 @@ export const BookDetailPage: React.FC = () => {
               <span className="text-stone-900 font-semibold truncate">{book.title}</span>
             </nav>
           </div>
-
-          <button
-            onClick={() => setIsEditingLinks(!isEditingLinks)}
-            className="text-[13px] sm:text-[14px] font-medium text-stone-700 hover:text-stone-950 inline-flex items-center gap-1.5 cursor-pointer transition-colors shrink-0"
-            title="Configurar los enlaces de compra"
-          >
-            <Edit3 className="w-3.5 h-3.5" />
-            <span>Editar enlaces</span>
-          </button>
         </div>
       </div>
-
-      {/* Panel desplegable de edición de enlaces */}
-      {isEditingLinks && (
-        <div className="bg-stone-50 border-b border-stone-300 p-6 sm:p-8">
-          <div className="max-w-4xl mx-auto bg-white border border-stone-200 rounded-xl p-6 shadow-sm">
-            <div className="flex items-center justify-between pb-3 border-b border-stone-200 mb-5">
-              <div>
-                <h3 className="font-serif text-lg font-bold text-stone-900">
-                  Configurar enlaces para "{book.title}"
-                </h3>
-                <p className="text-xs text-stone-500">
-                  Pega las URLs de destino para cada plataforma. Los enlaces se guardan localmente para este título.
-                </p>
-              </div>
-              <button
-                onClick={() => setIsEditingLinks(false)}
-                className="text-stone-400 hover:text-stone-700 p-1 cursor-pointer"
-                aria-label="Cerrar"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            <form onSubmit={handleSaveLinks} className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                {ORDERED_COMMERCIAL_PLATFORMS.map((item) => (
-                  <div key={item.id} className="flex items-center gap-3 p-2.5 rounded-lg bg-stone-50 border border-stone-200">
-                    <img
-                      src={item.logo}
-                      alt={item.alt}
-                      className="w-10 h-10 rounded-md shrink-0 object-contain bg-white border border-stone-200"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <label className="block text-[11px] font-semibold text-stone-700 truncate mb-0.5">
-                        {item.order}. {item.tooltip}
-                      </label>
-                      <input
-                        type="url"
-                        placeholder="https://..."
-                        value={draftLinks[item.key] || ''}
-                        onChange={(e) =>
-                          setDraftLinks({
-                            ...draftLinks,
-                            [item.key]: e.target.value,
-                          })
-                        }
-                        className="w-full px-2.5 py-1 text-xs bg-white border border-stone-300 rounded focus:bg-white focus:outline-none focus:border-stone-900 font-mono"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="pt-4 border-t border-stone-200 flex items-center justify-end gap-3">
-                {saveSuccess && (
-                  <span className="text-xs font-semibold text-emerald-700 flex items-center gap-1">
-                    <Check className="w-3.5 h-3.5" />
-                    <span>¡Guardado con éxito!</span>
-                  </span>
-                )}
-                <button
-                  type="button"
-                  onClick={() => setIsEditingLinks(false)}
-                  className="px-3.5 py-1.5 text-xs text-stone-600 hover:text-stone-900 cursor-pointer"
-                >
-                  Cancelar
-                </button>
-                <button
-                  type="submit"
-                  className="px-5 py-2 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors shadow-2xs cursor-pointer"
-                >
-                  Guardar enlaces
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
 
       {/* ====================================================================
           ESTRUCTURA VISUAL SUPERIOR (Zona de escaparate)
@@ -569,7 +416,10 @@ export const BookDetailPage: React.FC = () => {
             REGLA DE ORO: Los logos NO tienen texto visible debajo ni al lado.
             Solo la imagen cuadrada con bordes redondeados y tooltip en hover.
           ==================================================================== */}
-      <section className="bg-gradient-to-b from-white via-[#faf9f5] to-[#f2efea] border-b border-stone-200/90 py-12 sm:py-16 lg:py-20">
+      <section
+        id="opciones-compra"
+        className="scroll-mt-20 sm:scroll-mt-24 bg-gradient-to-b from-white via-[#faf9f5] to-[#f2efea] border-b border-stone-200/90 py-12 sm:py-16 lg:py-20"
+      >
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             
@@ -589,7 +439,7 @@ export const BookDetailPage: React.FC = () => {
                   >
                     <img
                       src={coverUrl}
-                      alt={book.title}
+                      alt={book.coverAlt || (book.author ? `Portada del libro ${book.title}, de ${book.author}` : `Portada del libro ${book.title}`)}
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-contain block"
                     />
@@ -771,49 +621,11 @@ export const BookDetailPage: React.FC = () => {
 
         {/* 4. Descripción completa */}
         <div className="pt-10">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="font-serif text-2xl sm:text-[30px] font-bold text-stone-900 tracking-tight">
-              Descripción completa
-            </h2>
-            <button
-              onClick={() => {
-                setDraftDescription(resolvedParagraphs.join('\n\n'));
-                setIsEditingDescription(!isEditingDescription);
-              }}
-              className="text-xs sm:text-sm text-stone-600 hover:text-stone-900 inline-flex items-center gap-1 cursor-pointer transition-colors"
-            >
-              <Edit3 className="w-3.5 h-3.5" />
-              <span>{isEditingDescription ? 'Cerrar editor' : 'Editar texto'}</span>
-            </button>
-          </div>
+          <h2 className="font-serif text-2xl sm:text-[30px] font-bold text-stone-900 tracking-tight mb-8">
+            Descripción completa
+          </h2>
 
-          {/* Formulario de edición de descripción */}
-          {isEditingDescription ? (
-            <form onSubmit={handleSaveDescription} className="space-y-4">
-              <textarea
-                rows={12}
-                value={draftDescription}
-                onChange={(e) => setDraftDescription(e.target.value)}
-                placeholder="Escribe la descripción completa en párrafos separados por doble salto..."
-                className="w-full p-4 text-sm sm:text-[15px] bg-white border border-stone-300 rounded-lg focus:outline-none focus:border-stone-900 font-sans leading-relaxed"
-              />
-              <div className="flex items-center justify-end gap-3">
-                <button
-                  type="button"
-                  onClick={() => setIsEditingDescription(false)}
-                  className="px-3 py-1.5 text-xs sm:text-sm text-stone-600 hover:text-stone-900 cursor-pointer"
-                >
-                  Cancelar
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-md transition-colors cursor-pointer"
-                >
-                  Guardar descripción
-                </button>
-              </div>
-            </form>
-          ) : resolvedParagraphs.length > 0 ? (
+          {resolvedParagraphs.length > 0 ? (
             /* Texto del campo descripcion sin truncar, con párrafos separados, subtítulos y viñetas legibles (16-18px) */
             <div className="space-y-6 text-[16px] sm:text-[17px] md:text-[18px] text-stone-700 leading-relaxed font-sans">
               {resolvedParagraphs.map((parr, idx) => {
@@ -864,6 +676,21 @@ export const BookDetailPage: React.FC = () => {
                   </p>
                 );
               })}
+
+              {/* Botón CTA "Comprar ahora" que redirige al bloque de opciones de compra */}
+              <div className="pt-8 sm:pt-10 flex flex-col sm:flex-row items-start">
+                <a
+                  href="#opciones-compra"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('opciones-compra')?.scrollIntoView({ behavior: 'smooth' });
+                    window.history.pushState(null, '', '#opciones-compra');
+                  }}
+                  className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-base sm:text-[17px] font-semibold text-white bg-[#1c3829] hover:bg-[#14281d] rounded-xl shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1c3829] focus-visible:ring-offset-2 text-center"
+                >
+                  Comprar ahora
+                </a>
+              </div>
             </div>
           ) : (
             <div className="p-8 bg-stone-50 border border-dashed border-stone-300 rounded-xl text-center">

@@ -41,6 +41,7 @@ export interface Book {
   synopsis: string;
   fullDescription: string[];
   coverImage?: string;
+  coverAlt?: string;
   coverTheme?: {
     bgGradient: string;
     accentColor: string;

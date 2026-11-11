@@ -344,13 +344,28 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
 
     const firstWords = rawDescription.slice(0, 155) || `Guía práctica de ${book.title} por Victoria Maciass.`;
 
+    if (book.slug === 'gallinas') {
+      return {
+        title: 'La Guía De Las Gallinas | Crianza y Cuidados – Victoria Maciass',
+        description: 'Descubre cómo criar gallinas en casa: razas, alimentación, gallinero, reproducción, salud y puesta de huevos. Una guía de Victoria Maciass.',
+        canonical: `${BASE_URL}/gallinas`,
+        ogTitle: 'La Guía De Las Gallinas | Crianza y Cuidados – Victoria Maciass',
+        ogDescription: 'Descubre cómo criar gallinas en casa: razas, alimentación, gallinero, reproducción, salud y puesta de huevos. Una guía de Victoria Maciass.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/1-gallinas-libro.jpg',
+        ogUrl: `${BASE_URL}/gallinas`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     if (book.slug === 'gatos') {
       return {
-        title: 'El Arte de Amar a un Gato | Comprende y Cuida a tu Gato',
-        description: 'Descubre cómo entender el comportamiento de tu gato, interpretar su lenguaje corporal y mejorar vuestra convivencia con respeto, empatía y cuidados adecuados.',
+        title: 'El Arte de Amar a un Gato | Comportamiento y Cuidados',
+        description: 'Aprende a comprender el comportamiento de tu gato, cuidar su bienestar y mejorar la convivencia. Una guía práctica de Victoria Maciass.',
         canonical: `${BASE_URL}/gatos`,
-        ogTitle: 'El Arte de Amar a un Gato | Comprende y Cuida a tu Gato',
-        ogDescription: 'Descubre cómo entender el comportamiento de tu gato, interpretar su lenguaje corporal y mejorar vuestra convivencia con respeto, empatía y cuidados adecuados.',
+        ogTitle: 'El Arte de Amar a un Gato | Comportamiento y Cuidados',
+        ogDescription: 'Aprende a comprender el comportamiento de tu gato, cuidar su bienestar y mejorar la convivencia. Una guía práctica de Victoria Maciass.',
         ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/20-gatos-libro.jpg',
         ogUrl: `${BASE_URL}/gatos`,
         ogType: 'book',
@@ -361,11 +376,11 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
 
     if (book.slug === 'perros') {
       return {
-        title: 'Adiestramiento Canino: Guía para Entrenar a tu Perro',
-        description: 'Aprende adiestramiento canino con refuerzo positivo, obediencia básica, educación y comportamiento. Mejora la comunicación y el vínculo con tu perro.',
+        title: 'Adiestramiento Canino: Guía Completa para Entrenar a tu Perro',
+        description: 'Descubre cómo educar a tu perro, comprender su comportamiento y trabajar la obediencia, la socialización y los problemas de conducta.',
         canonical: `${BASE_URL}/perros`,
-        ogTitle: 'Adiestramiento Canino | Victoria Maciass',
-        ogDescription: 'Aprende adiestramiento canino con refuerzo positivo, obediencia básica, educación y comportamiento. Mejora la comunicación y el vínculo con tu perro.',
+        ogTitle: 'Adiestramiento Canino: Guía Completa para Entrenar a tu Perro',
+        ogDescription: 'Descubre cómo educar a tu perro, comprender su comportamiento y trabajar la obediencia, la socialización y los problemas de conducta.',
         ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/2-perros-libro.jpg',
         ogUrl: `${BASE_URL}/perros`,
         ogType: 'book',
@@ -443,6 +458,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
         ogDescription: 'Aprende cómo hacer velas aromáticas y artesanales paso a paso. Descubre tipos de cera, mechas, fragancias, aceites esenciales y técnicas de elaboración.',
         ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/17-velas.jpg',
         ogUrl: `${BASE_URL}/velas`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
+    if (book.slug === 'costura') {
+      return {
+        title: 'Aprender a Coser desde Cero | Guía de Costura',
+        description: 'Aprende costura desde cero, conoce las telas, herramientas, patrones y puntadas básicas, y descubre cómo crear tus propias prendas paso a paso.',
+        canonical: `${BASE_URL}/costura`,
+        ogTitle: 'La costura que querías aprender',
+        ogDescription: 'Aprende costura desde cero, conoce las telas, herramientas, patrones y puntadas básicas, y descubre cómo crear tus propias prendas paso a paso.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/21-costura-libro.jpg',
+        ogUrl: `${BASE_URL}/costura`,
         ogType: 'book',
         twitterCard: 'summary_large_image',
         schemaJsonLd: getBookSchema(book),

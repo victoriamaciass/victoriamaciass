@@ -229,6 +229,23 @@ async function prerender() {
       failedChecks++;
     }
 
+    // F2. Botón CTA "Comprar ahora" y ancla "opciones-compra" en las 39 fichas individuales
+    const categoryRoutes = ['/cocina', '/mascotas', '/mente-emociones', '/crecimiento-personal', '/cuerpo-salud', '/manos-misterio'];
+    if (route !== '/' && !categoryRoutes.includes(route)) {
+      if (!content.includes('Comprar ahora')) {
+        console.error(`❌ ERROR: No se encontró el botón "Comprar ahora" en la ficha ${route}`);
+        failedChecks++;
+      }
+      if (!content.includes('id="opciones-compra"')) {
+        console.error(`❌ ERROR: No se encontró el contenedor id="opciones-compra" en la ficha ${route}`);
+        failedChecks++;
+      }
+      if (!content.includes('href="#opciones-compra"')) {
+        console.error(`❌ ERROR: No se encontró el enlace href="#opciones-compra" en la ficha ${route}`);
+        failedChecks++;
+      }
+    }
+
     // G. Comprobación exhaustiva específica para /cocina
     if (route === '/cocina') {
       // 18 libros
@@ -266,6 +283,33 @@ async function prerender() {
       }
     }
 
+    // G2. Comprobación exhaustiva específica para /gallinas (La Guía De Las Gallinas)
+    if (route === '/gallinas') {
+      const requiredGallinasStrings = [
+        'La Guía De Las Gallinas',
+        'Descubre el fascinante mundo de la cría y el cuidado de estas aves y todos sus beneficios',
+        'https://www.amazon.com/dp/B0C6PD4NSZ',
+        'https://www.amazon.com/dp/B0D78RSW7L',
+        'https://www.amazon.com/dp/B0C6P2TZYJ',
+        '1-gallinas-libro.jpg',
+        'Aprende a conocer el mundo de las gallinas y descubre todo lo que puede ofrecerte su crianza',
+        'Un recorrido por los aspectos esenciales de la crianza de gallinas',
+        'Gallinas en casa, en el jardín y en espacios reducidos',
+        '¿A quién puede interesarle este libro?',
+        'Descubre todo lo que hay detrás del mundo de las gallinas',
+        'Elige tu edición y comienza a explorar el fascinante mundo de las gallinas.',
+        'Portada del libro La Guía De Las Gallinas, de Victoria Maciass',
+        'Mascotas',
+        '/mascotas',
+      ];
+      for (const str of requiredGallinasStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /gallinas no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+    }
+
     // H. Comprobación exhaustiva específica para /gatos (El Arte de Amar a un Gato)
     if (route === '/gatos') {
       const requiredGatosStrings = [
@@ -275,10 +319,16 @@ async function prerender() {
         'https://www.amazon.com/dp/B0FPXP3D8L',
         'https://www.amazon.com/dp/B0FPTY88GR',
         '20-gatos-libro.jpg',
-        '¿Qué estás pensando? ¿Por qué se acerca para luego alejarse?',
-        'En este libro aprenderás a:',
-        'Comprender el comportamiento felino y reconocer lo que tu gato expresa',
-        'Claves para entender y convivir con tu compañero felino',
+        'Comprende a tu gato y descubre una nueva forma de convivir con él',
+        'Aprende a comprender el lenguaje y el comportamiento felino',
+        'Cuidados, bienestar y convivencia en el hogar',
+        'Una relación que evoluciona a lo largo de su vida',
+        '¿A quién puede interesarle este libro?',
+        'Amar a un gato también significa aprender a comprenderlo',
+        'Descubre tu edición y comienza a comprender mejor a tu compañero felino.',
+        'Portada del libro El Arte de Amar a un Gato, de Victoria Maciass',
+        'Mascotas',
+        '/mascotas',
       ];
       for (const str of requiredGatosStrings) {
         if (!content.includes(str)) {
@@ -292,14 +342,22 @@ async function prerender() {
     if (route === '/perros') {
       const requiredPerrosStrings = [
         'Adiestramiento Canino',
-        'Guía Completa para Entrenar a tu Perro con Éxito',
+        'Guía Completa para Entrenar a tu Perro con Éxito. Desarrollando habilidades avanzadas y fortaleciendo el vínculo humano-canino para una convivencia armoniosa y feliz',
         'https://www.amazon.com/dp/B0CYLZ1B3Z',
         'https://www.amazon.com/dp/B0CYLMLX4X',
         'https://www.amazon.com/dp/B0CYK66WSN',
         '2-perros-libro.jpg',
-        'A lo largo de esta guía aprenderás:',
-        'Cómo comprender el comportamiento y el lenguaje corporal de los perros',
-        'Los principios del refuerzo positivo y por qué funcionan',
+        'Educar a un perro es mucho más que enseñarle a obedecer: es aprender a comunicarse con él.',
+        'Desde las primeras órdenes hasta las habilidades avanzadas',
+        'Comprender y abordar los problemas de comportamiento',
+        'Entrenamiento avanzado, comunicación y seguridad',
+        'Una convivencia que incluye a toda la familia',
+        '¿A quién puede interesarle este libro?',
+        'Una relación más fuerte empieza por comprenderse',
+        'Descubre tu edición y empieza a construir una convivencia más tranquila, segura y satisfactoria junto a tu perro.',
+        'Portada del libro Adiestramiento Canino de Victoria Maciass',
+        'Mascotas',
+        '/mascotas',
       ];
       for (const str of requiredPerrosStrings) {
         if (!content.includes(str)) {
@@ -415,6 +473,31 @@ async function prerender() {
       for (const str of requiredVelasStrings) {
         if (!content.includes(str)) {
           console.error(`❌ ERROR: /velas no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+    }
+
+    // O. Comprobación exhaustiva específica para /costura (La costura que querías aprender)
+    if (route === '/costura') {
+      const requiredCosturaStrings = [
+        'La costura que querías aprender',
+        'Una guía diferente que te enseña a crear tus propias prendas con las manos y el corazón',
+        'https://www.amazon.com/dp/B0HGMQY9BL',
+        'https://www.amazon.com/dp/B0HGMS4K1W',
+        'https://www.amazon.com/dp/B0HGMNN2P2',
+        '21-costura-libro.jpg',
+        '¿Cuántas veces has pensado: «Ojalá supiera coser»?',
+        'La Costura que Querías Aprender nace precisamente para acompañarte en ese primer paso.',
+        'Esta no es una enciclopedia de costura llena de términos difíciles',
+        'Poco a poco, empezarás a entender el lenguaje de la costura.',
+        'También descubrirás algo que muchos manuales de costura olvidan mencionar: los errores forman parte del aprendizaje.',
+        'Manos y misterio',
+        '/manos-misterio',
+      ];
+      for (const str of requiredCosturaStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /costura no contiene la cadena requerida: "${str}"`);
           failedChecks++;
         }
       }
