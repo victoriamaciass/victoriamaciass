@@ -93,6 +93,21 @@ async function prerender() {
       `<meta name="description" content="${escapeHtml(seo.description)}" />`
     );
 
+    // 3b. Inyectar o reemplazar Meta Keywords si está presente
+    if (seo.keywords) {
+      if (pageHtml.includes('<meta name="keywords"')) {
+        pageHtml = pageHtml.replace(
+          /<meta\s+name="keywords"\s+content=".*?"\s*\/?>/,
+          `<meta name="keywords" content="${escapeHtml(seo.keywords)}" />`
+        );
+      } else {
+        pageHtml = pageHtml.replace(
+          '</head>',
+          `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
+        );
+      }
+    }
+
     // 4. Reemplazar Canonical
     pageHtml = pageHtml.replace(
       /<link\s+rel="canonical"\s+href=".*?"\s*\/?>/,
@@ -246,6 +261,12 @@ async function prerender() {
       }
     }
 
+    // F3. Botón flotante "Volver arriba" presente en las 46 rutas públicas
+    if (!content.includes('aria-label="Volver al inicio de la página"')) {
+      console.error(`❌ ERROR: No se encontró el botón flotante "Volver arriba" en la ruta ${route}`);
+      failedChecks++;
+    }
+
     // G. Comprobación exhaustiva específica para /cocina
     if (route === '/cocina') {
       // 18 libros
@@ -280,6 +301,35 @@ async function prerender() {
           console.error(`❌ ERROR: /cocina no contiene la sección editorial H2 "${h2}"`);
           failedChecks++;
         }
+      }
+
+      // Verificación de ausencia total de imágenes no autorizadas (unsplash) en /cocina
+      if (content.includes('unsplash')) {
+        console.error('❌ ERROR: /cocina contiene imágenes no autorizadas (unsplash)');
+        failedChecks++;
+      }
+    }
+
+    // G1. Comprobación específica para /manos-misterio
+    if (route === '/manos-misterio') {
+      const expectedManosMisterioSlugs = ['velas', 'costura', 'conjuros'];
+      for (const s of expectedManosMisterioSlugs) {
+        if (!content.includes(`/${s}`)) {
+          console.error(`❌ ERROR: /manos-misterio no contiene el enlace al libro /${s}`);
+          failedChecks++;
+        }
+      }
+
+      // Verificación de ausencia total de imágenes no autorizadas (unsplash) en /manos-misterio
+      if (content.includes('unsplash')) {
+        console.error('❌ ERROR: /manos-misterio contiene imágenes no autorizadas (unsplash)');
+        failedChecks++;
+      }
+
+      // Verificación de ausencia de enlaces redundantes en las tarjetas de temáticas
+      if (content.includes('Ver en catálogo ↓') || content.includes('Ficha del libro')) {
+        console.error('❌ ERROR: /manos-misterio contiene enlaces redundantes en la sección de temáticas');
+        failedChecks++;
       }
     }
 
@@ -376,8 +426,16 @@ async function prerender() {
         'https://www.amazon.com/dp/B09S61YNX6',
         'https://www.amazon.com/dp/B076KS2Z5X',
         '3-ansiedad1-libro.jpg',
-        'Hay momentos en los que el cuerpo parece volverse en contra de uno mismo',
-        'Dejar de tenerle miedo al miedo no es solo una idea. Es un punto de partida.',
+        'Portada del libro Una Vida sin Ansiedad ni Ataques de Pánico de Victoria Maciass',
+        'cómo superar la ansiedad y los ataques de pánico',
+        'Comprender la ansiedad y los síntomas de los ataques de pánico',
+        'Cómo controlar los ataques de pánico en el momento presente',
+        'Técnicas de respiración para la ansiedad y regulación somática',
+        'Enfoques terapéuticos eficaces: TCC, exposición y aceptación',
+        'Estrategias para prevenir la ansiedad y fortalecer la resiliencia diaria',
+        '¿A quién está dirigida esta obra?',
+        'Cómo recuperar la tranquilidad emocional y reconstruir la confianza',
+        'Esta publicación tiene carácter informativo y educativo. No sustituye la evaluación, el diagnóstico ni el tratamiento de profesionales de la salud.',
       ];
       for (const str of requiredAnsiedadStrings) {
         if (!content.includes(str)) {

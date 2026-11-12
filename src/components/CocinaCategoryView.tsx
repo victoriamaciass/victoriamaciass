@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronRight, Utensils, Salad, ChefHat, Sparkles } from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 import { CategoryInfo, CATEGORIES_LIST } from '../data/categoriesData';
 import { GlobalNavbar } from './GlobalNavbar';
 
@@ -235,7 +235,7 @@ export const CocinaCategoryView: React.FC<CocinaCategoryViewProps> = ({ category
     if (ogImage) {
       ogImage.setAttribute(
         'content',
-        'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=80'
+        'https://ik.imagekit.io/hr20qlpupi/victoria/8-paella-arte-libro-600.jpg'
       );
     }
 
@@ -243,7 +243,7 @@ export const CocinaCategoryView: React.FC<CocinaCategoryViewProps> = ({ category
     if (twitterImage) {
       twitterImage.setAttribute(
         'content',
-        'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=80'
+        'https://ik.imagekit.io/hr20qlpupi/victoria/8-paella-arte-libro-600.jpg'
       );
     }
 
@@ -361,7 +361,7 @@ export const CocinaCategoryView: React.FC<CocinaCategoryViewProps> = ({ category
 
         {/* ====================================================================
             B. PRESENTACIÓN DE LAS TRES COLECCIONES
-            Tres bloques visuales con fotografías gastronómicas representativas
+            Tres bloques visuales sobrios y equilibrados que orientan al lector
             ==================================================================== */}
         <section aria-labelledby="colecciones-heading" className="mb-16">
           <div className="mb-8">
@@ -372,29 +372,19 @@ export const CocinaCategoryView: React.FC<CocinaCategoryViewProps> = ({ category
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {/* Colección 1: Cocina saludable */}
-            <article className="bg-white border border-stone-200/90 rounded-2xl overflow-hidden shadow-2xs hover:border-stone-400 hover:shadow-md transition-all flex flex-col justify-between">
+            <article className="bg-white border border-stone-200/90 rounded-2xl p-6 sm:p-7 shadow-2xs hover:border-stone-400 hover:shadow-md transition-all flex flex-col justify-between">
               <div>
-                <div className="h-44 sm:h-48 w-full overflow-hidden relative">
-                  <img
-                    src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80"
-                    alt="Ingredientes frescos y ensalada saludable"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-md text-[11px] font-semibold text-[#163a2b] uppercase tracking-wider font-sans">
-                    6 recetarios
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="font-serif text-xl sm:text-[22px] font-bold text-stone-900 mb-2.5">
-                    Cocina saludable
-                  </h3>
-                  <p className="text-sm text-stone-700 leading-relaxed font-sans">
-                    Recetarios con propuestas de ensaladas, quinoa, recetas fitness y otras preparaciones para quienes desean explorar alternativas variadas en su cocina cotidiana.
-                  </p>
-                </div>
+                <span className="text-xs font-semibold uppercase tracking-wider text-[#163a2b] block mb-2 font-sans">
+                  6 recetarios
+                </span>
+                <h3 className="font-serif text-xl sm:text-[22px] font-bold text-stone-900 mb-2.5">
+                  Cocina saludable
+                </h3>
+                <p className="text-sm text-stone-700 leading-relaxed font-sans">
+                  Recetarios con propuestas de ensaladas, quinoa, recetas fitness y otras preparaciones para quienes desean explorar alternativas variadas en su cocina cotidiana.
+                </p>
               </div>
-              <div className="p-6 pt-0">
+              <div className="pt-6 mt-4 border-t border-stone-100">
                 <a
                   href="#cocina-saludable"
                   onClick={() => setSelectedFilter('saludable')}
@@ -407,29 +397,19 @@ export const CocinaCategoryView: React.FC<CocinaCategoryViewProps> = ({ category
             </article>
 
             {/* Colección 2: Cocina mediterránea y española */}
-            <article className="bg-white border border-stone-200/90 rounded-2xl overflow-hidden shadow-2xs hover:border-stone-400 hover:shadow-md transition-all flex flex-col justify-between">
+            <article className="bg-white border border-stone-200/90 rounded-2xl p-6 sm:p-7 shadow-2xs hover:border-stone-400 hover:shadow-md transition-all flex flex-col justify-between">
               <div>
-                <div className="h-44 sm:h-48 w-full overflow-hidden relative">
-                  <img
-                    src="https://images.unsplash.com/photo-1534080564583-6be75777b70a?auto=format&fit=crop&w=800&q=80"
-                    alt="Paella mediterránea tradicional con marisco y arroz"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-md text-[11px] font-semibold text-[#163a2b] uppercase tracking-wider font-sans">
-                    3 recetarios
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="font-serif text-xl sm:text-[22px] font-bold text-stone-900 mb-2.5">
-                    Cocina mediterránea y española
-                  </h3>
-                  <p className="text-sm text-stone-700 leading-relaxed font-sans">
-                    Una selección de recetarios dedicados a la cocina mediterránea y española, con especial atención a las paellas, los arroces y otras preparaciones tradicionales y populares.
-                  </p>
-                </div>
+                <span className="text-xs font-semibold uppercase tracking-wider text-[#163a2b] block mb-2 font-sans">
+                  3 recetarios
+                </span>
+                <h3 className="font-serif text-xl sm:text-[22px] font-bold text-stone-900 mb-2.5">
+                  Cocina mediterránea y española
+                </h3>
+                <p className="text-sm text-stone-700 leading-relaxed font-sans">
+                  Una selección de recetarios dedicados a la cocina mediterránea y española, con especial atención a las paellas, los arroces y otras preparaciones tradicionales y populares.
+                </p>
               </div>
-              <div className="p-6 pt-0">
+              <div className="pt-6 mt-4 border-t border-stone-100">
                 <a
                   href="#cocina-mediterranea"
                   onClick={() => setSelectedFilter('mediterranea')}
@@ -442,29 +422,19 @@ export const CocinaCategoryView: React.FC<CocinaCategoryViewProps> = ({ category
             </article>
 
             {/* Colección 3: Recetas variadas */}
-            <article className="bg-white border border-stone-200/90 rounded-2xl overflow-hidden shadow-2xs hover:border-stone-400 hover:shadow-md transition-all flex flex-col justify-between">
+            <article className="bg-white border border-stone-200/90 rounded-2xl p-6 sm:p-7 shadow-2xs hover:border-stone-400 hover:shadow-md transition-all flex flex-col justify-between">
               <div>
-                <div className="h-44 sm:h-48 w-full overflow-hidden relative">
-                  <img
-                    src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80"
-                    alt="Platos caseros variados, asados y carnes"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-md text-[11px] font-semibold text-[#163a2b] uppercase tracking-wider font-sans">
-                    9 recetarios
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="font-serif text-xl sm:text-[22px] font-bold text-stone-900 mb-2.5">
-                    Recetas variadas
-                  </h3>
-                  <p className="text-sm text-stone-700 leading-relaxed font-sans">
-                    Una colección de recetarios con propuestas diferentes para ampliar las posibilidades de la cocina diaria, desde platos de carne y pollo hasta galletas, recetas variadas y otras preparaciones.
-                  </p>
-                </div>
+                <span className="text-xs font-semibold uppercase tracking-wider text-[#163a2b] block mb-2 font-sans">
+                  9 recetarios
+                </span>
+                <h3 className="font-serif text-xl sm:text-[22px] font-bold text-stone-900 mb-2.5">
+                  Recetas variadas
+                </h3>
+                <p className="text-sm text-stone-700 leading-relaxed font-sans">
+                  Una colección de recetarios con propuestas diferentes para ampliar las posibilidades de la cocina diaria, desde platos de carne y pollo hasta galletas, recetas variadas y otras preparaciones.
+                </p>
               </div>
-              <div className="p-6 pt-0">
+              <div className="pt-6 mt-4 border-t border-stone-100">
                 <a
                   href="#recetas-variadas"
                   onClick={() => setSelectedFilter('variadas')}

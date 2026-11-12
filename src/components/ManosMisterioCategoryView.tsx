@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronRight, Sparkles, Scissors, Flame, BookOpen } from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 import { CategoryInfo, CATEGORIES_LIST } from '../data/categoriesData';
 import { GlobalNavbar } from './GlobalNavbar';
 
@@ -248,8 +248,7 @@ export const ManosMisterioCategoryView: React.FC<ManosMisterioCategoryViewProps>
 
         {/* ====================================================================
             B. PRESENTACIÓN DE LAS TRES TEMÁTICAS
-            H2 con tres bloques visuales diferenciados, fotografía, título,
-            descripción y ancla/enlace al libro real
+            Tres bloques visuales sobrios y equilibrados que orientan al lector
             ==================================================================== */}
         <section aria-labelledby="tematicas-heading" className="mb-16">
           <div className="mb-8">
@@ -260,126 +259,42 @@ export const ManosMisterioCategoryView: React.FC<ManosMisterioCategoryViewProps>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {/* 1. Velas artesanales */}
-            <article className="bg-white border border-stone-200/90 rounded-2xl overflow-hidden shadow-2xs hover:border-stone-400 hover:shadow-md transition-all flex flex-col justify-between">
-              <div>
-                <div className="h-44 sm:h-48 w-full overflow-hidden relative">
-                  <img
-                    src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=800&q=80"
-                    alt="Elaboración artesanal de velas con ceras botánicas e ingredientes naturales"
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-md text-[11px] font-semibold text-[#163a2b] uppercase tracking-wider font-sans inline-flex items-center gap-1.5 shadow-xs">
-                    <Flame className="w-3.5 h-3.5 text-amber-600" />
-                    <span>Cerería Botánica</span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="font-serif text-xl sm:text-[22px] font-bold text-stone-900 mb-2.5">
-                    Velas artesanales
-                  </h3>
-                  <p className="text-sm text-stone-700 leading-relaxed font-sans">
-                    Descubre el mundo de la elaboración artesanal de velas y explora técnicas, materiales y posibilidades creativas para desarrollar tus propios proyectos.
-                  </p>
-                </div>
-              </div>
-              <div className="p-6 pt-0 flex items-center justify-between gap-3 border-t border-stone-100">
-                <a
-                  href="#libro-velas"
-                  className="text-xs font-medium text-stone-500 hover:text-stone-800 transition-colors"
-                >
-                  Ver en catálogo ↓
-                </a>
-                <Link
-                  to="/velas"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#163a2b] hover:text-[#102a1f] font-sans group"
-                >
-                  <span>Ficha del libro</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </Link>
-              </div>
+            <article className="bg-white border border-stone-200/90 rounded-2xl p-6 sm:p-7 shadow-2xs hover:border-stone-400 transition-colors">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#163a2b] block mb-2 font-sans">
+                Cerería Botánica
+              </span>
+              <h3 className="font-serif text-xl sm:text-[22px] font-bold text-stone-900 mb-2.5">
+                Velas artesanales
+              </h3>
+              <p className="text-sm text-stone-700 leading-relaxed font-sans">
+                Descubre el mundo de la elaboración artesanal de velas y explora técnicas, materiales y posibilidades creativas para desarrollar tus propios proyectos.
+              </p>
             </article>
 
             {/* 2. Costura y creatividad */}
-            <article className="bg-white border border-stone-200/90 rounded-2xl overflow-hidden shadow-2xs hover:border-stone-400 hover:shadow-md transition-all flex flex-col justify-between">
-              <div>
-                <div className="h-44 sm:h-48 w-full overflow-hidden relative">
-                  <img
-                    src="https://images.unsplash.com/photo-1528458900006-f8399497302b?auto=format&fit=crop&w=800&q=80"
-                    alt="Telas, hilos, tijeras y elementos de costura y confección creativa"
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-md text-[11px] font-semibold text-[#163a2b] uppercase tracking-wider font-sans inline-flex items-center gap-1.5 shadow-xs">
-                    <Scissors className="w-3.5 h-3.5 text-rose-600" />
-                    <span>Confección Textil</span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="font-serif text-xl sm:text-[22px] font-bold text-stone-900 mb-2.5">
-                    Costura y creatividad
-                  </h3>
-                  <p className="text-sm text-stone-700 leading-relaxed font-sans">
-                    Aprender a coser abre posibilidades para crear, reparar y personalizar prendas y objetos textiles. Explora una publicación dedicada al aprendizaje de la costura y sus técnicas.
-                  </p>
-                </div>
-              </div>
-              <div className="p-6 pt-0 flex items-center justify-between gap-3 border-t border-stone-100">
-                <a
-                  href="#libro-costura"
-                  className="text-xs font-medium text-stone-500 hover:text-stone-800 transition-colors"
-                >
-                  Ver en catálogo ↓
-                </a>
-                <Link
-                  to="/costura"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#163a2b] hover:text-[#102a1f] font-sans group"
-                >
-                  <span>Ficha del libro</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </Link>
-              </div>
+            <article className="bg-white border border-stone-200/90 rounded-2xl p-6 sm:p-7 shadow-2xs hover:border-stone-400 transition-colors">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#163a2b] block mb-2 font-sans">
+                Confección Textil
+              </span>
+              <h3 className="font-serif text-xl sm:text-[22px] font-bold text-stone-900 mb-2.5">
+                Costura y creatividad
+              </h3>
+              <p className="text-sm text-stone-700 leading-relaxed font-sans">
+                Aprender a coser abre posibilidades para crear, reparar y personalizar prendas y objetos textiles. Explora una publicación dedicada al aprendizaje de la costura y sus técnicas.
+              </p>
             </article>
 
             {/* 3. Conjuros conscientes y simbolismo */}
-            <article className="bg-white border border-stone-200/90 rounded-2xl overflow-hidden shadow-2xs hover:border-stone-400 hover:shadow-md transition-all flex flex-col justify-between">
-              <div>
-                <div className="h-44 sm:h-48 w-full overflow-hidden relative">
-                  <img
-                    src="https://images.unsplash.com/photo-1514894780887-121968d00567?auto=format&fit=crop&w=800&q=80"
-                    alt="Libro antiguo, elementos botánicos y luz suave simbolizando introspección y sabiduría tradicional"
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-md text-[11px] font-semibold text-[#163a2b] uppercase tracking-wider font-sans inline-flex items-center gap-1.5 shadow-xs">
-                    <Sparkles className="w-3.5 h-3.5 text-purple-600" />
-                    <span>Práctica Simbólica</span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="font-serif text-xl sm:text-[22px] font-bold text-stone-900 mb-2.5">
-                    Conjuros conscientes y simbolismo
-                  </h3>
-                  <p className="text-sm text-stone-700 leading-relaxed font-sans">
-                    Una propuesta editorial para quienes sienten interés por las tradiciones simbólicas, los rituales y los conjuros conscientes, desde una perspectiva de exploración personal.
-                  </p>
-                </div>
-              </div>
-              <div className="p-6 pt-0 flex items-center justify-between gap-3 border-t border-stone-100">
-                <a
-                  href="#libro-conjuros"
-                  className="text-xs font-medium text-stone-500 hover:text-stone-800 transition-colors"
-                >
-                  Ver en catálogo ↓
-                </a>
-                <Link
-                  to="/conjuros"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#163a2b] hover:text-[#102a1f] font-sans group"
-                >
-                  <span>Ficha del libro</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </Link>
-              </div>
+            <article className="bg-white border border-stone-200/90 rounded-2xl p-6 sm:p-7 shadow-2xs hover:border-stone-400 transition-colors">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#163a2b] block mb-2 font-sans">
+                Práctica Simbólica
+              </span>
+              <h3 className="font-serif text-xl sm:text-[22px] font-bold text-stone-900 mb-2.5">
+                Conjuros conscientes y simbolismo
+              </h3>
+              <p className="text-sm text-stone-700 leading-relaxed font-sans">
+                Una propuesta editorial para quienes sienten interés por las tradiciones simbólicas, los rituales y los conjuros conscientes, desde una perspectiva de exploración personal.
+              </p>
             </article>
           </div>
         </section>

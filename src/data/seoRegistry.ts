@@ -14,6 +14,7 @@ export interface RouteSeoData {
   ogUrl: string;
   ogType?: string;
   twitterCard?: string;
+  keywords?: string;
   schemaJsonLd: object;
 }
 
@@ -392,14 +393,15 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
     if (book.slug === 'ansiedad-vida') {
       return {
         title: 'Una Vida sin Ansiedad ni Ataques de Pánico | Victoria Maciass',
-        description: 'Descubre una guía cercana para comprender la ansiedad y los ataques de pánico, afrontar el miedo y recuperar la confianza mediante herramientas prácticas para el día a día.',
+        description: 'Descubre cómo comprender la ansiedad y los ataques de pánico, reconocer sus desencadenantes y explorar herramientas para recuperar la confianza y mejorar tu bienestar emocional.',
         canonical: `${BASE_URL}/ansiedad-vida`,
         ogTitle: 'Una Vida sin Ansiedad ni Ataques de Pánico | Victoria Maciass',
-        ogDescription: 'Descubre una guía cercana para comprender la ansiedad y los ataques de pánico, afrontar el miedo y recuperar la confianza mediante herramientas prácticas para el día a día.',
+        ogDescription: 'Descubre cómo comprender la ansiedad y los ataques de pánico, reconocer sus desencadenantes y explorar herramientas para recuperar la confianza y mejorar tu bienestar emocional.',
         ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/3-ansiedad1-libro.jpg',
         ogUrl: `${BASE_URL}/ansiedad-vida`,
         ogType: 'book',
         twitterCard: 'summary_large_image',
+        keywords: 'cómo superar la ansiedad y los ataques de pánico, cómo controlar los ataques de pánico, comprender la ansiedad, síntomas de los ataques de pánico, cómo manejar la ansiedad, técnicas de respiración para la ansiedad, terapia cognitivo-conductual para la ansiedad, terapia de exposición, terapia de aceptación y compromiso, estrategias para prevenir la ansiedad, cómo recuperar la tranquilidad emocional',
         schemaJsonLd: getBookSchema(book),
       };
     }
@@ -532,6 +534,17 @@ export function useApplyRouteSeo(pathname: string) {
     let canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
       canonical.setAttribute('href', seo.canonical);
+    }
+
+    // Meta Keywords
+    if (seo.keywords) {
+      let metaKw = document.querySelector('meta[name="keywords"]');
+      if (!metaKw) {
+        metaKw = document.createElement('meta');
+        metaKw.setAttribute('name', 'keywords');
+        document.head.appendChild(metaKw);
+      }
+      metaKw.setAttribute('content', seo.keywords);
     }
 
     // Open Graph
