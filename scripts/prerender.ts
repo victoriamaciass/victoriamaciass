@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -1091,6 +1091,50 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /ensaladas-sabores no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z4. Comprobación exhaustiva específica para /ensaladas-150 (+150 Recetas de Ensaladas Refrescantes y Deliciosas)
+    if (route === '/ensaladas-150') {
+      const requiredEnsaladas150Strings = [
+        '+150 Recetas de Ensaladas Refrescantes y Deliciosas',
+        'La guía definitiva para disfrutar de comidas frescas y nutritivas que encantan a todos los paladares',
+        '+150 Recetas de Ensaladas Saludables, Fáciles y Deliciosas | Victoria Maciass',
+        'Descubre más de 150 recetas de ensaladas verdes, vegetales, frutas, proteínas, granos e internacionales. Ideas frescas y variadas para cada día.',
+        'https://victoriamaciass.vercel.app/ensaladas-150',
+        'https://www.amazon.com/dp/B0D9VCS2MC',
+        'https://www.amazon.com/dp/B0D9VMY5XS',
+        'https://www.amazon.com/dp/B0C51KR752',
+        '2-ensaladas-recetas-libro-600.jpg',
+        'Portada de +150 Recetas de Ensaladas Refrescantes y Deliciosas, de Victoria Maciass',
+        'Descubre más de 150 formas de preparar ensaladas y disfruta de una alimentación variada durante todo el año',
+        'Más de 150 recetas organizadas para encontrar siempre una nueva idea',
+        '1. Ensaladas verdes: frescura y variedad en cada combinación',
+        '2. Ensaladas de vegetales: aprovecha la diversidad de las verduras',
+        '3. Ensaladas de granos y legumbres: platos con más consistencia',
+        '4. Ensaladas de proteínas: variedad para comidas más completas',
+        '5. Ensaladas de frutas: sabores frescos y contrastes naturales',
+        '6. Ensaladas internacionales: descubre otros estilos de cocina',
+        '7. Más recetas variadas de ensaladas deliciosas',
+        'Aprende a elegir ingredientes y preparar mejores combinaciones',
+        'Deja de depender de una receta para cada comida',
+        'Una guía para diferentes gustos y momentos',
+        '¿Para quién es este recetario?',
+        'Más variedad para disfrutar cada día',
+        'Elige tu edición y descubre más de 150 formas de dar variedad, frescura y sabor a tus comidas.',
+        'Cocina y recetas',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredEnsaladas150Strings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /ensaladas-150 no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /ensaladas-150 no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }
