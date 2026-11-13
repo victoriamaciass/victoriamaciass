@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion') {
+    } else if (route === '/motivacion' || route === '/mente') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -646,6 +646,51 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /motivacion no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // R. Comprobación exhaustiva específica para /mente (Despertando la Mente)
+    if (route === '/mente') {
+      const requiredMenteStrings = [
+        'Despertando la Mente',
+        'Guía práctica de meditación para principiantes. Descubre técnicas simples para mejorar tu bienestar mental y emocional',
+        'Despertando la Mente: Meditación para Principiantes | Victoria Maciass',
+        'Aprende meditación desde cero con ejercicios de respiración, mindfulness, meditación guiada y atención plena para integrar la práctica en tu vida diaria.',
+        'Despertando la Mente | Guía Práctica de Meditación para Principiantes',
+        'Descubre la meditación de la respiración, mindfulness, escáner corporal y ejercicios prácticos para incorporar la atención plena a tu vida cotidiana.',
+        'Despertando la Mente: Meditación para Principiantes',
+        'Una guía práctica para comenzar a meditar, explorar distintas técnicas y desarrollar una práctica consciente en tu día a día.',
+        'https://victoriamaciass.vercel.app/mente',
+        'https://www.amazon.com/dp/B0CDFKZ4HQ',
+        'https://www.amazon.com/dp/B0CDF7YD17',
+        'https://www.amazon.com/dp/B0CDF6CK3F',
+        '10-meditacion1-libro.jpg',
+        'Portada del libro Despertando la Mente de Victoria Maciass',
+        'Comprende qué es la meditación y por qué puede ayudarte',
+        'Prepara tu espacio y tu primera práctica',
+        'Aprende a meditar con la respiración',
+        'Explora mindfulness, escáner corporal y meditación guiada',
+        'Lleva la meditación más allá del cojín',
+        'Aprende a convivir con los pensamientos y las distracciones',
+        'Meditación y emociones: desarrolla una relación más compasiva contigo mismo',
+        'Construye el hábito de meditar sin abandonar',
+        'Integra la atención plena en tus relaciones y actividades',
+        'Profundiza en tu camino y desarrolla una práctica personal',
+        '¿Qué encontrarás en Despertando la Mente?',
+        'Empieza con unos minutos y descubre lo que puedes aprender',
+        'Despertar la mente empieza por aprender a estar presente.',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredMenteStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /mente no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /mente no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }

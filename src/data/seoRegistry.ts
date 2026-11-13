@@ -532,6 +532,23 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'mente') {
+      return {
+        title: 'Despertando la Mente: Meditación para Principiantes | Victoria Maciass',
+        description: 'Aprende meditación desde cero con ejercicios de respiración, mindfulness, meditación guiada y atención plena para integrar la práctica en tu vida diaria.',
+        canonical: `${BASE_URL}/mente`,
+        ogTitle: 'Despertando la Mente | Guía Práctica de Meditación para Principiantes',
+        ogDescription: 'Descubre la meditación de la respiración, mindfulness, escáner corporal y ejercicios prácticos para incorporar la atención plena a tu vida cotidiana.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/10-meditacion1-libro.jpg',
+        ogUrl: `${BASE_URL}/mente`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        twitterTitle: 'Despertando la Mente: Meditación para Principiantes',
+        twitterDescription: 'Una guía práctica para comenzar a meditar, explorar distintas técnicas y desarrollar una práctica consciente en tu día a día.',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,
