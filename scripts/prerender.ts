@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -891,6 +891,42 @@ async function prerender() {
           console.error(`❌ ERROR: /metabolismo no debe publicar enlace sin verificar (${unverifiedAsin})`);
           failedChecks++;
         }
+      }
+    }
+
+    // X. Comprobación exhaustiva específica para /desintoxica (Desintoxica tu cuerpo y mente)
+    if (route === '/desintoxica') {
+      const requiredDesintoxicaStrings = [
+        'Desintoxica tu cuerpo y mente',
+        'Guía para eliminar toxinas, recuperar energía y sentirte mejor',
+        'Desintoxica tu Cuerpo y Mente: Alimentación y Bienestar | Victoria Maciass',
+        'Descubre cómo mejorar tu alimentación, hidratación, descanso y bienestar mental con una guía práctica para construir hábitos saludables y sostenibles.',
+        'https://victoriamaciass.vercel.app/desintoxica',
+        'https://www.amazon.com/dp/B08L7MNXHV',
+        'https://www.amazon.com/dp/B09SFFKJXH',
+        'https://www.amazon.com/dp/B078J88JW7',
+        '15-detox1-libro.jpg',
+        'Portada del libro Desintoxica tu cuerpo y mente de Victoria Maciass',
+        'Comprende qué significa realmente desintoxicar el organismo',
+        'Alimentación: una base para recuperar buenos hábitos',
+        'La importancia de una hidratación adecuada',
+        'Sueño, estrés y bienestar mental',
+        'Un programa de 14 días para empezar progresivamente',
+        '¿A quién puede interesarle este libro?',
+        'Empieza a construir una rutina más equilibrada',
+        'Empieza hoy a cuidar tu cuerpo, despejar tu mente y crear hábitos que te ayuden a sentirte mejor a largo plazo.',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredDesintoxicaStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /desintoxica no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /desintoxica no debe incluir <meta name="keywords">');
+        failedChecks++;
       }
     }
   }

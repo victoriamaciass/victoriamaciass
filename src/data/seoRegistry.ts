@@ -624,6 +624,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'desintoxica') {
+      return {
+        title: 'Desintoxica tu Cuerpo y Mente: Alimentación y Bienestar | Victoria Maciass',
+        description: 'Descubre cómo mejorar tu alimentación, hidratación, descanso y bienestar mental con una guía práctica para construir hábitos saludables y sostenibles.',
+        canonical: `${BASE_URL}/desintoxica`,
+        ogTitle: 'Desintoxica tu Cuerpo y Mente: Alimentación y Bienestar | Victoria Maciass',
+        ogDescription: 'Descubre cómo mejorar tu alimentación, hidratación, descanso y bienestar mental con una guía práctica para construir hábitos saludables y sostenibles.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/15-detox1-libro.jpg',
+        ogUrl: `${BASE_URL}/desintoxica`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,
