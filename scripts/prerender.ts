@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -960,6 +960,49 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /desintoxicar-peso no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z. Comprobación exhaustiva específica para /fertilidad (Fertilidad Consciente)
+    if (route === '/fertilidad') {
+      const requiredFertilidadStrings = [
+        'Fertilidad Consciente',
+        'Un Camino Natural, Científico y Humano Hacia la Maternidad',
+        'Fertilidad Consciente: Guía de Fertilidad Femenina y Masculina | Victoria Maciass',
+        'Comprende tu fertilidad, conoce sus factores, mejora tus hábitos y explora opciones médicas y emocionales con una guía clara, humana y basada en evidencia.',
+        'https://victoriamaciass.vercel.app/fertilidad',
+        'https://www.amazon.com/dp/B0FNKQRJJ1',
+        'https://www.amazon.com/dp/B0FNKM1S79',
+        'https://www.amazon.com/dp/B0FNJKK1PN',
+        'https://play.google.com/store/books/details?id=qiInEgAAQBAJ',
+        'https://play.google.com/store/audiobooks/details?id=AQAAAEDGvBz8yM',
+        '19-embarazo-libro.jpg',
+        'Portada del libro Fertilidad Consciente de Victoria Maciass',
+        'Comprende tu fertilidad y conoce mejor tu cuerpo',
+        'Las causas de infertilidad: información sin alarmismo ni culpabilización',
+        'Nutrición y fertilidad: decisiones informadas para cuidar la salud',
+        'La salud emocional también forma parte del proceso',
+        'Ejercicio, descanso y ritmos circadianos',
+        'Medicina tradicional china: una mirada crítica y responsable',
+        'La fertilidad masculina también importa',
+        'Intimidad y relaciones sin convertir el sexo en una obligación',
+        'Tratamientos de reproducción asistida: opciones explicadas sin prejuicios',
+        'Casos especiales y un plan personalizado de fertilidad',
+        '¿A quién puede interesarle este libro?',
+        'Un camino que merece ser vivido con información y respeto',
+        'tu camino no tiene por qué estar marcado por la culpa ni por las promesas imposibles.',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredFertilidadStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /fertilidad no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /fertilidad no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }

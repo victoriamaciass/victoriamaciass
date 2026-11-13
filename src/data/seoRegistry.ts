@@ -654,6 +654,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'fertilidad') {
+      return {
+        title: 'Fertilidad Consciente: Guía de Fertilidad Femenina y Masculina | Victoria Maciass',
+        description: 'Comprende tu fertilidad, conoce sus factores, mejora tus hábitos y explora opciones médicas y emocionales con una guía clara, humana y basada en evidencia.',
+        canonical: `${BASE_URL}/fertilidad`,
+        ogTitle: 'Fertilidad Consciente: Guía de Fertilidad Femenina y Masculina | Victoria Maciass',
+        ogDescription: 'Comprende tu fertilidad, conoce sus factores, mejora tus hábitos y explora opciones médicas y emocionales con una guía clara, humana y basada en evidencia.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/19-embarazo-libro.jpg',
+        ogUrl: `${BASE_URL}/fertilidad`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,
