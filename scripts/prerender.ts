@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -779,6 +779,82 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /varices no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // U. Comprobación exhaustiva específica para /sudoracion (Sudoración Excesiva)
+    if (route === '/sudoracion') {
+      const requiredSudoracionStrings = [
+        'Sudoración Excesiva',
+        'Como controlar el sudor excesivo y la transpiración, estrategias poderosas para controlar la hiperhidrosis y recuperar el control de tu vida.',
+        'Sudoración Excesiva: Guía para Comprender y Controlar la Hiperhidrosis | Victoria Maciass',
+        'Conoce las causas de la hiperhidrosis, sus tratamientos, cuidados diarios y estrategias para afrontar la sudoración excesiva y mejorar tu bienestar.',
+        'https://victoriamaciass.vercel.app/sudoracion',
+        'https://www.amazon.com/dp/B0D7V8H124',
+        'https://www.amazon.com/dp/B0H882TL5R',
+        'https://www.amazon.com/dp/B0D7TPSLH6',
+        '7-sudor-libro.jpg',
+        'Portada del libro Sudoración Excesiva de Victoria Maciass',
+        'Comprende qué es la hiperhidrosis y por qué sudamos',
+        'Factores que pueden contribuir a la sudoración excesiva',
+        'El impacto emocional y social de vivir con hiperhidrosis',
+        'Diagnóstico: conoce los pasos para evaluar la hiperhidrosis',
+        'Tratamientos médicos para controlar la hiperhidrosis',
+        'Terapias complementarias: una mirada informada',
+        'Consejos prácticos para manejar el sudor en la vida diaria',
+        'Cuidado de la piel y prevención de olores',
+        'Técnicas de relajación y manejo del estrés',
+        'Alimentación, hidratación y sudoración',
+        'Ejercicio físico: mitos y realidades',
+        'Historias, apoyo y una vida más allá de la hiperhidrosis',
+        '¿Para quién es este libro?',
+        'Recupera la confianza a través del conocimiento',
+        'Pulsa el botón «Comprar ahora» para acceder a las opciones de compra y elegir el formato que prefieras.',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredSudoracionStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /sudoracion no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /sudoracion no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // V. Comprobación exhaustiva específica para /celulitis (Celulitis Bajo Control)
+    if (route === '/celulitis') {
+      const requiredCelulitisStrings = [
+        'Celulitis Bajo Control',
+        'La guía definitiva para entender la celulitis con estrategias de prevención, métodos de eliminación y tratamientos naturales',
+        'Celulitis Bajo Control: Guía para Comprender y Cuidar la Piel | Victoria Maciass',
+        'Comprende las causas de la celulitis y descubre estrategias de alimentación, ejercicio, hidratación y cuidados de la piel para mejorar su apariencia.',
+        'https://victoriamaciass.vercel.app/celulitis',
+        'https://www.amazon.com/dp/B0D8HW7376',
+        'https://www.amazon.com/dp/B0H6QLRM56',
+        'https://www.amazon.com/dp/B0D8HBZ5CL',
+        'https://play.google.com/store/books/details?id=IoEmEgAAQBAJ',
+        'https://play.google.com/store/audiobooks/details?id=AQAAAEDGvAz82M',
+        '8-celulitis-libro.jpg',
+        'Portada del libro Celulitis Bajo Control de Victoria Maciass',
+        'La celulitis, conocida popularmente como piel de naranja',
+        'Cuidar la piel no debería convertirse en una fuente de presión',
+        'descubre una forma más consciente y equilibrada de cuidar tu bienestar.',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredCelulitisStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /celulitis no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /celulitis no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }

@@ -579,6 +579,36 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'sudoracion') {
+      return {
+        title: 'Sudoración Excesiva: Guía para Comprender y Controlar la Hiperhidrosis | Victoria Maciass',
+        description: 'Conoce las causas de la hiperhidrosis, sus tratamientos, cuidados diarios y estrategias para afrontar la sudoración excesiva y mejorar tu bienestar.',
+        canonical: `${BASE_URL}/sudoracion`,
+        ogTitle: 'Sudoración Excesiva: Guía para Comprender y Controlar la Hiperhidrosis | Victoria Maciass',
+        ogDescription: 'Conoce las causas de la hiperhidrosis, sus tratamientos, cuidados diarios y estrategias para afrontar la sudoración excesiva y mejorar tu bienestar.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/7-sudor-libro.jpg',
+        ogUrl: `${BASE_URL}/sudoracion`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
+    if (book.slug === 'celulitis') {
+      return {
+        title: 'Celulitis Bajo Control: Guía para Comprender y Cuidar la Piel | Victoria Maciass',
+        description: 'Comprende las causas de la celulitis y descubre estrategias de alimentación, ejercicio, hidratación y cuidados de la piel para mejorar su apariencia.',
+        canonical: `${BASE_URL}/celulitis`,
+        ogTitle: 'Celulitis Bajo Control: Guía para Comprender y Cuidar la Piel | Victoria Maciass',
+        ogDescription: 'Comprende las causas de la celulitis y descubre estrategias de alimentación, ejercicio, hidratación y cuidados de la piel para mejorar su apariencia.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/8-celulitis-libro.jpg?updatedAt=1794004358519',
+        ogUrl: `${BASE_URL}/celulitis`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,
