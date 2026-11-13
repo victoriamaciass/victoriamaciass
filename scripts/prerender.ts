@@ -422,20 +422,20 @@ async function prerender() {
       const requiredAnsiedadStrings = [
         'Una Vida sin Ansiedad ni Ataques de Pánico',
         'Detenga los ataques de Ansiedad de una vez por todas y viva una vida plena',
+        'Comprende la ansiedad y los ataques de pánico, reconoce sus desencadenantes y descubre herramientas para afrontar el miedo y recuperar confianza en tu vida cotidiana.',
         'https://www.amazon.com/dp/B08L4FL7NX',
         'https://www.amazon.com/dp/B09S61YNX6',
         'https://www.amazon.com/dp/B076KS2Z5X',
         '3-ansiedad1-libro.jpg',
         'Portada del libro Una Vida sin Ansiedad ni Ataques de Pánico de Victoria Maciass',
         'cómo superar la ansiedad y los ataques de pánico',
-        'Comprender la ansiedad y los síntomas de los ataques de pánico',
-        'Cómo controlar los ataques de pánico en el momento presente',
-        'Técnicas de respiración para la ansiedad y regulación somática',
-        'Enfoques terapéuticos eficaces: TCC, exposición y aceptación',
-        'Estrategias para prevenir la ansiedad y fortalecer la resiliencia diaria',
-        '¿A quién está dirigida esta obra?',
-        'Cómo recuperar la tranquilidad emocional y reconstruir la confianza',
-        'Esta publicación tiene carácter informativo y educativo. No sustituye la evaluación, el diagnóstico ni el tratamiento de profesionales de la salud.',
+        'recuperar la tranquilidad emocional',
+        'Comprender lo que te ocurre es el primer paso para recuperar la confianza',
+        'Comprender la ansiedad y reconocer los ataques de pánico',
+        'La terapia cognitivo-conductual y la relación con los pensamientos',
+        '¿A quién puede interesarle este libro?',
+        'Una lectura para comprender, aprender y recuperar confianza',
+        'Nota informativa: este libro tiene una finalidad divulgativa y educativa.',
       ];
       for (const str of requiredAnsiedadStrings) {
         if (!content.includes(str)) {
@@ -450,12 +450,21 @@ async function prerender() {
       const requiredLiberateStrings = [
         'Libérate de la Ansiedad',
         'Alimentación, sueño, ejercicio y técnicas de relajación para una mente tranquila',
+        'Descubre cómo los hábitos de alimentación, el sueño, el ejercicio y las técnicas de relajación pueden ayudarte a comprender y afrontar la ansiedad desde el cuidado del cuerpo.',
+        'cómo reducir la ansiedad de forma natural',
+        'rutinas para una mente tranquila',
         'https://www.amazon.com/dp/B0C6BZMH17',
         'https://www.amazon.com/dp/B0D7LXW17T',
         'https://www.amazon.com/dp/B0C66WP2DC',
         '4-ansiedad2-libro.jpg',
-        'Hay días en los que uno se despierta ya cansado',
-        'Porque cuando el cuerpo aprende a calmarse, la mente también encuentra su espacio.',
+        'Portada del libro Libérate de la Ansiedad de Victoria Maciass',
+        'Una perspectiva diferente: cuidar el cuerpo para comprender mejor la ansiedad',
+        'Alimentación y ansiedad: comprender los hábitos que influyen en el bienestar',
+        'El intestino y su relación con el sistema nervioso',
+        'Dormir mejor: el papel del descanso en el equilibrio emocional',
+        '¿A quién puede interesarle este libro?',
+        'Una forma más consciente de cuidar el cuerpo y el bienestar',
+        'Nota informativa: este libro tiene una finalidad divulgativa y educativa.',
       ];
       for (const str of requiredLiberateStrings) {
         if (!content.includes(str)) {

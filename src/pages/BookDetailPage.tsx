@@ -274,15 +274,22 @@ export const BookDetailPage: React.FC = () => {
     return [];
   })();
 
-  // Helper para renderizar negritas inline (**texto**) respetando el contenido
+  // Helper para renderizar negritas inline (**texto**) y cursivas inline (*texto*) respetando el contenido
   const renderFormattedParagraph = (text: string) => {
-    const parts = text.split(/(\*\*[^*]+\*\*)/g);
+    const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g);
     return parts.map((part, index) => {
       if (part.startsWith('**') && part.endsWith('**')) {
         return (
           <strong key={index} className="font-bold text-stone-900">
             {part.slice(2, -2)}
           </strong>
+        );
+      }
+      if (part.startsWith('*') && part.endsWith('*')) {
+        return (
+          <em key={index} className="italic text-stone-600">
+            {part.slice(1, -1)}
+          </em>
         );
       }
       return part;
@@ -626,56 +633,86 @@ export const BookDetailPage: React.FC = () => {
           </h2>
 
           {resolvedParagraphs.length > 0 ? (
-            /* Texto del campo descripcion sin truncar, con párrafos separados, subtítulos y viñetas legibles (16-18px) */
+            /* Texto del campo descripcion sin truncar, con párrafos separados, subtítulos y listas HTML reales (16-18px) */
             <div className="space-y-6 text-[16px] sm:text-[17px] md:text-[18px] text-stone-700 leading-relaxed font-sans">
-              {resolvedParagraphs.map((parr, idx) => {
-                if (parr.startsWith('### ')) {
-                  return (
-                    <h3
-                      key={idx}
-                      className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight pt-4 pb-1"
-                    >
-                      {parr.replace(/^###\s*/, '')}
-                    </h3>
-                  );
-                }
-                if (parr.startsWith('✔ ')) {
-                  return (
-                    <div key={idx} className="flex items-start gap-3 pl-2 sm:pl-4">
-                      <span className="text-emerald-700 font-bold shrink-0 mt-0.5">✔</span>
-                      <div className="leading-relaxed flex-1">
-                        {renderFormattedParagraph(parr.replace(/^✔\s*/, ''))}
+              {(() => {
+                const blocks: React.ReactNode[] = [];
+                let i = 0;
+
+                while (i < resolvedParagraphs.length) {
+                  const parr = resolvedParagraphs[i];
+
+                  if (parr.startsWith('- ') || parr.startsWith('• ')) {
+                    const listItems: string[] = [];
+                    const startIdx = i;
+                    while (
+                      i < resolvedParagraphs.length &&
+                      (resolvedParagraphs[i].startsWith('- ') || resolvedParagraphs[i].startsWith('• '))
+                    ) {
+                      listItems.push(resolvedParagraphs[i].replace(/^[-•]\s*/, ''));
+                      i++;
+                    }
+                    blocks.push(
+                      <ul key={`ul-${startIdx}`} className="space-y-3 pl-2 sm:pl-4 list-none">
+                        {listItems.map((itemText, itemIdx) => (
+                          <li key={itemIdx} className="flex items-start gap-3">
+                            <span
+                              aria-hidden="true"
+                              className="w-1.5 h-1.5 rounded-full bg-stone-700 mt-2.5 shrink-0"
+                            />
+                            <span className="leading-relaxed flex-1">
+                              {renderFormattedParagraph(itemText)}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    );
+                    continue;
+                  }
+
+                  if (parr.startsWith('### ')) {
+                    blocks.push(
+                      <h3
+                        key={i}
+                        className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight pt-4 pb-1"
+                      >
+                        {parr.replace(/^###\s*/, '')}
+                      </h3>
+                    );
+                  } else if (parr.startsWith('✔ ')) {
+                    blocks.push(
+                      <div key={i} className="flex items-start gap-3 pl-2 sm:pl-4">
+                        <span className="text-emerald-700 font-bold shrink-0 mt-0.5">✔</span>
+                        <div className="leading-relaxed flex-1">
+                          {renderFormattedParagraph(parr.replace(/^✔\s*/, ''))}
+                        </div>
                       </div>
-                    </div>
-                  );
+                    );
+                  } else {
+                    const numMatch = parr.match(/^(\d+)\.\s+(.*)$/);
+                    if (numMatch) {
+                      blocks.push(
+                        <div key={i} className="flex items-start gap-3 pl-2 sm:pl-4">
+                          <span className="font-semibold text-stone-900 shrink-0 min-w-[1.75rem]">{numMatch[1]}.</span>
+                          <div className="leading-relaxed flex-1">
+                            {renderFormattedParagraph(numMatch[2])}
+                          </div>
+                        </div>
+                      );
+                    } else {
+                      blocks.push(
+                        <p key={i} className="leading-relaxed">
+                          {renderFormattedParagraph(parr)}
+                        </p>
+                      );
+                    }
+                  }
+
+                  i++;
                 }
-                const numMatch = parr.match(/^(\d+)\.\s+(.*)$/);
-                if (numMatch) {
-                  return (
-                    <div key={idx} className="flex items-start gap-3 pl-2 sm:pl-4">
-                      <span className="font-semibold text-stone-900 shrink-0 min-w-[1.75rem]">{numMatch[1]}.</span>
-                      <div className="leading-relaxed flex-1">
-                        {renderFormattedParagraph(numMatch[2])}
-                      </div>
-                    </div>
-                  );
-                }
-                if (parr.startsWith('- ') || parr.startsWith('• ')) {
-                  return (
-                    <div key={idx} className="flex items-start gap-3 pl-2 sm:pl-4">
-                      <span className="w-1.5 h-1.5 rounded-full bg-stone-700 mt-2.5 shrink-0" />
-                      <div className="leading-relaxed flex-1">
-                        {renderFormattedParagraph(parr.replace(/^[-•]\s*/, ''))}
-                      </div>
-                    </div>
-                  );
-                }
-                return (
-                  <p key={idx} className="leading-relaxed">
-                    {renderFormattedParagraph(parr)}
-                  </p>
-                );
-              })}
+
+                return blocks;
+              })()}
 
               {/* Botón CTA "Comprar ahora" que redirige al bloque de opciones de compra */}
               <div className="pt-8 sm:pt-10 flex flex-col sm:flex-row items-start">

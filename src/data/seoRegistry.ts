@@ -142,7 +142,14 @@ function getBookSchema(book: Book): object {
         ? book.descripcion.join(' ')
         : book.synopsis || '';
 
-  const shortDesc = rawDescription.slice(0, 200) || `Guía práctica de ${book.title} por Victoria Maciass.`;
+  const cleanRawDescription = rawDescription
+    .replace(/###\s*/g, '')
+    .replace(/\*\*/g, '')
+    .replace(/\*/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const shortDesc = cleanRawDescription.slice(0, 200) || `Guía práctica de ${book.title} por Victoria Maciass.`;
 
   const cat = CATEGORIES_LIST.find(c => c.categoryId === book.category || c.slug === book.category);
   const catTitle = cat ? cat.title : (book.categoryLabel || 'Catálogo');
@@ -393,30 +400,31 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
     if (book.slug === 'ansiedad-vida') {
       return {
         title: 'Una Vida sin Ansiedad ni Ataques de Pánico | Victoria Maciass',
-        description: 'Descubre cómo comprender la ansiedad y los ataques de pánico, reconocer sus desencadenantes y explorar herramientas para recuperar la confianza y mejorar tu bienestar emocional.',
+        description: 'Comprende la ansiedad y los ataques de pánico, reconoce sus desencadenantes y descubre herramientas para afrontar el miedo y recuperar confianza en tu vida cotidiana.',
         canonical: `${BASE_URL}/ansiedad-vida`,
         ogTitle: 'Una Vida sin Ansiedad ni Ataques de Pánico | Victoria Maciass',
-        ogDescription: 'Descubre cómo comprender la ansiedad y los ataques de pánico, reconocer sus desencadenantes y explorar herramientas para recuperar la confianza y mejorar tu bienestar emocional.',
+        ogDescription: 'Comprende la ansiedad y los ataques de pánico, reconoce sus desencadenantes y descubre herramientas para afrontar el miedo y recuperar confianza en tu vida cotidiana.',
         ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/3-ansiedad1-libro.jpg',
         ogUrl: `${BASE_URL}/ansiedad-vida`,
         ogType: 'book',
         twitterCard: 'summary_large_image',
-        keywords: 'cómo superar la ansiedad y los ataques de pánico, cómo controlar los ataques de pánico, comprender la ansiedad, síntomas de los ataques de pánico, cómo manejar la ansiedad, técnicas de respiración para la ansiedad, terapia cognitivo-conductual para la ansiedad, terapia de exposición, terapia de aceptación y compromiso, estrategias para prevenir la ansiedad, cómo recuperar la tranquilidad emocional',
+        keywords: 'cómo superar la ansiedad y los ataques de pánico, cómo controlar los ataques de pánico, comprender la ansiedad, síntomas de los ataques de pánico, cómo manejar la ansiedad, técnicas de respiración para la ansiedad, terapia cognitivo-conductual para la ansiedad, terapia de exposición, terapia de aceptación y compromiso, estrategias para prevenir la ansiedad, recuperar la tranquilidad emocional',
         schemaJsonLd: getBookSchema(book),
       };
     }
 
     if (book.slug === 'ansiedad-liberate') {
       return {
-        title: 'Libérate de la Ansiedad: Alimentación, Sueño y Relajación',
-        description: 'Descubre cómo alimentación, sueño, ejercicio, respiración y técnicas de relajación pueden ayudarte a gestionar la ansiedad y recuperar el equilibrio diario.',
+        title: 'Libérate de la Ansiedad | Alimentación, Sueño y Relajación',
+        description: 'Descubre cómo los hábitos de alimentación, el sueño, el ejercicio y las técnicas de relajación pueden ayudarte a comprender y afrontar la ansiedad desde el cuidado del cuerpo.',
         canonical: `${BASE_URL}/ansiedad-liberate`,
-        ogTitle: 'Libérate de la Ansiedad | Victoria Maciass',
-        ogDescription: 'Descubre cómo alimentación, sueño, ejercicio, respiración y técnicas de relajación pueden ayudarte a gestionar la ansiedad y recuperar el equilibrio diario.',
+        ogTitle: 'Libérate de la Ansiedad | Alimentación, Sueño y Relajación',
+        ogDescription: 'Descubre cómo los hábitos de alimentación, el sueño, el ejercicio y las técnicas de relajación pueden ayudarte a comprender y afrontar la ansiedad desde el cuidado del cuerpo.',
         ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/4-ansiedad2-libro.jpg',
         ogUrl: `${BASE_URL}/ansiedad-liberate`,
         ogType: 'book',
         twitterCard: 'summary_large_image',
+        keywords: 'cómo reducir la ansiedad de forma natural, alimentación y ansiedad, cómo dormir mejor con ansiedad, ejercicio para reducir la ansiedad, técnicas de relajación para la ansiedad, respiración consciente, relación entre cuerpo y mente, ansiedad e insomnio, hábitos saludables para el bienestar emocional, mindfulness para la ansiedad, cómo controlar la ansiedad en el día a día, relajación muscular progresiva, rutinas para una mente tranquila',
         schemaJsonLd: getBookSchema(book),
       };
     }
