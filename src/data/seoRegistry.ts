@@ -639,6 +639,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'desintoxicar-peso') {
+      return {
+        title: 'Desintoxicar el Cuerpo y Bajar de Peso: Recetas y Ejercicio | Victoria Maciass',
+        description: 'Descubre recetas saludables, planes de alimentación, ejercicio e hidratación para mejorar tus hábitos y avanzar hacia un peso saludable de forma sostenible.',
+        canonical: `${BASE_URL}/desintoxicar-peso`,
+        ogTitle: 'Desintoxicar el Cuerpo y Bajar de Peso: Recetas y Ejercicio | Victoria Maciass',
+        ogDescription: 'Descubre recetas saludables, planes de alimentación, ejercicio e hidratación para mejorar tus hábitos y avanzar hacia un peso saludable de forma sostenible.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/16-detox2-libro.jpg',
+        ogUrl: `${BASE_URL}/desintoxicar-peso`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,

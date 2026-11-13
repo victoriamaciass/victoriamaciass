@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -926,6 +926,44 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /desintoxica no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Y. Comprobación exhaustiva específica para /desintoxicar-peso (Desintoxicar el cuerpo y bajar de peso al mismo tiempo)
+    if (route === '/desintoxicar-peso') {
+      const requiredDesintoxicarPesoStrings = [
+        'Desintoxicar el cuerpo y bajar de peso al mismo tiempo',
+        'Plan de acción con recetas, ejercicios y estrategias para resultados reales',
+        'Desintoxicar el Cuerpo y Bajar de Peso: Recetas y Ejercicio | Victoria Maciass',
+        'Descubre recetas saludables, planes de alimentación, ejercicio e hidratación para mejorar tus hábitos y avanzar hacia un peso saludable de forma sostenible.',
+        'https://victoriamaciass.vercel.app/desintoxicar-peso',
+        'https://www.amazon.com/dp/B0C6BX58P7',
+        'https://www.amazon.com/dp/B0D7TFYQMW',
+        'https://www.amazon.com/dp/B0C6H66QFJ',
+        '16-detox2-libro.jpg',
+        'Portada del libro Desintoxicar el cuerpo y bajar de peso al mismo tiempo de Victoria Maciass',
+        'Alimentación consciente: una forma diferente de relacionarte con la comida',
+        'Superalimentos: conoce sus propiedades y cómo incorporarlos',
+        'Planes de alimentación para organizar tus objetivos',
+        'Recetas saludables para llevar las ideas a la cocina',
+        'Hidratación: un hábito básico dentro de un estilo de vida saludable',
+        'Ejercicio físico: movimiento adaptado a tu vida',
+        'Cambios sostenibles en lugar de soluciones rápidas',
+        '¿A quién puede interesarle este libro?',
+        'Un punto de partida para tomar mejores decisiones',
+        'Empieza a construir hábitos que tengan sentido para ti y que puedas mantener más allá de cualquier programa temporal.',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredDesintoxicarPesoStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /desintoxicar-peso no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /desintoxicar-peso no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }
