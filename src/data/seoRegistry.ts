@@ -14,6 +14,8 @@ export interface RouteSeoData {
   ogUrl: string;
   ogType?: string;
   twitterCard?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
   keywords?: string;
   schemaJsonLd: object;
 }
@@ -143,7 +145,7 @@ function getBookSchema(book: Book): object {
         : book.synopsis || '';
 
   const cleanRawDescription = rawDescription
-    .replace(/###\s*/g, '')
+    .replace(/#{2,3}\s*/g, '')
     .replace(/\*\*/g, '')
     .replace(/\*/g, '')
     .replace(/\s+/g, ' ')
@@ -431,30 +433,36 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
 
     if (book.slug === 'ansiedad-control') {
       return {
-        title: 'Cómo Controlar la Ansiedad: Relaciones y Bienestar Emocional',
-        description: 'Aprende a reconstruir tus relaciones, comunicar lo que sientes, establecer límites y recuperar tu propósito y bienestar emocional después de la ansiedad.',
+        title: 'Cómo Controlar La Ansiedad: Relaciones y Bienestar | Victoria Maciass',
+        description: 'Aprende a reconstruir tus relaciones después de la ansiedad, comunicar lo que sientes, establecer límites sanos, recuperar la confianza y encontrar un nuevo propósito.',
         canonical: `${BASE_URL}/ansiedad-control`,
-        ogTitle: 'Cómo Controlar La Ansiedad | Victoria Maciass',
-        ogDescription: 'Aprende a reconstruir tus relaciones, comunicar lo que sientes, establecer límites y recuperar tu propósito y bienestar emocional después de la ansiedad.',
+        ogTitle: 'Cómo Controlar La Ansiedad: Relaciones y Bienestar | Victoria Maciass',
+        ogDescription: 'Aprende a reconstruir tus relaciones, recuperar la confianza y encontrar un propósito después de la ansiedad.',
         ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/5-ansiedad3-libro.jpg',
         ogUrl: `${BASE_URL}/ansiedad-control`,
         ogType: 'book',
         twitterCard: 'summary_large_image',
+        twitterTitle: 'Cómo Controlar La Ansiedad: Relaciones y Bienestar | Victoria Maciass',
+        twitterDescription: 'Una guía para reconstruir las relaciones, fortalecer la confianza personal y recuperar el propósito después de la ansiedad.',
+        keywords: 'cómo controlar la ansiedad en las relaciones, cómo reconstruir relaciones después de la ansiedad, ansiedad y relaciones personales, cómo hablar de la ansiedad con la pareja, cómo explicar la ansiedad a la familia, cómo establecer límites sanos, ansiedad y culpa, recuperar la confianza después de la ansiedad, autocompasión y ansiedad, cómo recuperar la autoestima después de la ansiedad, propósito de vida después de la ansiedad, grupos de apoyo para la ansiedad, ansiedad en las relaciones familiares, ansiedad y crianza de los hijos, ansiedad y trabajo, cómo convivir con la ansiedad',
         schemaJsonLd: getBookSchema(book),
       };
     }
 
     if (book.slug === 'suenos') {
       return {
-        title: 'El Libro de los Sueños: Cuentos para Dormir y Leer en Familia',
-        description: 'Descubre cuentos clásicos y originales para niños y adultos. Historias para dormir, leer en familia y fomentar la imaginación, los valores y la inteligencia emocional.',
+        title: 'El Libro de los Sueños | Cuentos para Dormir y Leer en Familia',
+        description: 'Descubre 93 cuentos clásicos, fábulas y aventuras para leer en familia, fomentar la imaginación, compartir valores y crear momentos especiales antes de dormir.',
         canonical: `${BASE_URL}/suenos`,
-        ogTitle: 'El Libro de los Sueños | Victoria Maciass',
-        ogDescription: 'Descubre cuentos clásicos y originales para niños y adultos. Historias para dormir, leer en familia y fomentar la imaginación, los valores y la inteligencia emocional.',
+        ogTitle: 'El Libro de los Sueños | Cuentos para Dormir y Leer en Familia',
+        ogDescription: '93 cuentos clásicos, fábulas y aventuras para compartir en familia, despertar la imaginación y disfrutar de la lectura antes de dormir.',
         ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/9-cuentos-libro.jpg',
         ogUrl: `${BASE_URL}/suenos`,
         ogType: 'book',
         twitterCard: 'summary_large_image',
+        twitterTitle: 'El Libro de los Sueños | Cuentos para Dormir y Leer en Familia',
+        twitterDescription: 'Una colección de 93 cuentos, fábulas y aventuras para imaginar, aprender y compartir momentos de lectura en familia.',
+        keywords: 'cuentos para dormir niños, cuentos para leer en familia, libro de cuentos infantiles, cuentos clásicos adaptados, cuentos cortos para dormir, lectura en voz alta para niños, historias para leer antes de dormir, libros para niños de 3 a 12 años, cuentos con moraleja, cuentos para fomentar la imaginación, cuentos para desarrollar la inteligencia emocional, libros infantiles para regalar, cuentos de valores para niños, lectura nocturna infantil, historias para padres, abuelos y nietos, fomento de la lectura infantil, cuentos de fantasía y aventuras, cuentos infantiles sobre emociones, libros para compartir en familia',
         schemaJsonLd: getBookSchema(book),
       };
     }
@@ -485,6 +493,24 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
         ogUrl: `${BASE_URL}/costura`,
         ogType: 'book',
         twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
+    if (book.slug === 'habitos') {
+      return {
+        title: 'Hábitos Transformadores: Crea Rutinas y Mejora tu Vida | Victoria Maciass',
+        description: 'Descubre cómo crear hábitos saludables, mejorar tu productividad, gestionar el tiempo y construir rutinas para tu crecimiento personal y profesional.',
+        canonical: `${BASE_URL}/habitos`,
+        ogTitle: 'Hábitos Transformadores: Crea Rutinas y Mejora tu Vida | Victoria Maciass',
+        ogDescription: 'Aprende a identificar tus hábitos, crear rutinas saludables y mejorar tu organización, productividad y crecimiento personal.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/11--habitos-libro.jpg',
+        ogUrl: `${BASE_URL}/habitos`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        twitterTitle: 'Hábitos Transformadores: Crea Rutinas y Mejora tu Vida | Victoria Maciass',
+        twitterDescription: 'Una guía práctica para comprender los hábitos, organizar tus rutinas y avanzar hacia tus objetivos personales y profesionales.',
+        keywords: 'cómo crear hábitos saludables y transformadores, cómo cambiar hábitos, cómo crear buenos hábitos, formación de hábitos, ciencia de los hábitos, psicología de los hábitos, plasticidad cerebral y hábitos, cómo crear rutinas saludables, hábitos para el crecimiento personal, hábitos para mejorar la productividad, gestión del tiempo y productividad, hábitos para el éxito profesional, hábitos financieros saludables, hábitos para mejorar las relaciones, cómo mantener los buenos hábitos, estrategias para cambiar comportamientos, desarrollo personal y hábitos',
         schemaJsonLd: getBookSchema(book),
       };
     }
@@ -570,10 +596,10 @@ export function useApplyRouteSeo(pathname: string) {
 
     // Twitter Card
     let twTitle = document.querySelector('meta[name="twitter:title"]');
-    if (twTitle) twTitle.setAttribute('content', seo.ogTitle);
+    if (twTitle) twTitle.setAttribute('content', seo.twitterTitle || seo.ogTitle);
 
     let twDesc = document.querySelector('meta[name="twitter:description"]');
-    if (twDesc) twDesc.setAttribute('content', seo.ogDescription);
+    if (twDesc) twDesc.setAttribute('content', seo.twitterDescription || seo.ogDescription);
 
     let twImage = document.querySelector('meta[name="twitter:image"]');
     if (twImage) twImage.setAttribute('content', seo.ogImage);

@@ -141,11 +141,11 @@ async function prerender() {
     // 6. Reemplazar Twitter Card
     pageHtml = pageHtml.replace(
       /<meta\s+name="twitter:title"\s+content=".*?"\s*\/?>/,
-      `<meta name="twitter:title" content="${escapeHtml(seo.ogTitle)}" />`
+      `<meta name="twitter:title" content="${escapeHtml(seo.twitterTitle || seo.ogTitle)}" />`
     );
     pageHtml = pageHtml.replace(
       /<meta\s+name="twitter:description"\s+content=".*?"\s*\/?>/,
-      `<meta name="twitter:description" content="${escapeHtml(seo.ogDescription)}" />`
+      `<meta name="twitter:description" content="${escapeHtml(seo.twitterDescription || seo.ogDescription)}" />`
     );
     pageHtml = pageHtml.replace(
       /<meta\s+name="twitter:image"\s+content=".*?"\s*\/?>/,
@@ -479,15 +479,20 @@ async function prerender() {
       const requiredControlStrings = [
         'Cómo Controlar La Ansiedad',
         'Relaciones, propósito y bienestar emocional después de la ansiedad',
+        'Aprende a reconstruir tus relaciones después de la ansiedad, comunicar lo que sientes, establecer límites sanos, recuperar la confianza y encontrar un nuevo propósito.',
+        'Aprende a reconstruir tus relaciones, recuperar la confianza y encontrar un propósito después de la ansiedad.',
+        'Una guía para reconstruir las relaciones, fortalecer la confianza personal y recuperar el propósito después de la ansiedad.',
         'https://www.amazon.com/dp/B0G3H9V83R',
         'https://www.amazon.com/dp/B0G3H2QV91',
         'https://www.amazon.com/dp/B0G3CMY9CR',
         'https://books2read.com/u/49dJXp',
         '5-ansiedad3-libro.jpg',
-        'books2read.com_logo.jpg',
-        'Superar la ansiedad no termina cuando los síntomas físicos desaparecen',
-        'Entre sus páginas descubrirás:',
-        'Cómo sanar la comunicación con tus seres queridos y expresar lo que sientes con claridad',
+        'books2read_logo.png',
+        'Portada del libro Cómo Controlar La Ansiedad de Victoria Maciass',
+        'Cómo Controlar La Ansiedad: reconstruir tus relaciones, recuperar la confianza y encontrar un nuevo propósito',
+        'Comprender cómo la ansiedad modifica tus relaciones',
+        '¿Qué encontrarás en este libro?',
+        'La vida continúa, y tú también puedes formar parte de ella',
       ];
       for (const str of requiredControlStrings) {
         if (!content.includes(str)) {
@@ -502,14 +507,18 @@ async function prerender() {
       const requiredSuenosStrings = [
         'El Libro de los Sueños',
         'Cuentos clásicos cortos. Que cautivan niños y adultos llevándolos a mundos de fantasía que desatan su imaginación',
+        'Descubre 93 cuentos clásicos, fábulas y aventuras para leer en familia, fomentar la imaginación, compartir valores y crear momentos especiales antes de dormir.',
+        '93 cuentos clásicos, fábulas y aventuras para compartir en familia, despertar la imaginación y disfrutar de la lectura antes de dormir.',
+        'Una colección de 93 cuentos, fábulas y aventuras para imaginar, aprender y compartir momentos de lectura en familia.',
         'https://www.amazon.com/dp/B0C6BWYRPH',
         'https://www.amazon.com/dp/B0FVDNM2V7',
         'https://www.amazon.com/dp/B0C6KS4SP8',
         '9-cuentos-libro.jpg',
-        '¿Buscas un libro que una a tu familia, calme las noches agitadas y siembre valores sin sermones?',
-        'Dentro encontrarás una cuidadosa selección de cuentos clásicos adaptados con un enfoque moderno',
-        'Ayuda a los niños a manejar sus emociones a través de metáforas suaves y personajes entrañables.',
-        'Búsquedas relacionadas:',
+        'Portada del libro El Libro de los Sueños de Victoria Maciass',
+        'El Libro de los Sueños: cuentos clásicos y aventuras para imaginar, aprender y compartir en familia',
+        'Cuentos clásicos que siguen despertando la imaginación',
+        '¿Qué encontrarás en El Libro de los Sueños?',
+        '¿Qué cuento leemos hoy?',
       ];
       for (const str of requiredSuenosStrings) {
         if (!content.includes(str)) {
@@ -565,6 +574,34 @@ async function prerender() {
       for (const str of requiredCosturaStrings) {
         if (!content.includes(str)) {
           console.error(`❌ ERROR: /costura no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+    }
+
+    // P. Comprobación exhaustiva específica para /habitos (Hábitos Transformadores)
+    if (route === '/habitos') {
+      const requiredHabitosStrings = [
+        'Hábitos Transformadores',
+        'El camino hacia una vida plena y productiva explorando el poder transformador de nuestras acciones diarias',
+        'Descubre cómo crear hábitos saludables, mejorar tu productividad, gestionar el tiempo y construir rutinas para tu crecimiento personal y profesional.',
+        'Aprende a identificar tus hábitos, crear rutinas saludables y mejorar tu organización, productividad y crecimiento personal.',
+        'Una guía práctica para comprender los hábitos, organizar tus rutinas y avanzar hacia tus objetivos personales y profesionales.',
+        'https://www.amazon.com/dp/B0DTYDVX31',
+        'https://www.amazon.com/dp/B0G3P9PCJ5',
+        'https://www.amazon.com/dp/B0DTV6YKN5',
+        'https://books2read.com/u/bOp7v9',
+        '11--habitos-libro.jpg',
+        'books2read_logo.png',
+        'Portada del libro Hábitos Transformadores de Victoria Maciass',
+        'Hábitos Transformadores: cómo construir rutinas que impulsen tu bienestar, productividad y crecimiento personal',
+        'Comprender la ciencia y la psicología de los hábitos',
+        '¿Qué encontrarás en este libro?',
+        'Una transformación que empieza con las decisiones de cada día',
+      ];
+      for (const str of requiredHabitosStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /habitos no contiene la cadena requerida: "${str}"`);
           failedChecks++;
         }
       }

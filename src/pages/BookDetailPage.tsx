@@ -20,7 +20,7 @@ const LOGO_GOOGLE_PLAY_EBOOK = 'https://ik.imagekit.io/hr20qlpupi/victoria/googl
 const LOGO_GOOGLE_PLAY_AUDIO = 'https://ik.imagekit.io/hr20qlpupi/victoria/google_play_audiolibro.png';
 const LOGO_GOOGLE_PLAY_BOOK = 'https://ik.imagekit.io/hr20qlpupi/victoria/google_play_book.png';
 const LOGO_APPLE_BOOKS = 'https://ik.imagekit.io/hr20qlpupi/victoria/apple.png';
-const LOGO_BOOKS2READ = 'https://ik.imagekit.io/hr20qlpupi/victoria/books2read.com_logo.jpg';
+const LOGO_BOOKS2READ = 'https://ik.imagekit.io/hr20qlpupi/victoria/books2read_logo.png';
 
 // Fallbacks de plataformas complementarias
 const LOGO_AUDIBLE =
@@ -670,7 +670,16 @@ export const BookDetailPage: React.FC = () => {
                     continue;
                   }
 
-                  if (parr.startsWith('### ')) {
+                  if (parr.startsWith('## ')) {
+                    blocks.push(
+                      <h2
+                        key={i}
+                        className="font-serif text-2xl sm:text-[26px] font-bold text-stone-900 tracking-tight pt-2"
+                      >
+                        {parr.replace(/^##\s*/, '')}
+                      </h2>
+                    );
+                  } else if (parr.startsWith('### ')) {
                     blocks.push(
                       <h3
                         key={i}
