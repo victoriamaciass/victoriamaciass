@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -691,6 +691,94 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /mente no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // S. Comprobación exhaustiva específica para /numeros (La Magia de los Números)
+    if (route === '/numeros') {
+      const requiredNumerosStrings = [
+        'La Magia de los Números',
+        'Desbloquea los secretos del universo, revela tu destino y empodérate a través del poder transformador de los números.',
+        'La Magia de los Números: Guía de Numerología y Autoconocimiento | Victoria Maciass',
+        'Descubre la numerología, calcula tu mapa personal y explora el significado de los números, los ciclos de vida y su simbolismo para conocerte mejor.',
+        'https://victoriamaciass.vercel.app/numeros',
+        'https://www.amazon.com/dp/B0CCCVZ7NQ',
+        'https://www.amazon.com/dp/B0CCCMZW7H',
+        'https://www.amazon.com/dp/B0CCK7SRJZ',
+        'https://books2read.com/u/47jNGj',
+        '13-numerologia-libro.jpg',
+        'books2read_logo.png',
+        'Portada del libro La Magia de los Números de Victoria Maciass',
+        'Descubre tu mapa numerológico personal',
+        'El significado de los números del 1 al 9 y los números maestros',
+        'Propósito, relaciones y vocación: interpreta tu mapa en distintos ámbitos',
+        'Ciclos numerológicos y momentos de cambio',
+        'Lleva el simbolismo de los números a tu vida cotidiana',
+        'Bienestar integral, responsabilidad y límites de la numerología',
+        'Una guía para reflexionar, aprender y evolucionar',
+        '¿Para quién es este libro?',
+        'Empieza a descubrir el lenguaje simbólico de los números',
+        'Tu historia no está escrita por los números: eres tú quien puede utilizarlos como una invitación para conocerse mejor y elegir cómo avanzar.',
+        'Pulsa el botón «Comprar ahora» para consultar las ediciones disponibles y elegir la que prefieras.',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredNumerosStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /numeros no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /numeros no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // T. Comprobación exhaustiva específica para /varices (Método Varices)
+    if (route === '/varices') {
+      const requiredVaricesStrings = [
+        'Método Varices',
+        'El camino hacia unas piernas saludables y radiantes revelado ¡descubre los secretos para recuperar tu confianza y bienestar!',
+        'Método Varices: Guía sobre Prevención, Tratamientos y Salud Venosa | Victoria Maciass',
+        'Conoce las varices, sus factores de riesgo, prevención y opciones de tratamiento. Una guía sobre salud venosa, cuidados y bienestar de las piernas.',
+        'https://victoriamaciass.vercel.app/varices',
+        'https://www.amazon.com/dp/B0D7PV1BY8',
+        'https://www.amazon.com/dp/B0FR8YD5H7',
+        'https://www.amazon.com/dp/B0D57YMQRH',
+        'https://play.google.com/store/books/details?id=TYImEgAAQBAJ',
+        'https://play.google.com/store/audiobooks/details?id=AQAAAEDGvDz86M',
+        '6-varices-libro.jpg',
+        'google_play_ebook.png',
+        'google_play_audiolibro.png',
+        'Portada del libro Método Varices de Victoria Maciass',
+        'Comprende qué son las varices y por qué aparecen',
+        'Descubre cómo funciona el sistema venoso',
+        'Diagnóstico: conoce las formas de evaluar las varices',
+        'Prevención y factores de riesgo: hábitos que merecen atención',
+        'Tratamientos conservadores: conoce las distintas alternativas',
+        'Tratamientos médicos: procedimientos y opciones disponibles',
+        'Terapias complementarias: información para evaluar con criterio',
+        'Recuperación y cuidados después de un tratamiento',
+        'Mitos, autoestima y bienestar emocional',
+        'Situaciones especiales: embarazo, edad y actividad física',
+        'Nutrición y salud venosa',
+        'Un plan de acción para cuidar tus piernas a largo plazo',
+        '¿Para quién es Método Varices?',
+        'Da un paso hacia un mayor conocimiento de tu salud venosa',
+        'Pulsa el botón «Comprar ahora» para acceder a las opciones de compra y elegir el formato que prefieras.',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredVaricesStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /varices no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /varices no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }

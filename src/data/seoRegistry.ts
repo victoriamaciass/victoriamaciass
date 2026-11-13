@@ -549,6 +549,36 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'numeros') {
+      return {
+        title: 'La Magia de los Números: Guía de Numerología y Autoconocimiento | Victoria Maciass',
+        description: 'Descubre la numerología, calcula tu mapa personal y explora el significado de los números, los ciclos de vida y su simbolismo para conocerte mejor.',
+        canonical: `${BASE_URL}/numeros`,
+        ogTitle: 'La Magia de los Números: Guía de Numerología y Autoconocimiento | Victoria Maciass',
+        ogDescription: 'Descubre la numerología, calcula tu mapa personal y explora el significado de los números, los ciclos de vida y su simbolismo para conocerte mejor.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/13-numerologia-libro.jpg',
+        ogUrl: `${BASE_URL}/numeros`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
+    if (book.slug === 'varices') {
+      return {
+        title: 'Método Varices: Guía sobre Prevención, Tratamientos y Salud Venosa | Victoria Maciass',
+        description: 'Conoce las varices, sus factores de riesgo, prevención y opciones de tratamiento. Una guía sobre salud venosa, cuidados y bienestar de las piernas.',
+        canonical: `${BASE_URL}/varices`,
+        ogTitle: 'Método Varices: Guía sobre Prevención, Tratamientos y Salud Venosa | Victoria Maciass',
+        ogDescription: 'Conoce las varices, sus factores de riesgo, prevención y opciones de tratamiento. Una guía sobre salud venosa, cuidados y bienestar de las piernas.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/6-varices-libro.jpg',
+        ogUrl: `${BASE_URL}/varices`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,
