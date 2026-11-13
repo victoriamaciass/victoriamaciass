@@ -669,6 +669,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'conjuros') {
+      return {
+        title: 'El Arte de los Conjuros Conscientes: Rituales y Transformación Personal | Victoria Maciass',
+        description: 'Descubre rituales conscientes para cultivar el amor propio, la abundancia, la confianza y la transformación personal mediante intención, simbolismo y acciones reales.',
+        canonical: `${BASE_URL}/conjuros`,
+        ogTitle: 'El Arte de los Conjuros Conscientes: Rituales y Transformación Personal | Victoria Maciass',
+        ogDescription: 'Descubre rituales conscientes para cultivar el amor propio, la abundancia, la confianza y la transformación personal mediante intención, simbolismo y acciones reales.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/18-conjuros-libro.jpg',
+        ogUrl: `${BASE_URL}/conjuros`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,

@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -1003,6 +1003,52 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /fertilidad no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z2. Comprobación exhaustiva específica para /conjuros (El Arte de los Conjuros Conscientes)
+    if (route === '/conjuros') {
+      const requiredConjurosStrings = [
+        'El Arte de los Conjuros Conscientes',
+        'Rituales, conjuros y hechizos reales para el Amor, la Abundancia, la Suerte y la Transformación Personal',
+        'El Arte de los Conjuros Conscientes: Rituales y Transformación Personal | Victoria Maciass',
+        'Descubre rituales conscientes para cultivar el amor propio, la abundancia, la confianza y la transformación personal mediante intención, simbolismo y acciones reales.',
+        'https://victoriamaciass.vercel.app/conjuros',
+        'https://www.amazon.com/dp/B0FMFRLC6C',
+        'https://www.amazon.com/dp/B0FMDYRKZ3',
+        'https://www.amazon.com/dp/B0FM8KT4LL',
+        'https://play.google.com/store/books/details?id=3iEnEgAAQBAJ',
+        'https://play.google.com/store/audiobooks/details?id=AQAAAEDG_HS8oM',
+        '18-conjuros-libro.jpg',
+        'Portada de El Arte de los Conjuros Conscientes, de Victoria Maciass',
+        'Descubre una forma diferente de entender la magia y convierte tus intenciones en decisiones que transformen tu vida',
+        'La intención: el primer paso para cambiar tu manera de vivir',
+        'Amor verdadero: empieza por la relación que construyes contigo',
+        'Abundancia y riqueza: cambia tu relación con lo que tienes y con lo que deseas construir',
+        'Suerte y sincronicidad: aprende a reconocer oportunidades',
+        'Visualización consciente: imagina el futuro y trabaja para acercarte a él',
+        'Belleza interior y presencia: reconoce tu propio valor',
+        'Protección energética: límites, espacios y bienestar emocional',
+        'La Luna, las velas, las hierbas y los cristales: el valor del simbolismo',
+        'Sanar el pasado y cerrar ciclos: una oportunidad para escribir una nueva historia',
+        'Ética mágica: el verdadero poder también implica responsabilidad',
+        'Crea tu propio Libro de Conjuros',
+        '¿Para quién es este libro?',
+        'Una invitación a vivir con más intención',
+        'Elige tu edición y comienza a descubrir una forma más personal, ética y consciente de transformar tus intenciones en acciones.',
+        'Manos y misterio',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredConjurosStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /conjuros no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /conjuros no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }
