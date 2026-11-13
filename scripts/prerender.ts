@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -1049,6 +1049,48 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /conjuros no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z3. Comprobación exhaustiva específica para /ensaladas-sabores (Recetas De Ensaladas Con Sabores Deliciosos)
+    if (route === '/ensaladas-sabores') {
+      const requiredEnsaladasStrings = [
+        'Recetas De Ensaladas Con Sabores Deliciosos',
+        'Una recopilación de ingredientes frescos y nutritivos que te permitirán disfrutar de combinaciones variadas y sabrosas',
+        'Recetas de Ensaladas: Ideas Frescas, Fáciles y Deliciosas | Victoria Maciass',
+        'Descubre 52 recetas de ensaladas clásicas, creativas y con frutas y verduras. Aprende a combinar ingredientes frescos, preparar aderezos y crear platos variados.',
+        'https://victoriamaciass.vercel.app/ensaladas-sabores',
+        'https://www.amazon.com/dp/B0CKQK3LT2',
+        'https://www.amazon.com/dp/B0CKR3RT13',
+        'https://www.amazon.com/dp/B0C4VS9DX4',
+        '1-ensaladas-recetas-libro-600.jpg',
+        'Portada de Recetas De Ensaladas Con Sabores Deliciosos, de Victoria Maciass',
+        'Descubre cómo transformar ingredientes cotidianos en ensaladas llenas de sabor, color y creatividad',
+        'Aprende a combinar ingredientes y descubre nuevas posibilidades',
+        '52 recetas para salir de la rutina',
+        'Ensaladas clásicas que nunca pasan de moda',
+        'Ensaladas creativas para sorprender',
+        'Ensaladas con verduras y frutas',
+        'Aprende las técnicas que marcan la diferencia',
+        'El secreto está en el equilibrio de sabores y texturas',
+        'Una cocina flexible para diferentes momentos',
+        'Más disfrute y menos monotonía en tu alimentación',
+        '¿Para quién es este libro?',
+        'Empieza a disfrutar de las ensaladas de otra manera',
+        'Elige tu edición y descubre cuántas posibilidades deliciosas pueden surgir de una buena combinación de ingredientes frescos.',
+        'Cocina y recetas',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredEnsaladasStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /ensaladas-sabores no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /ensaladas-sabores no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }

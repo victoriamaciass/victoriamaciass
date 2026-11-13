@@ -684,6 +684,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'ensaladas-sabores') {
+      return {
+        title: 'Recetas de Ensaladas: Ideas Frescas, Fáciles y Deliciosas | Victoria Maciass',
+        description: 'Descubre 52 recetas de ensaladas clásicas, creativas y con frutas y verduras. Aprende a combinar ingredientes frescos, preparar aderezos y crear platos variados.',
+        canonical: `${BASE_URL}/ensaladas-sabores`,
+        ogTitle: 'Recetas de Ensaladas: Ideas Frescas, Fáciles y Deliciosas | Victoria Maciass',
+        ogDescription: 'Descubre 52 recetas de ensaladas clásicas, creativas y con frutas y verduras. Aprende a combinar ingredientes frescos, preparar aderezos y crear platos variados.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/1-ensaladas-recetas-libro-600.jpg',
+        ogUrl: `${BASE_URL}/ensaladas-sabores`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,
