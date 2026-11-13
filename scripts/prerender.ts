@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -856,6 +856,41 @@ async function prerender() {
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /celulitis no debe incluir <meta name="keywords">');
         failedChecks++;
+      }
+    }
+
+    // W. Comprobación exhaustiva específica para /metabolismo (Domina tu Metabolismo)
+    if (route === '/metabolismo') {
+      const requiredMetabolismoStrings = [
+        'Domina tu Metabolismo',
+        'Rompe con el metabolismo lento, acelera tu quema de calorías y logra un peso saludable para siempre',
+        'Domina tu Metabolismo: Alimentación, Energía y Peso Saludable | Victoria Maciass',
+        'Comprende cómo funciona el metabolismo y descubre cómo influyen la alimentación, el ejercicio, las hormonas, el sueño y los hábitos en el gasto energético.',
+        'https://victoriamaciass.vercel.app/metabolismo',
+        '14-metabolismo-libro.jpg',
+        'Portada del libro Domina tu Metabolismo de Victoria Maciass',
+        '¿Sientes que haces esfuerzos para cuidar tu alimentación, controlar las cantidades o mantenerte activo',
+        'El cambio sostenible no empieza con otra solución extrema.',
+        'tu actividad física y tu bienestar a largo plazo.',
+        'Comprar ahora',
+        '#opciones-compra',
+        'Próximamente disponible en las principales plataformas comerciales.',
+      ];
+      for (const str of requiredMetabolismoStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /metabolismo no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /metabolismo no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+      for (const unverifiedAsin of ['B0C6BR49GW', 'B0D6YCT1TF', 'B0C6J65GBD']) {
+        if (content.includes(unverifiedAsin)) {
+          console.error(`❌ ERROR: /metabolismo no debe publicar enlace sin verificar (${unverifiedAsin})`);
+          failedChecks++;
+        }
       }
     }
   }

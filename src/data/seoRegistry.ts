@@ -609,6 +609,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'metabolismo') {
+      return {
+        title: 'Domina tu Metabolismo: Alimentación, Energía y Peso Saludable | Victoria Maciass',
+        description: 'Comprende cómo funciona el metabolismo y descubre cómo influyen la alimentación, el ejercicio, las hormonas, el sueño y los hábitos en el gasto energético.',
+        canonical: `${BASE_URL}/metabolismo`,
+        ogTitle: 'Domina tu Metabolismo: Alimentación, Energía y Peso Saludable | Victoria Maciass',
+        ogDescription: 'Comprende cómo funciona el metabolismo y descubre cómo influyen la alimentación, el ejercicio, las hormonas, el sueño y los hábitos en el gasto energético.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/14-metabolismo-libro.jpg',
+        ogUrl: `${BASE_URL}/metabolismo`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,
