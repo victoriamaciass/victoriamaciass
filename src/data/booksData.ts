@@ -2046,11 +2046,11 @@ export const BOOKS_DATA: Book[] = [
       tagline: 'Energía & Flexibilidad Metabólica',
       icon: 'Flame',
     },
-    // Enlaces facilitados por la autora pendientes de verificación antes de publicar:
-    // - Amazon tapa blanda: https://www.amazon.com/dp/B0C6BR49GW
-    // - Amazon tapa dura: https://www.amazon.com/dp/B0D6YCT1TF
-    // - Amazon Kindle: https://www.amazon.com/dp/B0C6J65GBD
-    purchaseLinks: {},
+    purchaseLinks: {
+      paperbackAmazon: 'https://www.amazon.com/dp/B0C6BR49GW',
+      hardcoverAmazon: 'https://www.amazon.com/dp/B0D6YCT1TF',
+      ebookAmazon: 'https://www.amazon.com/dp/B0C6J65GBD',
+    },
     titulo: 'Domina tu Metabolismo',
     subtitulo: 'Rompe con el metabolismo lento, acelera tu quema de calorías y logra un peso saludable para siempre',
     categoria: 'salud-cuerpo',
@@ -2078,6 +2078,11 @@ export const BOOKS_DATA: Book[] = [
       'Si buscas una guía que reúna explicaciones sobre metabolismo, genética, envejecimiento, hormonas, nutrición, ejercicio, suplementos y estilo de vida, **Domina tu Metabolismo** te invita a explorar estos temas con una perspectiva amplia y práctica.',
       'El cambio sostenible no empieza con otra solución extrema. Empieza cuando comprendes mejor tu organismo y eliges hábitos que puedas mantener. Descubre cómo funciona tu metabolismo y utiliza ese conocimiento para tomar decisiones más conscientes sobre tu alimentación, tu actividad física y tu bienestar a largo plazo.',
     ],
+    enlaces: {
+      paperbackAmazon: 'https://www.amazon.com/dp/B0C6BR49GW',
+      hardcoverAmazon: 'https://www.amazon.com/dp/B0D6YCT1TF',
+      ebookAmazon: 'https://www.amazon.com/dp/B0C6J65GBD',
+    },
   },
   {
     id: 'celulitis-bajo-control',

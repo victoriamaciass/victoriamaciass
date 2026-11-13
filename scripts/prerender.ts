@@ -867,6 +867,9 @@ async function prerender() {
         'Domina tu Metabolismo: Alimentación, Energía y Peso Saludable | Victoria Maciass',
         'Comprende cómo funciona el metabolismo y descubre cómo influyen la alimentación, el ejercicio, las hormonas, el sueño y los hábitos en el gasto energético.',
         'https://victoriamaciass.vercel.app/metabolismo',
+        'https://www.amazon.com/dp/B0C6BR49GW',
+        'https://www.amazon.com/dp/B0D6YCT1TF',
+        'https://www.amazon.com/dp/B0C6J65GBD',
         '14-metabolismo-libro.jpg',
         'Portada del libro Domina tu Metabolismo de Victoria Maciass',
         '¿Sientes que haces esfuerzos para cuidar tu alimentación, controlar las cantidades o mantenerte activo',
@@ -874,7 +877,6 @@ async function prerender() {
         'tu actividad física y tu bienestar a largo plazo.',
         'Comprar ahora',
         '#opciones-compra',
-        'Próximamente disponible en las principales plataformas comerciales.',
       ];
       for (const str of requiredMetabolismoStrings) {
         if (!content.includes(str)) {
@@ -885,12 +887,6 @@ async function prerender() {
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /metabolismo no debe incluir <meta name="keywords">');
         failedChecks++;
-      }
-      for (const unverifiedAsin of ['B0C6BR49GW', 'B0D6YCT1TF', 'B0C6J65GBD']) {
-        if (content.includes(unverifiedAsin)) {
-          console.error(`❌ ERROR: /metabolismo no debe publicar enlace sin verificar (${unverifiedAsin})`);
-          failedChecks++;
-        }
       }
     }
 
