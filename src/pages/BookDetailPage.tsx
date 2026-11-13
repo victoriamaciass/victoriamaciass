@@ -729,7 +729,12 @@ export const BookDetailPage: React.FC = () => {
                   href="#opciones-compra"
                   onClick={(e) => {
                     e.preventDefault();
-                    document.getElementById('opciones-compra')?.scrollIntoView({ behavior: 'smooth' });
+                    const prefersReducedMotion =
+                      typeof window !== 'undefined' &&
+                      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+                    document.getElementById('opciones-compra')?.scrollIntoView({
+                      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+                    });
                     window.history.pushState(null, '', '#opciones-compra');
                   }}
                   className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-base sm:text-[17px] font-semibold text-white bg-[#1c3829] hover:bg-[#14281d] rounded-xl shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1c3829] focus-visible:ring-offset-2 text-center"

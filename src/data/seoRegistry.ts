@@ -515,6 +515,23 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'motivacion') {
+      return {
+        title: 'Motivación y Transformación Positiva: Crecimiento Personal | Victoria Maciass',
+        description: 'Descubre cómo fortalecer tu motivación, definir metas, superar obstáculos y crear hábitos positivos con esta guía de autoconocimiento y crecimiento personal.',
+        canonical: `${BASE_URL}/motivacion`,
+        ogTitle: 'Motivación y Transformación Positiva | Victoria Maciass',
+        ogDescription: 'Un recorrido por la motivación, el autoconocimiento, los hábitos positivos y las estrategias para impulsar tu crecimiento personal y profesional.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/12--motivacion-libro.jpg',
+        ogUrl: `${BASE_URL}/motivacion`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        twitterTitle: 'Motivación y Transformación Positiva | Victoria Maciass',
+        twitterDescription: 'Descubre herramientas para fortalecer tu motivación, superar obstáculos y avanzar en tu transformación personal.',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,
@@ -593,6 +610,9 @@ export function useApplyRouteSeo(pathname: string) {
 
     let ogImage = document.querySelector('meta[property="og:image"]');
     if (ogImage) ogImage.setAttribute('content', seo.ogImage);
+
+    let ogType = document.querySelector('meta[property="og:type"]');
+    if (ogType) ogType.setAttribute('content', seo.ogType || 'website');
 
     // Twitter Card
     let twTitle = document.querySelector('meta[name="twitter:title"]');

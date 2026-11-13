@@ -106,6 +106,8 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
+    } else if (route === '/motivacion') {
+      pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
     // 4. Reemplazar Canonical
@@ -604,6 +606,47 @@ async function prerender() {
           console.error(`❌ ERROR: /habitos no contiene la cadena requerida: "${str}"`);
           failedChecks++;
         }
+      }
+    }
+
+    // Q. Comprobación exhaustiva específica para /motivacion (Motivación y Transformación Positiva)
+    if (route === '/motivacion') {
+      const requiredMotivacionStrings = [
+        'Motivación y Transformación Positiva',
+        'Despertando tu poder interior en un viaje de autodescubrimiento y crecimiento personal',
+        'Motivación y Transformación Positiva: Crecimiento Personal | Victoria Maciass',
+        'Descubre cómo fortalecer tu motivación, definir metas, superar obstáculos y crear hábitos positivos con esta guía de autoconocimiento y crecimiento personal.',
+        'Un recorrido por la motivación, el autoconocimiento, los hábitos positivos y las estrategias para impulsar tu crecimiento personal y profesional.',
+        'Descubre herramientas para fortalecer tu motivación, superar obstáculos y avanzar en tu transformación personal.',
+        'https://victoriamaciass.vercel.app/motivacion',
+        'https://www.amazon.com/dp/B0C6VZ76P3',
+        'https://www.amazon.com/dp/B0C6VZ7HQG',
+        'https://www.amazon.com/dp/B0C734JJDY',
+        '12--motivacion-libro.jpg',
+        'Portada del libro Motivación y Transformación Positiva de Victoria Maciass',
+        'Descubre qué te mueve y qué quieres conseguir',
+        'Comprende la motivación y aprende a sostenerla',
+        'Supera los obstáculos internos que frenan tu avance',
+        'Cultiva una mentalidad positiva sin perder de vista la realidad',
+        'Visualización, afirmaciones y construcción de hábitos',
+        'El entorno también influye en tu transformación',
+        'Crecimiento personal, aprendizaje y desarrollo profesional',
+        'Aprende de los errores y construye tu propia versión',
+        '¿Qué encontrarás en este libro?',
+        'Una invitación a comenzar tu propio proceso de cambio',
+        'Tu transformación comienza cuando decides participar activamente en ella.',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredMotivacionStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /motivacion no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /motivacion no debe incluir <meta name="keywords">');
+        failedChecks++;
       }
     }
   }
