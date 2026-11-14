@@ -849,6 +849,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'recetas-pollo') {
+      return {
+        title: 'Recetas de Pollo: Ideas Creativas y Preparaciones Variadas | Victoria Maciass',
+        description: 'Descubre recetas de pollo tradicionales, al horno y a la parrilla, con marinados, acompañamientos e inspiración de distintas cocinas del mundo.',
+        canonical: `${BASE_URL}/recetas-pollo`,
+        ogTitle: 'Recetas de Pollo: Ideas Creativas y Preparaciones Variadas | Victoria Maciass',
+        ogDescription: 'Descubre recetas de pollo tradicionales, al horno y a la parrilla, con marinados, acompañamientos e inspiración de distintas cocinas del mundo.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/4-recetas-pollo-libro-600.jpg',
+        ogUrl: `${BASE_URL}/recetas-pollo`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,

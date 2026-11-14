@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas' || route === '/sabores-irresistibles') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas' || route === '/sabores-irresistibles' || route === '/recetas-pollo') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -1497,6 +1497,45 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /sabores-irresistibles no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z14. Comprobación exhaustiva específica para /recetas-pollo (Recetas de Pollo)
+    if (route === '/recetas-pollo') {
+      const requiredRecetasPolloStrings = [
+        'Recetas de Pollo',
+        'Creativas y originales para salir de la rutina y sorprender el paladar con tus habilidades culinarias',
+        'Recetas de Pollo: Ideas Creativas y Preparaciones Variadas | Victoria Maciass',
+        'Descubre recetas de pollo tradicionales, al horno y a la parrilla, con marinados, acompañamientos e inspiración de distintas cocinas del mundo.',
+        'https://victoriamaciass.vercel.app/recetas-pollo',
+        'https://www.amazon.com/dp/B0D91WYNJD',
+        'https://www.amazon.com/dp/B0D91YFPQB',
+        'https://www.amazon.com/dp/B0C566LRYG',
+        '4-recetas-pollo-libro-600.jpg',
+        'Portada de Recetas de Pollo, de Victoria Maciass',
+        'Mucho más que una receta para cada día',
+        'Elegir bien también forma parte de cocinar',
+        'Preparación organizada, cocina más segura',
+        'Tradiciones gastronómicas que cruzan fronteras',
+        'El horno como aliado para crear comidas completas',
+        'La parrilla y el placer de cocinar al aire libre',
+        'Creatividad sin complicar innecesariamente el menú',
+        'Una mirada más amplia sobre el alimento',
+        'Un recetario para recuperar la inspiración',
+        'Explora nuevas preparaciones, amplía tus recursos culinarios y convierte cada comida en una oportunidad para disfrutar de algo diferente.',
+        'Cocina y recetas',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredRecetasPolloStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /recetas-pollo no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /recetas-pollo no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }
