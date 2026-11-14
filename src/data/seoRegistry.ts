@@ -761,11 +761,11 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
 
     if (book.slug === 'aderezos') {
       return {
-        title: 'Aderezos para Cocinar: Salsas y Aliños Caseros | Victoria Maciass',
-        description: 'Descubre recetas de aderezos caseros, salsas y aliños de distintas culturas para ensaladas, carnes, pescados, pastas, vegetales y más.',
+        title: 'Aderezos para Cocinar: Salsas Caseras y Recetas para Cada Plato | Victoria Maciass',
+        description: 'Descubre recetas de aderezos y salsas caseras para ensaladas, carnes, pescados, verduras, pastas, arroces, sopas y postres.',
         canonical: `${BASE_URL}/aderezos`,
-        ogTitle: 'Aderezos para Cocinar: Salsas y Aliños Caseros | Victoria Maciass',
-        ogDescription: 'Descubre recetas de aderezos caseros, salsas y aliños de distintas culturas para ensaladas, carnes, pescados, pastas, vegetales y más.',
+        ogTitle: 'Aderezos para Cocinar: Salsas Caseras y Recetas para Cada Plato | Victoria Maciass',
+        ogDescription: 'Descubre recetas de aderezos y salsas caseras para ensaladas, carnes, pescados, verduras, pastas, arroces, sopas y postres.',
         ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/17-aderezos-libro-600.jpg',
         ogUrl: `${BASE_URL}/aderezos`,
         ogType: 'book',
