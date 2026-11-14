@@ -1058,27 +1058,23 @@ async function prerender() {
       const requiredEnsaladasStrings = [
         'Recetas De Ensaladas Con Sabores Deliciosos',
         'Una recopilación de ingredientes frescos y nutritivos que te permitirán disfrutar de combinaciones variadas y sabrosas',
-        'Recetas de Ensaladas: Ideas Frescas, Fáciles y Deliciosas | Victoria Maciass',
-        'Descubre 52 recetas de ensaladas clásicas, creativas y con frutas y verduras. Aprende a combinar ingredientes frescos, preparar aderezos y crear platos variados.',
+        'Recetas de Ensaladas con Sabores Deliciosos | Victoria Maciass',
+        'Aprende a preparar ensaladas con ingredientes frescos, aderezos caseros y técnicas de combinación. Incluye 52 recetas clásicas, creativas y de verduras y frutas.',
         'https://victoriamaciass.vercel.app/ensaladas-sabores',
         'https://www.amazon.com/dp/B0CKQK3LT2',
         'https://www.amazon.com/dp/B0CKR3RT13',
         'https://www.amazon.com/dp/B0C4VS9DX4',
         '1-ensaladas-recetas-libro-600.jpg',
         'Portada de Recetas De Ensaladas Con Sabores Deliciosos, de Victoria Maciass',
-        'Descubre cómo transformar ingredientes cotidianos en ensaladas llenas de sabor, color y creatividad',
-        'Aprende a combinar ingredientes y descubre nuevas posibilidades',
-        '52 recetas para salir de la rutina',
-        'Ensaladas clásicas que nunca pasan de moda',
-        'Ensaladas creativas para sorprender',
-        'Ensaladas con verduras y frutas',
-        'Aprende las técnicas que marcan la diferencia',
-        'El secreto está en el equilibrio de sabores y texturas',
-        'Una cocina flexible para diferentes momentos',
-        'Más disfrute y menos monotonía en tu alimentación',
-        '¿Para quién es este libro?',
-        'Empieza a disfrutar de las ensaladas de otra manera',
-        'Elige tu edición y descubre cuántas posibilidades deliciosas pueden surgir de una buena combinación de ingredientes frescos.',
+        'El arte de preparar ensaladas: ingredientes, técnica y combinación de sabores',
+        'Una introducción a la cultura y las posibilidades de las ensaladas',
+        'La selección de ingredientes: calidad y diversidad en cada preparación',
+        'Herramientas y técnicas para conseguir mejores resultados',
+        'Veinte ensaladas clásicas: preparaciones de referencia',
+        'Doce propuestas creativas para ocasiones especiales',
+        'Veinte ensaladas con verduras y frutas',
+        'Una guía para aprender y llevar a la práctica',
+        'explorar la cocina de las ensaladas desde sus fundamentos hasta su aplicación práctica.',
         'Cocina y recetas',
         'Comprar ahora',
         '#opciones-compra',
@@ -1088,6 +1084,10 @@ async function prerender() {
           console.error(`❌ ERROR: /ensaladas-sabores no contiene la cadena requerida: "${str}"`);
           failedChecks++;
         }
+      }
+      if (content.includes('Hay un momento en el que comer saludable puede empezar a sentirse como una obligación.')) {
+        console.error('❌ ERROR: /ensaladas-sabores todavía contiene texto editorial antiguo');
+        failedChecks++;
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /ensaladas-sabores no debe incluir <meta name="keywords">');
