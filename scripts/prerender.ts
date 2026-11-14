@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -1369,6 +1369,45 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /paellas-100 no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z11. Comprobación exhaustiva específica para /arroces-alma (Arroces con Alma)
+    if (route === '/arroces-alma') {
+      const requiredArrocesAlmaStrings = [
+        'Arroces con Alma',
+        'Melosos, Caldosos y Fideuás. Un viaje personal que te conecta y te enseña a cocinar con el corazón. Recetas, trucos y errores que debes evitar. Para cocineros de todas las edades que buscan sabor y conexión.',
+        'Arroces con Alma: Recetas Melosas, Caldosos y Fideuás | Victoria Maciass',
+        'Descubre más de 40 recetas de arroces melosos, caldosos, fideuás y platos de horno, junto con propuestas internacionales y consejos de cocina.',
+        'https://victoriamaciass.vercel.app/arroces-alma',
+        'https://www.amazon.com/dp/B0HKWVTKST',
+        'https://www.amazon.com/dp/B0HKZ3N1W7',
+        'https://www.amazon.com/dp/B0HKW4W9DL',
+        '18-arroces-con-alma-libro-600.jpg',
+        'Portada de Arroces con Alma, de Victoria Maciass',
+        'Un repertorio para descubrir todo lo que puede ofrecer el arroz',
+        'Tres maneras de entender la textura',
+        'Del mercado a la mesa: elegir con intención',
+        'El horno también tiene su lugar',
+        'Recetas para compartir y ocasiones que merecen algo especial',
+        'Una mirada que cruza fronteras',
+        'Aprender a interpretar una preparación',
+        'Un libro para ampliar la cocina de casa',
+        'Descubre nuevas formas de disfrutar del arroz',
+        'Explora sus recetas y encuentra tu próxima propuesta para cocinar y compartir.',
+        'Cocina y recetas',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredArrocesAlmaStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /arroces-alma no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /arroces-alma no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }

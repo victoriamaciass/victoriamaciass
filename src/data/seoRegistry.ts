@@ -804,6 +804,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'arroces-alma') {
+      return {
+        title: 'Arroces con Alma: Recetas Melosas, Caldosos y Fideuás | Victoria Maciass',
+        description: 'Descubre más de 40 recetas de arroces melosos, caldosos, fideuás y platos de horno, junto con propuestas internacionales y consejos de cocina.',
+        canonical: `${BASE_URL}/arroces-alma`,
+        ogTitle: 'Arroces con Alma: Recetas Melosas, Caldosos y Fideuás | Victoria Maciass',
+        ogDescription: 'Descubre más de 40 recetas de arroces melosos, caldosos, fideuás y platos de horno, junto con propuestas internacionales y consejos de cocina.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/18-arroces-con-alma-libro-600.jpg',
+        ogUrl: `${BASE_URL}/arroces-alma`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,
