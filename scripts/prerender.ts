@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas' || route === '/sabores-irresistibles') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -1458,6 +1458,45 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /carnes-rojas no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z13. Comprobación exhaustiva específica para /sabores-irresistibles (Sabores Irresistibles)
+    if (route === '/sabores-irresistibles') {
+      const requiredSaboresIrresistiblesStrings = [
+        'Sabores Irresistibles',
+        'Recetas mágicas para perder peso sin sacrificio. Guía completa con recetas bajas en calorías que te ayudarán a adelgazar sin perder el sabor. Te revelo un enfoque revolucionario para lograr la pérdida de peso sin renunciar al placer de saborear exquisitos platos.',
+        'Sabores Irresistibles: 84 Recetas Saludables y Menús Variados | Victoria Maciass',
+        'Descubre 84 recetas para desayunos, almuerzos y cenas, con opciones vegetarianas, veganas y platos variados. Incluye nutrición básica y planificación semanal.',
+        'https://victoriamaciass.vercel.app/sabores-irresistibles',
+        'https://www.amazon.com/dp/B0C5KFWFTR',
+        'https://www.amazon.es/dp/B0DC5DH688',
+        'https://www.amazon.com/dp/B0C59W6B96',
+        '6-sabores-irresistibles-libro-600.jpg',
+        'Portada de Sabores Irresistibles, de Victoria Maciass',
+        'Una forma diferente de organizar tus comidas',
+        'Comprender lo que ponemos en el plato',
+        'Desayunos para empezar el día con variedad',
+        'Almuerzos que combinan ingredientes y estilos',
+        'Más opciones para quienes prefieren una cocina vegetal',
+        'Cenas con preparaciones sencillas y variadas',
+        'Planificar para cocinar con más tranquilidad',
+        'La importancia de prestar atención al momento de comer',
+        'Un repertorio para descubrir nuevas combinaciones',
+        'Porque disfrutar de lo que comes y prestar atención a tus hábitos pueden formar parte de una misma experiencia.',
+        'Cocina y recetas',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredSaboresIrresistiblesStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /sabores-irresistibles no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /sabores-irresistibles no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }

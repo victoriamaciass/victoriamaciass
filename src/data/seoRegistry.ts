@@ -834,6 +834,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'sabores-irresistibles') {
+      return {
+        title: 'Sabores Irresistibles: 84 Recetas Saludables y Menús Variados | Victoria Maciass',
+        description: 'Descubre 84 recetas para desayunos, almuerzos y cenas, con opciones vegetarianas, veganas y platos variados. Incluye nutrición básica y planificación semanal.',
+        canonical: `${BASE_URL}/sabores-irresistibles`,
+        ogTitle: 'Sabores Irresistibles: 84 Recetas Saludables y Menús Variados | Victoria Maciass',
+        ogDescription: 'Descubre 84 recetas para desayunos, almuerzos y cenas, con opciones vegetarianas, veganas y platos variados. Incluye nutrición básica y planificación semanal.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/6-sabores-irresistibles-libro-600.jpg',
+        ogUrl: `${BASE_URL}/sabores-irresistibles`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,
