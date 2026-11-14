@@ -714,6 +714,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'recetas-bajar-peso') {
+      return {
+        title: 'Recetas para Bajar de Peso: 100 Recetas y Menús Saludables | Victoria Maciass',
+        description: 'Descubre 100 recetas para bajar de peso, 100 menús, ideas para 30 días y 250 alimentos bajos en calorías. Organiza tus comidas con variedad y sabor.',
+        canonical: `${BASE_URL}/recetas-bajar-peso`,
+        ogTitle: 'Recetas para Bajar de Peso: 100 Recetas y Menús Saludables | Victoria Maciass',
+        ogDescription: 'Descubre 100 recetas para bajar de peso, 100 menús, ideas para 30 días y 250 alimentos bajos en calorías. Organiza tus comidas con variedad y sabor.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/5-recetas-bajar-de-peso-libro-600.jpg',
+        ogUrl: `${BASE_URL}/recetas-bajar-peso`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,

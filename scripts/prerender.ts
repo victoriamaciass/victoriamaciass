@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -1135,6 +1135,43 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /ensaladas-150 no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z5. Comprobación exhaustiva específica para /recetas-bajar-peso (Recetas para Bajar de Peso)
+    if (route === '/recetas-bajar-peso') {
+      const requiredBajarPesoStrings = [
+        'Recetas para Bajar de Peso',
+        'Cocina inteligente para conseguir un peso ideal con esta guía completa con menús y recetas bajas en calorías',
+        'Recetas para Bajar de Peso: 100 Recetas y Menús Saludables | Victoria Maciass',
+        'Descubre 100 recetas para bajar de peso, 100 menús, ideas para 30 días y 250 alimentos bajos en calorías. Organiza tus comidas con variedad y sabor.',
+        'https://victoriamaciass.vercel.app/recetas-bajar-peso',
+        'https://www.amazon.com/dp/B0DBVS4VJR',
+        'https://www.amazon.com/dp/B0DBVWV4XR',
+        'https://www.amazon.com/dp/B081C96SSH',
+        '5-recetas-bajar-de-peso-libro-600.jpg',
+        'Portada de Recetas para Bajar de Peso, de Victoria Maciass',
+        '100 recetas para incorporar variedad a tu alimentación',
+        'Aprende a preparar platos sabrosos sin sentir que estás siguiendo una dieta',
+        '100 menús para organizar tus comidas',
+        'Conoce 250 superalimentos bajos en calorías',
+        'Cocina consciente: aprende a escuchar tus señales de hambre y saciedad',
+        'Una forma más práctica de planificar y cocinar',
+        '¿Para quién es este libro?',
+        'Descubre nuevas formas de preparar tus comidas, organiza tus menús y encuentra inspiración para disfrutar de una cocina sabrosa mientras trabajas, de manera realista y responsable, hacia tus objetivos de bienestar.',
+        'Cocina y recetas',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredBajarPesoStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /recetas-bajar-peso no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /recetas-bajar-peso no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }
