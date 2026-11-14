@@ -1100,29 +1100,24 @@ async function prerender() {
       const requiredEnsaladas150Strings = [
         '+150 Recetas de Ensaladas Refrescantes y Deliciosas',
         'La guía definitiva para disfrutar de comidas frescas y nutritivas que encantan a todos los paladares',
-        '+150 Recetas de Ensaladas Saludables, Fáciles y Deliciosas | Victoria Maciass',
-        'Descubre más de 150 recetas de ensaladas verdes, vegetales, frutas, proteínas, granos e internacionales. Ideas frescas y variadas para cada día.',
+        '+150 Recetas de Ensaladas Refrescantes y Deliciosas | Victoria Maciass',
+        'Descubre 156 recetas de ensaladas verdes, vegetales, legumbres, proteínas, frutas e inspiración internacional, con consejos sobre ingredientes y preparación.',
         'https://victoriamaciass.vercel.app/ensaladas-150',
         'https://www.amazon.com/dp/B0D9VCS2MC',
         'https://www.amazon.com/dp/B0D9VMY5XS',
         'https://www.amazon.com/dp/B0C51KR752',
         '2-ensaladas-recetas-libro-600.jpg',
         'Portada de +150 Recetas de Ensaladas Refrescantes y Deliciosas, de Victoria Maciass',
-        'Descubre más de 150 formas de preparar ensaladas y disfruta de una alimentación variada durante todo el año',
-        'Más de 150 recetas organizadas para encontrar siempre una nueva idea',
-        '1. Ensaladas verdes: frescura y variedad en cada combinación',
-        '2. Ensaladas de vegetales: aprovecha la diversidad de las verduras',
-        '3. Ensaladas de granos y legumbres: platos con más consistencia',
-        '4. Ensaladas de proteínas: variedad para comidas más completas',
-        '5. Ensaladas de frutas: sabores frescos y contrastes naturales',
-        '6. Ensaladas internacionales: descubre otros estilos de cocina',
-        '7. Más recetas variadas de ensaladas deliciosas',
-        'Aprende a elegir ingredientes y preparar mejores combinaciones',
-        'Deja de depender de una receta para cada comida',
-        'Una guía para diferentes gustos y momentos',
-        '¿Para quién es este recetario?',
-        'Más variedad para disfrutar cada día',
-        'Elige tu edición y descubre más de 150 formas de dar variedad, frescura y sabor a tus comidas.',
+        'Un recorrido gastronómico por el mundo de las ensaladas',
+        'Conocer los ingredientes y las técnicas de preparación',
+        'Ensaladas verdes y de vegetales: dos grandes familias de la cocina fresca',
+        'Granos y legumbres: ingredientes para composiciones más completas',
+        'Ensaladas con proteínas: otras formas de combinar los alimentos',
+        'Ensaladas de frutas: combinaciones dulces y frescas',
+        'Inspiración internacional: 36 recetas de diferentes estilos',
+        'Diez propuestas adicionales para seguir explorando',
+        'Un recetario para consultar, combinar y adaptar',
+        'encontrarás en sus páginas una selección extensa para consultar y llevar a tu propia cocina.',
         'Cocina y recetas',
         'Comprar ahora',
         '#opciones-compra',
@@ -1132,6 +1127,10 @@ async function prerender() {
           console.error(`❌ ERROR: /ensaladas-150 no contiene la cadena requerida: "${str}"`);
           failedChecks++;
         }
+      }
+      if (content.includes('Hay una diferencia importante entre tener unas cuantas recetas guardadas')) {
+        console.error('❌ ERROR: /ensaladas-150 todavía contiene texto editorial antiguo');
+        failedChecks++;
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /ensaladas-150 no debe incluir <meta name="keywords">');

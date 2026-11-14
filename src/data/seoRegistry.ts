@@ -701,11 +701,11 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
 
     if (book.slug === 'ensaladas-150') {
       return {
-        title: '+150 Recetas de Ensaladas Saludables, Fáciles y Deliciosas | Victoria Maciass',
-        description: 'Descubre más de 150 recetas de ensaladas verdes, vegetales, frutas, proteínas, granos e internacionales. Ideas frescas y variadas para cada día.',
+        title: '+150 Recetas de Ensaladas Refrescantes y Deliciosas | Victoria Maciass',
+        description: 'Descubre 156 recetas de ensaladas verdes, vegetales, legumbres, proteínas, frutas e inspiración internacional, con consejos sobre ingredientes y preparación.',
         canonical: `${BASE_URL}/ensaladas-150`,
-        ogTitle: '+150 Recetas de Ensaladas Saludables, Fáciles y Deliciosas | Victoria Maciass',
-        ogDescription: 'Descubre más de 150 recetas de ensaladas verdes, vegetales, frutas, proteínas, granos e internacionales. Ideas frescas y variadas para cada día.',
+        ogTitle: '+150 Recetas de Ensaladas Refrescantes y Deliciosas | Victoria Maciass',
+        ogDescription: 'Descubre 156 recetas de ensaladas verdes, vegetales, legumbres, proteínas, frutas e inspiración internacional, con consejos sobre ingredientes y preparación.',
         ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/2-ensaladas-recetas-libro-600.jpg',
         ogUrl: `${BASE_URL}/ensaladas-150`,
         ogType: 'book',
