@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -1172,6 +1172,45 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /recetas-bajar-peso no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z6. Comprobación exhaustiva específica para /recetas-fitness (Recetas Fitness)
+    if (route === '/recetas-fitness') {
+      const requiredFitnessStrings = [
+        'Recetas Fitness',
+        'Alimentación consciente con sabores irresistibles para un bienestar integral',
+        'Recetas Fitness: Alimentación Saludable y Recetas Fáciles | Victoria Maciass',
+        'Descubre recetas fitness para desayunos, snacks, almuerzos, cenas y postres. Aprende nutrición básica, planificación de comidas y alimentación para entrenar.',
+        'https://victoriamaciass.vercel.app/recetas-fitness',
+        'https://www.amazon.com/dp/B0C7TCMRCZ',
+        'https://www.amazon.com/dp/B0FW4YZ4YV',
+        'https://www.amazon.com/dp/B0C826J3WD',
+        '12-fitness-dieta-libro-600.jpg',
+        'Portada de Recetas Fitness, de Victoria Maciass',
+        'Comprende los fundamentos de una alimentación equilibrada',
+        'Planifica tus comidas y simplifica la cocina diaria',
+        'Desayunos, snacks y almuerzos para cada momento del día',
+        'Cenas ligeras, batidos y postres para disfrutar',
+        'Alimentación antes y después del entrenamiento',
+        'Descubre alimentos funcionales y nuevas combinaciones',
+        'Adaptaciones vegetarianas, veganas y sin gluten o lactosa',
+        'Hidratación y bebidas para acompañar tu rutina',
+        '¿Para quién es Recetas Fitness?',
+        'convertir el cuidado cotidiano de la alimentación en una práctica que puedas mantener y adaptar a tu propia vida.',
+        'Cocina y recetas',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredFitnessStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /recetas-fitness no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /recetas-fitness no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }

@@ -729,6 +729,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'recetas-fitness') {
+      return {
+        title: 'Recetas Fitness: Alimentación Saludable y Recetas Fáciles | Victoria Maciass',
+        description: 'Descubre recetas fitness para desayunos, snacks, almuerzos, cenas y postres. Aprende nutrición básica, planificación de comidas y alimentación para entrenar.',
+        canonical: `${BASE_URL}/recetas-fitness`,
+        ogTitle: 'Recetas Fitness: Alimentación Saludable y Recetas Fáciles | Victoria Maciass',
+        ogDescription: 'Descubre recetas fitness para desayunos, snacks, almuerzos, cenas y postres. Aprende nutrición básica, planificación de comidas y alimentación para entrenar.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/12-fitness-dieta-libro-600.jpg',
+        ogUrl: `${BASE_URL}/recetas-fitness`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,
