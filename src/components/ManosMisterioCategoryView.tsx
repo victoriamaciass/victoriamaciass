@@ -375,8 +375,7 @@ export const ManosMisterioCategoryView: React.FC<ManosMisterioCategoryViewProps>
                 </div>
 
                 {/* Botón que enlaza a la ficha individual */}
-                <div className="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
-                  <span className="text-xs font-mono text-stone-400">/{book.slug}</span>
+                <div className="mt-6 pt-4 border-t border-stone-100 flex items-center justify-end">
                   <Link
                     to={`/${book.slug}`}
                     className="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors shadow-2xs group"

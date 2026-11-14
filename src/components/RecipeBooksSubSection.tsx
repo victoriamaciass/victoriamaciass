@@ -166,8 +166,7 @@ export const RecipeBooksSubSection: React.FC<RecipeBooksSubSectionProps> = ({
                     </div>
 
                     {/* Compact action footer */}
-                    <div className="pt-2 border-t border-stone-100 flex items-center justify-between text-xs mt-1">
-                      <span className="text-[11px] text-stone-400 font-mono">/{book.slug}</span>
+                    <div className="pt-2 border-t border-stone-100 flex items-center justify-end text-xs mt-1">
                       <span className="text-xs font-semibold text-stone-900 group-hover:text-amber-800 transition-colors flex items-center gap-0.5">
                         <span>Ver libro</span>
                         <ChevronRight className="w-3 h-3 text-stone-400 group-hover:translate-x-0.5 transition-transform" />

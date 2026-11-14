@@ -352,8 +352,7 @@ export const MascotasCategoryView: React.FC<MascotasCategoryViewProps> = ({ cate
                 </div>
 
                 {/* Enlace y botón a la ficha individual */}
-                <div className="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
-                  <span className="text-xs font-mono text-stone-400">/{book.slug}</span>
+                <div className="mt-6 pt-4 border-t border-stone-100 flex items-center justify-end">
                   <Link
                     to={`/${book.slug}`}
                     className="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm sm:text-[15px] font-semibold text-white bg-stone-900 hover:bg-[#163a2b] rounded-lg transition-colors shadow-2xs group focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-900"

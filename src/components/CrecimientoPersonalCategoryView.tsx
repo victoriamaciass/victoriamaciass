@@ -377,8 +377,7 @@ export const CrecimientoPersonalCategoryView: React.FC<CrecimientoPersonalCatego
                 </div>
 
                 {/* Enlace y botón hacia la ficha individual */}
-                <div className="mt-6 pt-3.5 border-t border-stone-100 flex items-center justify-between">
-                  <span className="text-[11px] font-mono text-stone-400">/{book.slug}</span>
+                <div className="mt-6 pt-3.5 border-t border-stone-100 flex items-center justify-end">
                   <Link
                     to={`/${book.slug}`}
                     className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-semibold text-white bg-stone-900 hover:bg-[#163a2b] rounded-lg transition-colors shadow-2xs group focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
