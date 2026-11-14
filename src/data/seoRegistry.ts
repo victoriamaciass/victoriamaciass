@@ -774,6 +774,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'arte-paella') {
+      return {
+        title: 'El Arte de la Paella: Recetas y Técnicas para un Arroz Perfecto | Victoria Maciass',
+        description: 'Aprende a preparar paellas con una guía sobre arroz, ingredientes, sofrito, cocción, socarrat y recetas valencianas, marineras, vegetarianas e internacionales.',
+        canonical: `${BASE_URL}/arte-paella`,
+        ogTitle: 'El Arte de la Paella: Recetas y Técnicas para un Arroz Perfecto | Victoria Maciass',
+        ogDescription: 'Aprende a preparar paellas con una guía sobre arroz, ingredientes, sofrito, cocción, socarrat y recetas valencianas, marineras, vegetarianas e internacionales.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/8-paella-arte-libro-600.jpg',
+        ogUrl: `${BASE_URL}/arte-paella`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,

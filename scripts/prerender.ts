@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -1289,6 +1289,49 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /aderezos no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z9. Comprobación exhaustiva específica para /arte-paella (El Arte de la Paella)
+    if (route === '/arte-paella') {
+      const requiredPaellaStrings = [
+        'El Arte de la Paella',
+        'Sabores, Secretos y Pasión en Cada Bocado. Una guía completa y detallada que invita a los amantes de la cocina a adentrarse en el fascinante mundo de la paella.',
+        'El Arte de la Paella: Recetas y Técnicas para un Arroz Perfecto | Victoria Maciass',
+        'Aprende a preparar paellas con una guía sobre arroz, ingredientes, sofrito, cocción, socarrat y recetas valencianas, marineras, vegetarianas e internacionales.',
+        'https://victoriamaciass.vercel.app/arte-paella',
+        'https://www.amazon.com/dp/B0C63YBTCH',
+        'https://www.amazon.com/dp/B0CGKVFVFP',
+        'https://www.amazon.com/dp/B0C5W5XCTM',
+        '8-paella-arte-libro-600.jpg',
+        'Portada de El Arte de la Paella, de Victoria Maciass',
+        'Descubre los secretos para preparar una paella con más criterio, técnica y sabor',
+        'Conoce el arroz y aprende a elegir los ingredientes',
+        'Los utensilios y las condiciones de cocción también importan',
+        'Aprende las bases de una paella bien elaborada',
+        'Paella Valenciana: tradición, técnica y adaptación',
+        'Paellas de pescados, mariscos, carnes y aves',
+        'Alternativas vegetarianas, veganas y propuestas creativas',
+        'Influencias internacionales y nuevas formas de preparar arroces',
+        'Acompañamientos, guarniciones y una comida completa',
+        'Postres y bebidas para completar la experiencia',
+        'Aprende de los errores y mejora con cada preparación',
+        '¿A quién está dirigido este libro?',
+        'Descubre todo lo que hay detrás de una buena paella',
+        'Porque preparar una buena paella no consiste solamente en seguir una receta: también significa comprender sus secretos, disfrutar del proceso y compartir el resultado.',
+        'Cocina y recetas',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredPaellaStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /arte-paella no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /arte-paella no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }
