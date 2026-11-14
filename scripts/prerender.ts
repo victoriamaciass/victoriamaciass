@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas' || route === '/sabores-irresistibles' || route === '/recetas-pollo') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas' || route === '/sabores-irresistibles' || route === '/recetas-pollo' || route === '/recetas-variadas') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -1536,6 +1536,44 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /recetas-pollo no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z15. Comprobación exhaustiva específica para /recetas-variadas (Recetas Variadas Deliciosas)
+    if (route === '/recetas-variadas') {
+      const requiredRecetasVariadasStrings = [
+        'Recetas Variadas Deliciosas',
+        'Una guía de cocina para descubrir nuevas combinaciones, explorar diferentes preparaciones y ampliar tus posibilidades en la mesa.',
+        'Recetas Variadas Deliciosas: Más de 170 Recetas | Victoria Maciass',
+        'Explora más de 170 recetas de verduras, carnes, pescados, platos vegetarianos, horno, parrilla, cocina internacional, sopas, ensaladas y postres.',
+        'https://victoriamaciass.vercel.app/recetas-variadas',
+        'https://www.amazon.com/dp/B0C5P9X5B4',
+        'https://www.amazon.com/dp/B0C63P71MB',
+        'https://www.amazon.com/dp/B0C5NW6M37',
+        '7-recetas-variadas-libro-600.jpg',
+        'Portada de Recetas Variadas Deliciosas, de Victoria Maciass',
+        'Un repertorio de cocina para salir de lo habitual y descubrir nuevas posibilidades',
+        'Una cocina que empieza por conocer los ingredientes',
+        'Diferentes formas de cocinar, diferentes resultados',
+        'Sabores de distintas culturas en tu propia mesa',
+        'Opciones vegetarianas, ensaladas y platos para cada temporada',
+        'Del desayuno a los postres: más alternativas para organizar las comidas',
+        'Planificar, preparar y presentar con más criterio',
+        'Una guía para ampliar tu repertorio culinario',
+        'Descubre Recetas Variadas Deliciosas y encuentra nuevas ideas para cocinar, combinar ingredientes y disfrutar de una mesa con más variedad.',
+        'Cocina y recetas',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredRecetasVariadasStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /recetas-variadas no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /recetas-variadas no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }

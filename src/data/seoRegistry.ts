@@ -864,6 +864,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'recetas-variadas') {
+      return {
+        title: 'Recetas Variadas Deliciosas: Más de 170 Recetas | Victoria Maciass',
+        description: 'Explora más de 170 recetas de verduras, carnes, pescados, platos vegetarianos, horno, parrilla, cocina internacional, sopas, ensaladas y postres.',
+        canonical: `${BASE_URL}/recetas-variadas`,
+        ogTitle: 'Recetas Variadas Deliciosas: Más de 170 Recetas | Victoria Maciass',
+        ogDescription: 'Explora más de 170 recetas de verduras, carnes, pescados, platos vegetarianos, horno, parrilla, cocina internacional, sopas, ensaladas y postres.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/7-recetas-variadas-libro-600.jpg',
+        ogUrl: `${BASE_URL}/recetas-variadas`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,
