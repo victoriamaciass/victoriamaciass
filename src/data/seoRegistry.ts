@@ -879,6 +879,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'cocina-deliciosa') {
+      return {
+        title: 'Recetas de Cocina Deliciosa: 75 Recetas para Crear Menús Variados | Victoria Maciass',
+        description: 'Descubre 75 recetas de platos principales, postres, sopas, ensaladas, entrantes y guarniciones con ingredientes y preparaciones variadas.',
+        canonical: `${BASE_URL}/cocina-deliciosa`,
+        ogTitle: 'Recetas de Cocina Deliciosa: 75 Recetas para Crear Menús Variados | Victoria Maciass',
+        ogDescription: 'Descubre 75 recetas de platos principales, postres, sopas, ensaladas, entrantes y guarniciones con ingredientes y preparaciones variadas.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/10-recetas-variadas-deliciosas-libro-600.jpg',
+        ogUrl: `${BASE_URL}/cocina-deliciosa`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,

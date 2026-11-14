@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas' || route === '/sabores-irresistibles' || route === '/recetas-pollo' || route === '/recetas-variadas') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas' || route === '/sabores-irresistibles' || route === '/recetas-pollo' || route === '/recetas-variadas' || route === '/cocina-deliciosa') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -1574,6 +1574,45 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /recetas-variadas no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z16. Comprobación exhaustiva específica para /cocina-deliciosa (Recetas de Cocina Deliciosa)
+    if (route === '/cocina-deliciosa') {
+      const requiredCocinaDeliciosaStrings = [
+        'Recetas de Cocina Deliciosa',
+        'Platos principales, postres, sopas, ensaladas, entrantes y guarniciones para crear menús variados y disfrutar de nuevas combinaciones.',
+        'Recetas de Cocina Deliciosa: 75 Recetas para Crear Menús Variados | Victoria Maciass',
+        'Descubre 75 recetas de platos principales, postres, sopas, ensaladas, entrantes y guarniciones con ingredientes y preparaciones variadas.',
+        'https://victoriamaciass.vercel.app/cocina-deliciosa',
+        'https://www.amazon.com/dp/B08LT84PZY',
+        'https://www.amazon.com/dp/B0D8YG93VS',
+        'https://www.amazon.com/dp/B08LT4LCSZ',
+        'https://books2read.com/u/me5yZY',
+        '10-recetas-variadas-deliciosas-libro-600.jpg',
+        'Portada de Recetas de Cocina Deliciosa, de Victoria Maciass',
+        'Un recetario organizado para encontrar inspiración en cada parte del menú',
+        'Platos principales: distintas fuentes de sabor para el centro de la mesa',
+        'Postres: combinaciones que van más allá de la repostería tradicional',
+        'Sopas y ensaladas: dos formas diferentes de combinar ingredientes',
+        'Entrantes: pequeñas preparaciones para abrir el menú',
+        'Guarniciones: el complemento que también merece atención',
+        'Un libro que permite pensar las comidas como un conjunto',
+        'Variedad culinaria para distintas ocasiones',
+        'Una colección organizada para consultar, elegir y llevar a la mesa recetas diferentes según cada momento y cada ocasión.',
+        'Cocina y recetas',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredCocinaDeliciosaStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /cocina-deliciosa no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /cocina-deliciosa no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }
