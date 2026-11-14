@@ -819,6 +819,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'carnes-rojas') {
+      return {
+        title: 'Recetas de Carnes Rojas: Cortes, Técnicas y Platos del Mundo | Victoria Maciass',
+        description: 'Descubre recetas de carnes rojas, cortes de res y ternera, técnicas de cocción, marinados, asados, guisos y platos de distintas gastronomías.',
+        canonical: `${BASE_URL}/carnes-rojas`,
+        ogTitle: 'Recetas de Carnes Rojas: Cortes, Técnicas y Platos del Mundo | Victoria Maciass',
+        ogDescription: 'Descubre recetas de carnes rojas, cortes de res y ternera, técnicas de cocción, marinados, asados, guisos y platos de distintas gastronomías.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/3-recetas-carne-libro-600.jpg',
+        ogUrl: `${BASE_URL}/carnes-rojas`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,

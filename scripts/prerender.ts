@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -1420,6 +1420,44 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /arroces-alma no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z12. Comprobación exhaustiva específica para /carnes-rojas (Recetas de Carnes Rojas)
+    if (route === '/carnes-rojas') {
+      const requiredCarnesRojasStrings = [
+        'Recetas de Carnes Rojas',
+        'Sabores legendarios y recetas tradicionales que fusionan historia y sabor intenso',
+        'Recetas de Carnes Rojas: Cortes, Técnicas y Platos del Mundo | Victoria Maciass',
+        'Descubre recetas de carnes rojas, cortes de res y ternera, técnicas de cocción, marinados, asados, guisos y platos de distintas gastronomías.',
+        'https://victoriamaciass.vercel.app/carnes-rojas',
+        'https://www.amazon.com/dp/B0D9CW7MW3',
+        'https://www.amazon.com/dp/B0D9CWN5L3',
+        'https://www.amazon.com/dp/B0C5661W72',
+        '3-recetas-carne-libro-600.jpg',
+        'Portada de Recetas de Carnes Rojas, de Victoria Maciass',
+        'Una cocina con carácter: aprende a sacar partido a cada corte',
+        'El ingrediente antes que la receta',
+        'Entender el efecto de cada método de cocción',
+        'El sabor se construye con pequeños detalles',
+        'De la parrilla a la mesa: preparaciones para diferentes ocasiones',
+        'Un recorrido por distintas cocinas del mundo',
+        'Recetas para ampliar el repertorio cotidiano',
+        'Una guía para cocinar con más criterio y creatividad',
+        'Descubre nuevas formas de preparar carne y encuentra inspiración para tu próxima receta.',
+        'Cocina y recetas',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredCarnesRojasStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /carnes-rojas no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /carnes-rojas no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }
