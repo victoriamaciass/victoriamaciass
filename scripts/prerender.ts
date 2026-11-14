@@ -1298,28 +1298,25 @@ async function prerender() {
       const requiredPaellaStrings = [
         'El Arte de la Paella',
         'Sabores, Secretos y Pasión en Cada Bocado. Una guía completa y detallada que invita a los amantes de la cocina a adentrarse en el fascinante mundo de la paella.',
-        'El Arte de la Paella: Recetas y Técnicas para un Arroz Perfecto | Victoria Maciass',
-        'Aprende a preparar paellas con una guía sobre arroz, ingredientes, sofrito, cocción, socarrat y recetas valencianas, marineras, vegetarianas e internacionales.',
+        'El Arte de la Paella: Tradición, Recetas y Cultura Gastronómica | Victoria Maciass',
+        'Descubre la tradición de la paella, las variedades de arroz, los ingredientes, las recetas valencianas, marineras, vegetarianas y sus versiones internacionales.',
         'https://victoriamaciass.vercel.app/arte-paella',
         'https://www.amazon.com/dp/B0C63YBTCH',
         'https://www.amazon.com/dp/B0CGKVFVFP',
         'https://www.amazon.com/dp/B0C5W5XCTM',
         '8-paella-arte-libro-600.jpg',
         'Portada de El Arte de la Paella, de Victoria Maciass',
-        'Descubre los secretos para preparar una paella con más criterio, técnica y sabor',
-        'Conoce el arroz y aprende a elegir los ingredientes',
-        'Los utensilios y las condiciones de cocción también importan',
-        'Aprende las bases de una paella bien elaborada',
-        'Paella Valenciana: tradición, técnica y adaptación',
-        'Paellas de pescados, mariscos, carnes y aves',
-        'Alternativas vegetarianas, veganas y propuestas creativas',
-        'Influencias internacionales y nuevas formas de preparar arroces',
-        'Acompañamientos, guarniciones y una comida completa',
-        'Postres y bebidas para completar la experiencia',
-        'Aprende de los errores y mejora con cada preparación',
-        '¿A quién está dirigido este libro?',
-        'Descubre todo lo que hay detrás de una buena paella',
-        'Porque preparar una buena paella no consiste solamente en seguir una receta: también significa comprender sus secretos, disfrutar del proceso y compartir el resultado.',
+        'Mucho más que un plato de arroz',
+        'El arroz: un ingrediente con una larga historia',
+        'La tradición valenciana y sus distintas interpretaciones',
+        'Los ingredientes y su papel en el conjunto',
+        'Una preparación que también requiere su espacio',
+        'Del mar a la huerta: una variedad de estilos',
+        'La paella en diálogo con otras culturas',
+        'Una comida completa alrededor de la paella',
+        'Una cocina que combina conocimiento y creatividad',
+        'Descubre la riqueza gastronómica de la paella',
+        'Acércate a la tradición, descubre nuevas combinaciones y disfruta de todo lo que la paella puede reunir alrededor de una mesa.',
         'Cocina y recetas',
         'Comprar ahora',
         '#opciones-compra',
@@ -1329,6 +1326,10 @@ async function prerender() {
           console.error(`❌ ERROR: /arte-paella no contiene la cadena requerida: "${str}"`);
           failedChecks++;
         }
+      }
+      if (content.includes('Descubre los secretos para preparar una paella con más criterio')) {
+        console.error('❌ ERROR: /arte-paella conserva texto de la descripción anterior');
+        failedChecks++;
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /arte-paella no debe incluir <meta name="keywords">');
