@@ -744,6 +744,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'recetas-quinoa') {
+      return {
+        title: 'Recetas con Quinoa: 100 Recetas Saludables para Cada Día | Victoria Maciass',
+        description: 'Descubre 100 recetas con quinoa para desayunos, almuerzos, cenas, snacks y postres. Aprende a cocinarla, combinarla y organizar tus comidas.',
+        canonical: `${BASE_URL}/recetas-quinoa`,
+        ogTitle: 'Recetas con Quinoa: 100 Recetas Saludables para Cada Día | Victoria Maciass',
+        ogDescription: 'Descubre 100 recetas con quinoa para desayunos, almuerzos, cenas, snacks y postres. Aprende a cocinarla, combinarla y organizar tus comidas.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/13-quinoa-libro-600.jpg',
+        ogUrl: `${BASE_URL}/recetas-quinoa`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,

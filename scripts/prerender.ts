@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -1211,6 +1211,46 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /recetas-fitness no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z7. Comprobación exhaustiva específica para /recetas-quinoa (Recetas con Quinoa)
+    if (route === '/recetas-quinoa') {
+      const requiredQuinoaStrings = [
+        'Recetas con Quinoa',
+        'Cocina nutritiva, recetas para una alimentación consciente y bienestar desde la primera cucharada',
+        'Recetas con Quinoa: 100 Recetas Saludables para Cada Día | Victoria Maciass',
+        'Descubre 100 recetas con quinoa para desayunos, almuerzos, cenas, snacks y postres. Aprende a cocinarla, combinarla y organizar tus comidas.',
+        'https://victoriamaciass.vercel.app/recetas-quinoa',
+        'https://www.amazon.com/dp/B0C9S7PKPW',
+        'https://www.amazon.com/dp/B0CM3X96ZP',
+        'https://www.amazon.com/dp/B0CBY6767Y',
+        'https://books2read.com/u/3Gkqpa',
+        '13-quinoa-libro-600.jpg',
+        'Portada de Recetas con Quinoa, de Victoria Maciass',
+        'Conoce la quinoa y aprende a incorporarla a tu alimentación',
+        'Aprende a utilizar la quinoa con criterio y sin monotonía',
+        'Desayunos con quinoa para comenzar el día con variedad',
+        'Almuerzos equilibrados y cenas nutritivas',
+        'Snacks y postres saludables para ampliar tus posibilidades',
+        'Organiza tus comidas y aprovecha mejor la quinoa',
+        'Descubre nuevas recetas: cocina internacional, platos veganos y preparaciones para niños',
+        '30 nuevas formas de disfrutar la quinoa',
+        '¿Para quién es este libro?',
+        'convertirla en un ingrediente habitual de una cocina más creativa, nutritiva y consciente.',
+        'Cocina y recetas',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredQuinoaStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /recetas-quinoa no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /recetas-quinoa no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }
