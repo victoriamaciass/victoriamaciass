@@ -1220,8 +1220,8 @@ async function prerender() {
       const requiredQuinoaStrings = [
         'Recetas con Quinoa',
         'Cocina nutritiva, recetas para una alimentación consciente y bienestar desde la primera cucharada',
-        'Recetas con Quinoa: 100 Recetas Saludables para Cada Día | Victoria Maciass',
-        'Descubre 100 recetas con quinoa para desayunos, almuerzos, cenas, snacks y postres. Aprende a cocinarla, combinarla y organizar tus comidas.',
+        'Recetas con Quinoa: 100 Ideas para Desayunos, Comidas y Cenas | Victoria Maciass',
+        'Descubre 100 recetas con quinoa para desayunos, almuerzos, cenas, snacks y postres. Explora platos internacionales, opciones veganas e ideas para organizar tus comidas.',
         'https://victoriamaciass.vercel.app/recetas-quinoa',
         'https://www.amazon.com/dp/B0C9S7PKPW',
         'https://www.amazon.com/dp/B0CM3X96ZP',
@@ -1229,16 +1229,14 @@ async function prerender() {
         'https://books2read.com/u/3Gkqpa',
         '13-quinoa-libro-600.jpg',
         'Portada de Recetas con Quinoa, de Victoria Maciass',
-        'Conoce la quinoa y aprende a incorporarla a tu alimentación',
-        'Aprende a utilizar la quinoa con criterio y sin monotonía',
-        'Desayunos con quinoa para comenzar el día con variedad',
-        'Almuerzos equilibrados y cenas nutritivas',
-        'Snacks y postres saludables para ampliar tus posibilidades',
-        'Organiza tus comidas y aprovecha mejor la quinoa',
-        'Descubre nuevas recetas: cocina internacional, platos veganos y preparaciones para niños',
-        '30 nuevas formas de disfrutar la quinoa',
-        '¿Para quién es este libro?',
-        'convertirla en un ingrediente habitual de una cocina más creativa, nutritiva y consciente.',
+        'Conocer el ingrediente antes de llevarlo al plato',
+        'Una cocina que acompaña distintos momentos del día',
+        'Aprender a combinar, no solamente a sustituir',
+        'Planificar las comidas con más variedad',
+        'Un repertorio que va más allá de las recetas habituales',
+        'El valor de una preparación sencilla y bien organizada',
+        'Una propuesta para quienes disfrutan explorando nuevas recetas',
+        'Descubre «Recetas con Quinoa» de Victoria Maciass y explora cien recetas y múltiples formas de incorporar este ingrediente a tu cocina cotidiana.',
         'Cocina y recetas',
         'Comprar ahora',
         '#opciones-compra',
@@ -1248,6 +1246,10 @@ async function prerender() {
           console.error(`❌ ERROR: /recetas-quinoa no contiene la cadena requerida: "${str}"`);
           failedChecks++;
         }
+      }
+      if (content.includes('Incorporar alimentos saludables a la rutina diaria no debería ser complicado')) {
+        console.error('❌ ERROR: /recetas-quinoa todavía contiene texto editorial antiguo');
+        failedChecks++;
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /recetas-quinoa no debe incluir <meta name="keywords">');
