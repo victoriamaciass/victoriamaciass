@@ -1189,16 +1189,16 @@ async function prerender() {
         'https://www.amazon.com/dp/B0C826J3WD',
         '12-fitness-dieta-libro-600.jpg',
         'Portada de Recetas Fitness, de Victoria Maciass',
-        'Comprende los fundamentos de una alimentación equilibrada',
-        'Planifica tus comidas y simplifica la cocina diaria',
-        'Desayunos, snacks y almuerzos para cada momento del día',
-        'Cenas ligeras, batidos y postres para disfrutar',
-        'Alimentación antes y después del entrenamiento',
-        'Descubre alimentos funcionales y nuevas combinaciones',
-        'Adaptaciones vegetarianas, veganas y sin gluten o lactosa',
-        'Hidratación y bebidas para acompañar tu rutina',
-        '¿Para quién es Recetas Fitness?',
-        'convertir el cuidado cotidiano de la alimentación en una práctica que puedas mantener y adaptar a tu propia vida.',
+        'Entender qué hay detrás de una alimentación equilibrada',
+        'La organización también forma parte de la cocina',
+        'Desayunos para diferentes ritmos y preferencias',
+        'Snacks y almuerzos que amplían las posibilidades',
+        'Cenas y preparaciones para terminar el día',
+        'Batidos, smoothies y postres',
+        'Alimentación y actividad física',
+        'Ingredientes, adaptaciones y bebidas',
+        'Un repertorio para construir una rutina propia',
+        'Descubre «Recetas Fitness» de Victoria Maciass y explora nuevas formas de cocinar, combinar ingredientes y organizar tus comidas con variedad.',
         'Cocina y recetas',
         'Comprar ahora',
         '#opciones-compra',
@@ -1208,6 +1208,10 @@ async function prerender() {
           console.error(`❌ ERROR: /recetas-fitness no contiene la cadena requerida: "${str}"`);
           failedChecks++;
         }
+      }
+      if (content.includes('Comer de forma saludable no debería convertirse en una sucesión de restricciones')) {
+        console.error('❌ ERROR: /recetas-fitness todavía contiene texto editorial antiguo');
+        failedChecks++;
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /recetas-fitness no debe incluir <meta name="keywords">');
