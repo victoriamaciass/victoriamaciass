@@ -789,6 +789,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'paellas-100') {
+      return {
+        title: 'Más de 100 Recetas de Paellas: Ideas para Cocinar y Compartir | Victoria Maciass',
+        description: 'Descubre más de 100 recetas de paellas y amplía tus ideas para cocinar arroz. Un recetario variado con propuestas tradicionales y creativas.',
+        canonical: `${BASE_URL}/paellas-100`,
+        ogTitle: 'Más de 100 Recetas de Paellas: Ideas para Cocinar y Compartir | Victoria Maciass',
+        ogDescription: 'Descubre más de 100 recetas de paellas y amplía tus ideas para cocinar arroz. Un recetario variado con propuestas tradicionales y creativas.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/9-paellas-100-libro-600.jpg',
+        ogUrl: `${BASE_URL}/paellas-100`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,

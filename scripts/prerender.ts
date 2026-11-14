@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -1332,6 +1332,43 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /arte-paella no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z10. Comprobación exhaustiva específica para /paellas-100 (Más de 100 Recetas de Paellas)
+    if (route === '/paellas-100') {
+      const requiredPaellas100Strings = [
+        'Más de 100 Recetas de Paellas',
+        'Descubre la exquisita diversidad de este plato tradicional con una amplia gama de sabores y combinaciones.',
+        'Más de 100 Recetas de Paellas: Ideas para Cocinar y Compartir | Victoria Maciass',
+        'Descubre más de 100 recetas de paellas y amplía tus ideas para cocinar arroz. Un recetario variado con propuestas tradicionales y creativas.',
+        'https://victoriamaciass.vercel.app/paellas-100',
+        'https://www.amazon.com/dp/B0C6W2VHBY',
+        'https://www.amazon.com/dp/B0C6W5KCLS',
+        'https://www.amazon.com/dp/B0C723KYQ5',
+        '9-paellas-100-libro-600.jpg',
+        'Portada de Más de 100 Recetas de Paellas, de Victoria Maciass',
+        'Cuando no quieres cocinar siempre lo mismo',
+        'Tener más opciones también cambia la forma de cocinar',
+        'De las referencias conocidas a nuevas ideas',
+        'Cocinar con atención, no solo seguir instrucciones',
+        'Un repertorio que se adapta a diferentes mesas',
+        'Una fuente de inspiración para salir de la rutina',
+        'Un libro para quienes disfrutan descubriendo',
+        'Descubre el libro y encuentra nuevas ideas para tu próxima paella.',
+        'Cocina y recetas',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredPaellas100Strings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /paellas-100 no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /paellas-100 no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }
