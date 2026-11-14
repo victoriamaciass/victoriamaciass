@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -1251,6 +1251,44 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /recetas-quinoa no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z8. Comprobación exhaustiva específica para /aderezos (Aderezos para Cocinar)
+    if (route === '/aderezos') {
+      const requiredAderezosStrings = [
+        'Aderezos para Cocinar',
+        'Encanta a tus invitados más exigentes con una amplia variedad de recetas probadas, sabrosas e irresistibles.',
+        'Aderezos para Cocinar: Salsas y Aliños Caseros | Victoria Maciass',
+        'Descubre recetas de aderezos caseros, salsas y aliños de distintas culturas para ensaladas, carnes, pescados, pastas, vegetales y más.',
+        'https://victoriamaciass.vercel.app/aderezos',
+        'https://www.amazon.com/dp/B0CFZBYF7H',
+        'https://www.amazon.com/dp/B0CFZL3HDY',
+        'https://www.amazon.com/dp/B0CFYTDCFQ',
+        '17-aderezos-libro-600.jpg',
+        'Portada de Aderezos para Cocinar, de Victoria Maciass',
+        'Descubre cómo transformar tus platos con el complemento adecuado',
+        'Mucho más que acompañamientos: aprende a comprender los sabores',
+        'Un recorrido por sabores de distintas partes del mundo',
+        'Ideas para diferentes platos y momentos de la comida',
+        'Creatividad para salir de las combinaciones habituales',
+        'Técnicas para conseguir mejores resultados',
+        '¿A quién está dirigido este libro?',
+        'Una forma sencilla de darle más personalidad a tu cocina',
+        'A veces, el complemento adecuado es todo lo que hace falta para descubrir una nueva versión de un plato que ya conoces.',
+        'Cocina y recetas',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredAderezosStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /aderezos no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /aderezos no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }
