@@ -1144,22 +1144,21 @@ async function prerender() {
       const requiredBajarPesoStrings = [
         'Recetas para Bajar de Peso',
         'Cocina inteligente para conseguir un peso ideal con esta guía completa con menús y recetas bajas en calorías',
-        'Recetas para Bajar de Peso: 100 Recetas y Menús Saludables | Victoria Maciass',
-        'Descubre 100 recetas para bajar de peso, 100 menús, ideas para 30 días y 250 alimentos bajos en calorías. Organiza tus comidas con variedad y sabor.',
+        'Recetas para Bajar de Peso: 100 Recetas y Menús | Victoria Maciass',
+        'Descubre 100 recetas para bajar de peso, menús organizados, ideas de ingredientes bajos en calorías y consejos de alimentación consciente.',
         'https://victoriamaciass.vercel.app/recetas-bajar-peso',
         'https://www.amazon.com/dp/B0DBVS4VJR',
         'https://www.amazon.com/dp/B0DBVWV4XR',
         'https://www.amazon.com/dp/B081C96SSH',
         '5-recetas-bajar-de-peso-libro-600.jpg',
         'Portada de Recetas para Bajar de Peso, de Victoria Maciass',
-        '100 recetas para incorporar variedad a tu alimentación',
-        'Aprende a preparar platos sabrosos sin sentir que estás siguiendo una dieta',
-        '100 menús para organizar tus comidas',
-        'Conoce 250 superalimentos bajos en calorías',
-        'Cocina consciente: aprende a escuchar tus señales de hambre y saciedad',
-        'Una forma más práctica de planificar y cocinar',
-        '¿Para quién es este libro?',
-        'Descubre nuevas formas de preparar tus comidas, organiza tus menús y encuentra inspiración para disfrutar de una cocina sabrosa mientras trabajas, de manera realista y responsable, hacia tus objetivos de bienestar.',
+        'Una guía de cocina para organizar tus comidas y descubrir nuevas formas de preparar platos equilibrados',
+        'Cien recetas para diferentes momentos y preferencias',
+        'Menús organizados para facilitar la planificación',
+        'Ingredientes que amplían las posibilidades de la cocina',
+        'Alimentación consciente: prestar atención a las señales del cuerpo',
+        'Un recurso de consulta para la cocina diaria',
+        'ofrece un amplio repertorio para llevar a tu cocina y utilizar como referencia en el día a día.',
         'Cocina y recetas',
         'Comprar ahora',
         '#opciones-compra',
@@ -1169,6 +1168,10 @@ async function prerender() {
           console.error(`❌ ERROR: /recetas-bajar-peso no contiene la cadena requerida: "${str}"`);
           failedChecks++;
         }
+      }
+      if (content.includes('Hay un momento —casi siempre silencioso— en el que uno se cansa de empezar de nuevo.')) {
+        console.error('❌ ERROR: /recetas-bajar-peso todavía contiene texto editorial antiguo');
+        failedChecks++;
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /recetas-bajar-peso no debe incluir <meta name="keywords">');
