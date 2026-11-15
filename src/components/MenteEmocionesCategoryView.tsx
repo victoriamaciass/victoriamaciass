@@ -538,7 +538,7 @@ export const MenteEmocionesCategoryView: React.FC<MenteEmocionesCategoryViewProp
           </p>
           <p>
             <Link to="/" className="hover:text-stone-900 underline transition-colors font-medium">
-              Ir a la página de inicio (/)
+              Ir a la página de inicio
             </Link>
           </p>
           <p className="text-xs sm:text-sm text-stone-500">
