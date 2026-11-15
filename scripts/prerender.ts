@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas' || route === '/sabores-irresistibles' || route === '/recetas-pollo' || route === '/recetas-variadas' || route === '/cocina-deliciosa') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas' || route === '/sabores-irresistibles' || route === '/recetas-pollo' || route === '/recetas-variadas' || route === '/cocina-deliciosa' || route === '/cocina-espanol') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -1613,6 +1613,49 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /cocina-deliciosa no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z17. Comprobación exhaustiva específica para /cocina-espanol (Libro De Cocina En Español)
+    if (route === '/cocina-espanol') {
+      const requiredCocinaEspanolStrings = [
+        'Libro De Cocina En Español',
+        'Una guía de recetas en español para descubrir preparaciones variadas, conocer diferentes tradiciones culinarias y ampliar tu repertorio en la cocina.',
+        'Libro de Cocina en Español: Recetas y Gastronomía | Victoria Maciass',
+        'Explora recetas de desayunos, tapas, arroces, sopas, mariscos, carnes, guisos, platos vegetarianos, postres y especialidades regionales españolas.',
+        'https://victoriamaciass.vercel.app/cocina-espanol',
+        'https://www.amazon.com/dp/B09R3M4SB9',
+        'https://www.amazon.com/dp/B0CM3Z54JC',
+        'https://www.amazon.com/dp/B09PLJK5B5',
+        'https://books2read.com/u/me5yZY',
+        '11-libro-de-cocina-600.jpg',
+        'Portada de Libro De Cocina En Español, de Victoria Maciass',
+        'Un recorrido gastronómico desde las primeras comidas hasta los platos de ocasión',
+        'Desayunos: una primera oportunidad para variar el menú',
+        'Tapas y entrantes: pequeñas porciones con identidad propia',
+        'El arroz: un ingrediente con muchas posibilidades',
+        'Sopas y cremas: preparaciones para diferentes épocas y ocasiones',
+        'Mariscos y carnes: productos diferentes, técnicas y tradiciones',
+        'Guisos y estofados: el valor de las cocciones pausadas',
+        'Empanadas y pies: masas, rellenos y distintas influencias',
+        'Cocina vegetariana: legumbres, granos y vegetales como protagonistas',
+        'Postres y dulces: técnicas de repostería y diferentes estilos',
+        'Platos típicos de España: una mirada a la diversidad regional',
+        'Una guía para consultar, aprender y descubrir nuevas preparaciones',
+        'Una guía para explorar sabores, conocer tradiciones y encontrar nuevas ideas para llevar a la mesa.',
+        'Cocina y recetas',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredCocinaEspanolStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /cocina-espanol no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /cocina-espanol no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }

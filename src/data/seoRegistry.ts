@@ -894,6 +894,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'cocina-espanol') {
+      return {
+        title: 'Libro de Cocina en Español: Recetas y Gastronomía | Victoria Maciass',
+        description: 'Explora recetas de desayunos, tapas, arroces, sopas, mariscos, carnes, guisos, platos vegetarianos, postres y especialidades regionales españolas.',
+        canonical: `${BASE_URL}/cocina-espanol`,
+        ogTitle: 'Libro de Cocina en Español: Recetas y Gastronomía | Victoria Maciass',
+        ogDescription: 'Explora recetas de desayunos, tapas, arroces, sopas, mariscos, carnes, guisos, platos vegetarianos, postres y especialidades regionales españolas.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/11-libro-de-cocina-600.jpg',
+        ogUrl: `${BASE_URL}/cocina-espanol`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,
