@@ -351,18 +351,6 @@ export const HomePage: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex items-center gap-6 text-[15px] font-medium text-stone-700 font-sans">
-            <a href="#categorias" className="hover:text-stone-950 transition-colors">
-              Categorías
-            </a>
-            <Link to="/cocina" className="hover:text-stone-950 transition-colors">
-              Cocina
-            </Link>
-            <a href="#categorias" className="hover:text-stone-950 transition-colors">
-              Explorar
-            </a>
-          </div>
-
           <p className="text-[14px] text-stone-600 font-sans text-center sm:text-right">
             © {new Date().getFullYear()} Victoria Maciass. Todos los derechos reservados.
           </p>
