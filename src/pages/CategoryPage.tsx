@@ -43,7 +43,6 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug: propSl
 
   // SEO dinámico para categorías generales
   useEffect(() => {
-    window.scrollTo(0, 0);
     if (
       categoryInfo &&
       categoryInfo.slug !== 'mascotas' &&

@@ -58,8 +58,6 @@ const MANOS_MISTERIO_BOOKS: ManosMisterioBookItem[] = [
 export const ManosMisterioCategoryView: React.FC<ManosMisterioCategoryViewProps> = ({ categoryInfo }) => {
   // Configuración de metadatos SEO específicos de la categoría Manos y misterio
   useEffect(() => {
-    window.scrollTo(0, 0);
-
     // Title oficial
     document.title = 'Libros de Manualidades, Costura y Artesanía | Victoria Maciass';
 

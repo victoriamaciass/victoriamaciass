@@ -172,8 +172,6 @@ export const BookDetailPage: React.FC = () => {
   // SEO dinámico y carga de datos
   useEffect(() => {
     if (book) {
-      window.scrollTo(0, 0);
-
       // Cargar favoritos
       const fav = localStorage.getItem(`b2r_fav_${book.slug}`);
       setIsFavorite(fav === 'true');

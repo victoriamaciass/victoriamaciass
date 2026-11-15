@@ -59,8 +59,6 @@ const MENTE_BOOKS: MenteBookItem[] = [
 export const MenteEmocionesCategoryView: React.FC<MenteEmocionesCategoryViewProps> = ({ categoryInfo }) => {
   // Metadatos SEO específicos de Mente y emociones
   useEffect(() => {
-    window.scrollTo(0, 0);
-
     document.title = 'Libros sobre Ansiedad y Bienestar Emocional | Victoria Maciass';
 
     const metaDesc = document.querySelector('meta[name="description"]');

@@ -50,8 +50,6 @@ const MASCOTAS_BOOKS: MascotasBookItem[] = [
 export const MascotasCategoryView: React.FC<MascotasCategoryViewProps> = ({ categoryInfo }) => {
   // Configuración de metadatos SEO específicos de la categoría Mascotas
   useEffect(() => {
-    window.scrollTo(0, 0);
-
     const prevTitle = document.title;
     document.title = 'Libros sobre Mascotas: Perros, Gatos y Gallinas | Victoria Maciass';
 

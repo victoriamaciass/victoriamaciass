@@ -3,11 +3,13 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { HomePage } from './pages/HomePage';
 import { CategoryPage } from './pages/CategoryPage';
 import { BookDetailPage } from './pages/BookDetailPage';
+import { ScrollToTop } from './components/ScrollToTop';
 import { ScrollToTopButton } from './components/ScrollToTopButton';
 
 export const AppRoutes: React.FC = () => {
   return (
     <>
+      <ScrollToTop />
       <Routes>
         {/* ==================================================================
             NIVEL 1: Página de Inicio (Home)

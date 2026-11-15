@@ -59,8 +59,6 @@ const CRECIMIENTO_BOOKS: CrecimientoBookItem[] = [
 export const CrecimientoPersonalCategoryView: React.FC<CrecimientoPersonalCategoryViewProps> = ({ categoryInfo }) => {
   // Metadatos SEO específicos de Crecimiento personal
   useEffect(() => {
-    window.scrollTo(0, 0);
-
     document.title = 'Libros de Crecimiento Personal y Desarrollo Personal | Victoria Maciass';
 
     const metaDesc = document.querySelector('meta[name="description"]');

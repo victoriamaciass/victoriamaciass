@@ -193,8 +193,6 @@ export const CocinaCategoryView: React.FC<CocinaCategoryViewProps> = ({ category
 
   // Metadatos SEO específicos de Cocina y recetas
   useEffect(() => {
-    window.scrollTo(0, 0);
-
     document.title = 'Libros de Cocina y Recetas: Recetarios Variados | Victoria Maciass';
 
     const metaDesc = document.querySelector('meta[name="description"]');

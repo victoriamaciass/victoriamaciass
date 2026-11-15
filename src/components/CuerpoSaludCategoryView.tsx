@@ -86,8 +86,6 @@ const SALUD_BOOKS: SaludBookItem[] = [
 export const CuerpoSaludCategoryView: React.FC<CuerpoSaludCategoryViewProps> = ({ categoryInfo }) => {
   // Metadatos SEO específicos de Cuerpo y salud
   useEffect(() => {
-    window.scrollTo(0, 0);
-
     document.title = 'Libros de Salud y Bienestar: Cuidado del Cuerpo | Victoria Maciass';
 
     const metaDesc = document.querySelector('meta[name="description"]');
