@@ -301,8 +301,9 @@ export const HomePage: React.FC = () => {
           <div className="flex flex-col items-center sm:items-start">
             <Link to="/" title="Victoria Maciass" className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-400 rounded-lg">
               <img
-                src="https://ik.imagekit.io/hr20qlpupi/victoria/logo_marca_victoria_maciass.png"
+                src="https://ik.imagekit.io/hr20qlpupi/victoria/icono8-victoriamaciass.jpg"
                 alt="Victoria Maciass"
+                referrerPolicy="no-referrer"
                 className="h-14 sm:h-16 w-auto object-contain block"
                 loading="lazy"
               />

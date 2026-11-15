@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Home } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { CATEGORIES_LIST } from '../data/categoriesData';
 
 export const GlobalNavbar: React.FC = () => {
@@ -21,9 +21,14 @@ export const GlobalNavbar: React.FC = () => {
             to="/"
             aria-label="Inicio"
             title="Inicio"
-            className="p-2 sm:p-2.5 text-stone-800 hover:text-stone-950 hover:bg-stone-200/60 rounded-xl transition-all inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-400"
+            className="p-1 sm:p-1.5 hover:bg-stone-200/60 rounded-xl transition-all inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-400"
           >
-            <Home className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.8]" />
+            <img
+              src="https://ik.imagekit.io/hr20qlpupi/victoria/icono4-victoriamaciass.jpg"
+              alt=""
+              referrerPolicy="no-referrer"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg object-cover block"
+            />
             <span className="sr-only">Inicio</span>
           </Link>
           <div className="absolute left-1/2 -translate-x-1/2 top-full mt-1.5 px-2.5 py-1 bg-stone-900 text-white text-xs font-medium rounded-md shadow-md whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 pointer-events-none z-50">
