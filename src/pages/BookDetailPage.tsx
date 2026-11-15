@@ -247,12 +247,7 @@ export const BookDetailPage: React.FC = () => {
         </main>
 
         <footer className="border-t border-stone-200 py-6 text-center text-xs text-stone-500">
-          <p>
-            Victoria Maciass ·{' '}
-            <Link to="/" className="underline hover:text-stone-900">
-              Ir a la página de inicio
-            </Link>
-          </p>
+          <p>© {new Date().getFullYear()} Victoria Maciass</p>
         </footer>
       </div>
     );
@@ -863,11 +858,6 @@ export const BookDetailPage: React.FC = () => {
         <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-stone-600">
           <p className="font-serif text-lg sm:text-[20px] font-bold text-stone-900">
             Victoria Maciass
-          </p>
-          <p>
-            <Link to="/" className="hover:text-stone-900 underline transition-colors font-medium">
-              Ir a la página de inicio
-            </Link>
           </p>
           <p className="text-xs sm:text-sm text-stone-500">
             © {new Date().getFullYear()} Victoria Maciass. Todos los derechos reservados.

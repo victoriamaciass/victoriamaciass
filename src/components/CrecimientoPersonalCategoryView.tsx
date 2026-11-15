@@ -525,11 +525,6 @@ export const CrecimientoPersonalCategoryView: React.FC<CrecimientoPersonalCatego
           <p className="font-serif text-lg sm:text-[20px] font-bold text-stone-900">
             Victoria Maciass
           </p>
-          <p>
-            <Link to="/" className="hover:text-stone-900 underline transition-colors font-medium">
-              Ir a la página de inicio
-            </Link>
-          </p>
           <p className="text-xs sm:text-sm text-stone-500">
             © {new Date().getFullYear()} Victoria Maciass. Todos los derechos reservados.
           </p>
