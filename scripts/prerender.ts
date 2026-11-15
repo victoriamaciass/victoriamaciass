@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas' || route === '/sabores-irresistibles' || route === '/recetas-pollo' || route === '/recetas-variadas' || route === '/cocina-deliciosa' || route === '/cocina-espanol') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas' || route === '/sabores-irresistibles' || route === '/recetas-pollo' || route === '/recetas-variadas' || route === '/cocina-deliciosa' || route === '/cocina-espanol' || route === '/freidora-aire') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -1656,6 +1656,49 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /cocina-espanol no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z18. Comprobación exhaustiva específica para /freidora-aire (Recetas Freidora de Aire)
+    if (route === '/freidora-aire') {
+      const requiredFreidoraAireStrings = [
+        'Recetas Freidora de Aire',
+        'Una guía para sacar partido a tu freidora de aire con recetas variadas, técnicas de preparación, cuidados del aparato y propuestas para cada momento.',
+        'Recetas Freidora de Aire: 90 Recetas y Guía de Uso | Victoria Maciass',
+        'Descubre 90 recetas para freidora de aire: aperitivos, carnes, pescados, verduras, postres, panes y desayunos. Incluye mantenimiento y guía de tiempos.',
+        'https://victoriamaciass.vercel.app/freidora-aire',
+        'https://www.amazon.com/dp/B0CCZSWBYM',
+        'https://www.amazon.com/dp/B0CCZWGCDH',
+        'https://www.amazon.com/dp/B0CD4T4JHM',
+        'https://books2read.com/u/3RZjaY',
+        '14-freidera-recetas-libro-600.jpg',
+        'Portada de Recetas Freidora de Aire, de Victoria Maciass',
+        'Mucho más que encender el aparato y seleccionar una temperatura',
+        'Conocer la freidora antes de empezar a cocinar',
+        'Mantenimiento y solución de problemas: una parte esencial del uso diario',
+        'Aperitivos y snacks: pequeñas preparaciones para explorar texturas',
+        'Pollo y otras aves: distintas preparaciones para la mesa cotidiana',
+        'Carnes: cortes, combinaciones y posibilidades de cocción',
+        'Pescados y mariscos: ampliar el repertorio más allá de la carne',
+        'Verduras y guarniciones con protagonismo propio',
+        'Postres: otra faceta de la freidora de aire',
+        'Panes, masas y desayunos: nuevas formas de organizar las comidas',
+        'Sabores internacionales y platos para ocasiones especiales',
+        'Una ayuda práctica para consultar mientras cocinas',
+        'y buscan ideas distintas para aprovecharla en desayunos, aperitivos, platos principales, verduras, masas y postres.',
+        'Cocina y recetas',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredFreidoraAireStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /freidora-aire no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /freidora-aire no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }

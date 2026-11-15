@@ -909,6 +909,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'freidora-aire') {
+      return {
+        title: 'Recetas Freidora de Aire: 90 Recetas y Guía de Uso | Victoria Maciass',
+        description: 'Descubre 90 recetas para freidora de aire: aperitivos, carnes, pescados, verduras, postres, panes y desayunos. Incluye mantenimiento y guía de tiempos.',
+        canonical: `${BASE_URL}/freidora-aire`,
+        ogTitle: 'Recetas Freidora de Aire: 90 Recetas y Guía de Uso | Victoria Maciass',
+        ogDescription: 'Descubre 90 recetas para freidora de aire: aperitivos, carnes, pescados, verduras, postres, panes y desayunos. Incluye mantenimiento y guía de tiempos.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/14-freidera-recetas-libro-600.jpg',
+        ogUrl: `${BASE_URL}/freidora-aire`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,
