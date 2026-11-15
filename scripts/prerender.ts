@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas' || route === '/sabores-irresistibles' || route === '/recetas-pollo' || route === '/recetas-variadas' || route === '/cocina-deliciosa' || route === '/cocina-espanol' || route === '/freidora-aire') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas' || route === '/sabores-irresistibles' || route === '/recetas-pollo' || route === '/recetas-variadas' || route === '/cocina-deliciosa' || route === '/cocina-espanol' || route === '/freidora-aire' || route === '/galletas-epicas') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -1699,6 +1699,51 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /freidora-aire no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z19. Comprobación exhaustiva específica para /galletas-epicas (Galletas Épicas)
+    if (route === '/galletas-epicas') {
+      const requiredGalletasEpicasStrings = [
+        'Galletas Épicas',
+        'Ciencia, Técnica y Alquimia en la Cocina para transformar lo simple en extraordinario',
+        'Galletas Épicas: Ciencia, Técnicas y Recetas de Repostería | Victoria Maciass',
+        'Explora la ciencia de las galletas, aprende sobre ingredientes, horneado y texturas, y descubre propuestas de sabores, decoración y empaquetado.',
+        'https://victoriamaciass.vercel.app/galletas-epicas',
+        'https://www.amazon.com/dp/B0CDNNC5DF',
+        'https://www.amazon.com/dp/B0CDNJD9T5',
+        'https://www.amazon.com/dp/B0CDVCC7NK',
+        '15-galletas-libro-600.jpg',
+        'Portada de Galletas Épicas, de Victoria Maciass',
+        'Una mirada completa al universo de la repostería en pequeño formato',
+        'Los ingredientes: conocer las piezas que forman una masa',
+        'Qué ocurre durante el horneado',
+        'La textura como parte de la identidad de cada galleta',
+        'Reinventar recetas y construir nuevas combinaciones',
+        'Un recorrido internacional a través de los sabores',
+        'Contrastes y composiciones: explorar más allá de lo habitual',
+        'Alternativas para distintas preferencias alimentarias',
+        'Decoración: el acabado también forma parte de la elaboración',
+        'Empaquetado y presentación para regalar',
+        'Una herramienta de consulta para trabajar con precisión',
+        'y descubrir todo lo que puede desarrollarse a partir de una preparación aparentemente sencilla.',
+        'Cocina y recetas',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredGalletasEpicasStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /galletas-epicas no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
+      if (content.includes('books2read.com')) {
+        console.error('❌ ERROR: /galletas-epicas no debe incluir enlaces de Books2Read');
+        failedChecks++;
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /galletas-epicas no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }

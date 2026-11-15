@@ -924,6 +924,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'galletas-epicas') {
+      return {
+        title: 'Galletas Épicas: Ciencia, Técnicas y Recetas de Repostería | Victoria Maciass',
+        description: 'Explora la ciencia de las galletas, aprende sobre ingredientes, horneado y texturas, y descubre propuestas de sabores, decoración y empaquetado.',
+        canonical: `${BASE_URL}/galletas-epicas`,
+        ogTitle: 'Galletas Épicas: Ciencia, Técnicas y Recetas de Repostería | Victoria Maciass',
+        ogDescription: 'Explora la ciencia de las galletas, aprende sobre ingredientes, horneado y texturas, y descubre propuestas de sabores, decoración y empaquetado.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/15-galletas-libro-600.jpg',
+        ogUrl: `${BASE_URL}/galletas-epicas`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,
