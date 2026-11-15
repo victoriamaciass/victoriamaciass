@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas' || route === '/sabores-irresistibles' || route === '/recetas-pollo' || route === '/recetas-variadas' || route === '/cocina-deliciosa' || route === '/cocina-espanol' || route === '/freidora-aire' || route === '/galletas-epicas') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas' || route === '/sabores-irresistibles' || route === '/recetas-pollo' || route === '/recetas-variadas' || route === '/cocina-deliciosa' || route === '/cocina-espanol' || route === '/freidora-aire' || route === '/galletas-epicas' || route === '/sistema-inmunologico') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -1714,6 +1714,7 @@ async function prerender() {
         'https://www.amazon.com/dp/B0CDNNC5DF',
         'https://www.amazon.com/dp/B0CDNJD9T5',
         'https://www.amazon.com/dp/B0CDVCC7NK',
+        'https://books2read.com/u/4DGrlP',
         '15-galletas-libro-600.jpg',
         'Portada de Galletas Épicas, de Victoria Maciass',
         'Una mirada completa al universo de la repostería en pequeño formato',
@@ -1738,12 +1739,51 @@ async function prerender() {
           failedChecks++;
         }
       }
+      if (content.includes('<meta name="keywords"')) {
+        console.error('❌ ERROR: /galletas-epicas no debe incluir <meta name="keywords">');
+        failedChecks++;
+      }
+    }
+
+    // Z20. Comprobación exhaustiva específica para /sistema-inmunologico (Protege tu Sistema Inmunológico)
+    if (route === '/sistema-inmunologico') {
+      const requiredSistemaInmunologicoStrings = [
+        'Protege tu Sistema Inmunológico',
+        'Los secretos para mejorar tu salud inmunológica y promover un bienestar general',
+        'Protege tu Sistema Inmunológico: Alimentación y Bienestar | Victoria Maciass',
+        'Conoce el sistema inmunológico y explora la relación entre nutrición, descanso, actividad física, suplementos, dieta antiinflamatoria y dieta FODMAP.',
+        'https://victoriamaciass.vercel.app/sistema-inmunologico',
+        'https://www.amazon.com/dp/B0C9SDGLQX',
+        'https://www.amazon.com/dp/B0D8FBGZP9',
+        'https://www.amazon.com/dp/B0C9VRVGYT',
+        '16-sistema-inmunologico-libro-600.jpg',
+        'Portada de Protege tu Sistema Inmunológico, de Victoria Maciass',
+        'Comprender las defensas del organismo para tomar decisiones informadas',
+        'Cómo funciona el sistema inmunológico',
+        'Alimentación: los nutrientes y los hábitos que importan',
+        'El estilo de vida y su relación con la salud',
+        'Plantas medicinales y suplementos: información y precauciones',
+        'Una perspectiva sostenible del cuidado personal',
+        'La dieta antiinflamatoria: conceptos y planificación',
+        'La dieta FODMAP y la organización de la alimentación',
+        'Una visión conjunta para el cuidado del bienestar',
+        'que invita a contemplar el cuidado de la salud desde una perspectiva amplia y reflexiva.',
+        'Cocina y recetas',
+        'Comprar ahora',
+        '#opciones-compra',
+      ];
+      for (const str of requiredSistemaInmunologicoStrings) {
+        if (!content.includes(str)) {
+          console.error(`❌ ERROR: /sistema-inmunologico no contiene la cadena requerida: "${str}"`);
+          failedChecks++;
+        }
+      }
       if (content.includes('books2read.com')) {
-        console.error('❌ ERROR: /galletas-epicas no debe incluir enlaces de Books2Read');
+        console.error('❌ ERROR: /sistema-inmunologico no debe incluir enlaces no confirmados');
         failedChecks++;
       }
       if (content.includes('<meta name="keywords"')) {
-        console.error('❌ ERROR: /galletas-epicas no debe incluir <meta name="keywords">');
+        console.error('❌ ERROR: /sistema-inmunologico no debe incluir <meta name="keywords">');
         failedChecks++;
       }
     }

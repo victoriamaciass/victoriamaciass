@@ -939,6 +939,21 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       };
     }
 
+    if (book.slug === 'sistema-inmunologico') {
+      return {
+        title: 'Protege tu Sistema Inmunológico: Alimentación y Bienestar | Victoria Maciass',
+        description: 'Conoce el sistema inmunológico y explora la relación entre nutrición, descanso, actividad física, suplementos, dieta antiinflamatoria y dieta FODMAP.',
+        canonical: `${BASE_URL}/sistema-inmunologico`,
+        ogTitle: 'Protege tu Sistema Inmunológico: Alimentación y Bienestar | Victoria Maciass',
+        ogDescription: 'Conoce el sistema inmunológico y explora la relación entre nutrición, descanso, actividad física, suplementos, dieta antiinflamatoria y dieta FODMAP.',
+        ogImage: coverUrl || 'https://ik.imagekit.io/hr20qlpupi/victoria/16-sistema-inmunologico-libro-600.jpg',
+        ogUrl: `${BASE_URL}/sistema-inmunologico`,
+        ogType: 'book',
+        twitterCard: 'summary_large_image',
+        schemaJsonLd: getBookSchema(book),
+      };
+    }
+
     return {
       title: `${book.title} — Victoria Maciass`,
       description: firstWords,
