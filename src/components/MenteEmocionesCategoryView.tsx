@@ -453,14 +453,14 @@ export const MenteEmocionesCategoryView: React.FC<MenteEmocionesCategoryViewProp
           {/* Bloque 3: Sueños */}
           <div className="mb-12 bg-white border border-stone-200/90 rounded-2xl p-6 sm:p-8 shadow-2xs">
             <h2 className="font-serif text-2xl sm:text-[26px] font-bold text-stone-900 tracking-tight leading-snug mb-3.5">
-              Libros sobre sueños e interpretación de los sueños
+              Cuentos infantiles para disfrutar en familia
             </h2>
             <div className="space-y-3.5 text-[16px] sm:text-[17px] text-stone-700 leading-relaxed font-sans">
               <p>
-                Los sueños han despertado curiosidad e interés a lo largo de la historia. Su contenido, sus imágenes y los significados que distintas tradiciones les han atribuido forman parte de un campo de exploración cultural y personal.
+                Los cuentos tienen una forma especial de despertar la imaginación, transmitir valores y crear momentos de complicidad entre pequeños y mayores. Una buena historia puede convertir la hora de dormir en una ocasión para compartir, descubrir personajes fascinantes y viajar juntos a mundos llenos de fantasía.
               </p>
               <p>
-                En esta colección encontrarás una publicación dedicada al mundo de los sueños y su interpretación, para quienes desean conocer diferentes perspectivas sobre este tema.
+                En esta colección encontrarás un libro de cuentos clásicos cortos pensado para niños y familias. Una propuesta para disfrutar de la lectura en compañía, compartir historias antes de dormir y acercar a los más pequeños al placer de los cuentos.
               </p>
             </div>
             <div className="mt-4 pt-3 border-t border-stone-100">

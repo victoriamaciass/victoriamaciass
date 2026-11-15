@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowDown, ArrowRight, Check } from 'lucide-react';
+import { ArrowDown, ArrowRight } from 'lucide-react';
 import { GlobalNavbar } from '../components/GlobalNavbar';
 
 interface CategoryEditorialBlock {
@@ -13,8 +13,6 @@ interface CategoryEditorialBlock {
 }
 
 export const HomePage: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
 
   useEffect(() => {
     document.title = 'Libros y Guías Prácticas | Victoria Maciass';
@@ -107,14 +105,6 @@ export const HomePage: React.FC = () => {
       buttonLabel: 'Ver los libros de Manos y misterio',
     },
   ];
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email.trim() && email.includes('@')) {
-      setSubscribed(true);
-      setEmail('');
-    }
-  };
 
   return (
     <div className="min-h-screen bg-[#fbfbf9] text-stone-900 font-sans selection:bg-stone-200">
@@ -287,44 +277,15 @@ export const HomePage: React.FC = () => {
         </section>
 
         {/* ====================================================================
-            5. SUSCRIPCIÓN (email + botón "Avisadme de nuevos libros")
+            5. CIERRE EDITORIAL DE MARCA
             ==================================================================== */}
         <section className="py-16 sm:py-20 max-w-2xl mx-auto px-6 text-center">
-          <span className="text-xs sm:text-[14px] font-semibold tracking-widest uppercase text-stone-600 block mb-2.5 font-sans">
-            Actualizaciones editoriales
-          </span>
-          <h2 className="font-serif text-2xl sm:text-[30px] md:text-[32px] font-bold text-stone-900 leading-snug">
-            Novedades de la biblioteca
+          <h2 className="font-serif text-2xl sm:text-[30px] md:text-[32px] font-bold text-stone-900 leading-snug tracking-tight">
+            Cada libro, una nueva forma de descubrir.
           </h2>
-          <p className="mt-3.5 text-[15px] sm:text-[16px] text-stone-700 leading-relaxed max-w-md mx-auto font-sans">
-            Suscríbete con tu correo electrónico si deseas recibir un aviso cuando se publique una nueva guía o se actualice un recetario. Recibirás únicamente las novedades editoriales de la biblioteca.
+          <p className="mt-4 text-[15px] sm:text-[17px] text-stone-700 leading-relaxed max-w-xl mx-auto font-sans">
+            Una biblioteca creada para despertar la curiosidad, aprender, explorar nuevas ideas y disfrutar del placer de la lectura.
           </p>
-
-          <form onSubmit={handleSubscribe} className="mt-8 max-w-md mx-auto">
-            <div className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="tu@correo.com"
-                required
-                className="flex-1 px-4 py-3 text-[15px] sm:text-base bg-white border border-stone-300 rounded-lg focus:outline-none focus:border-stone-900 focus:ring-1 focus:ring-stone-900 placeholder:text-stone-500 text-stone-900 font-sans"
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 text-[15px] sm:text-base font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors whitespace-nowrap cursor-pointer shadow-2xs font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:ring-offset-2"
-              >
-                Avisadme de nuevos libros
-              </button>
-            </div>
-
-            {subscribed && (
-              <div className="mt-4 p-3.5 bg-emerald-50 border border-emerald-200 text-emerald-900 rounded-lg text-[14px] flex items-center justify-center gap-2 font-sans">
-                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Gracias. Te avisaremos únicamente cuando haya una nueva publicación disponible.</span>
-              </div>
-            )}
-          </form>
         </section>
       </main>
 
