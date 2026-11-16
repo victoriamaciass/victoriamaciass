@@ -218,12 +218,53 @@ async function prerender() {
   notFoundHtml = notFoundHtml.replace(/\s*<!--\s*Schema\.org[\s\S]*?<\/script>\r?\n?/, '\n');
   fs.writeFileSync(path.resolve(distDir, '404.html'), notFoundHtml, 'utf-8');
 
+  // 3c. Generar automáticamente sitemap.xml a partir de la fuente única de rutas públicas válidas
+  const publicDir = path.resolve(rootDir, 'public');
+  const seenCanonicals = new Set<string>();
+  const validSitemapUrls: string[] = [];
+
+  for (const route of routes) {
+    if (route === '/404') continue;
+    const seo = getSeoForRoute(route);
+    if (!seo || !seo.canonical) continue;
+    if (!seo.canonical.startsWith('https://victoriamaciass.vercel.app/')) continue;
+    if (seo.canonical.includes('?') || seo.canonical.includes('#')) continue;
+
+    const generatedFilePath = route === '/'
+      ? path.resolve(distDir, 'index.html')
+      : path.resolve(distDir, route.replace(/^\//, ''), 'index.html');
+    if (!fs.existsSync(generatedFilePath)) continue;
+
+    const generatedHtml = fs.readFileSync(generatedFilePath, 'utf-8');
+    if (
+      generatedHtml.includes('<meta name="robots" content="noindex') ||
+      generatedHtml.includes('Esta página no está disponible')
+    ) {
+      continue;
+    }
+
+    if (!seenCanonicals.has(seo.canonical)) {
+      seenCanonicals.add(seo.canonical);
+      validSitemapUrls.push(seo.canonical);
+    }
+  }
+
+  const sitemapEntries = validSitemapUrls
+    .map((loc) => `  <url>\n    <loc>${escapeHtml(loc)}</loc>\n  </url>`)
+    .join('\n');
+  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries}\n</urlset>\n`;
+
+  fs.writeFileSync(path.resolve(distDir, 'sitemap.xml'), sitemapXml, 'utf-8');
+  if (fs.existsSync(publicDir)) {
+    fs.writeFileSync(path.resolve(publicDir, 'sitemap.xml'), sitemapXml, 'utf-8');
+  }
+
   // 4. Limpiar directorio temporal dist-ssr
   if (fs.existsSync(distSsrDir)) {
     fs.rmSync(distSsrDir, { recursive: true, force: true });
   }
 
-  console.log(`✅ ${processedCount} archivos HTML generados con éxito en dist/ (más dist/404.html).`);
+  console.log(`✅ ${processedCount} archivos HTML generados con éxito en dist/ (más dist/404.html y sitemap.xml con ${validSitemapUrls.length} URLs).`);
 
   // 5. VERIFICACIÓN AUTOMATIZADA COMPLETA DE LAS 46 RUTAS
   console.log('\n🔍 Ejecutando verificación automática de calidad y SEO sobre las 46 rutas...');
@@ -242,6 +283,46 @@ async function prerender() {
       nfContent.includes('<link rel="canonical"')
     ) {
       console.error('❌ ERROR: dist/404.html no cumple los requisitos de contenido, noindex o ausencia de canonical');
+      failedChecks++;
+    }
+  }
+
+  // Verificación específica de dist/sitemap.xml y dist/robots.txt
+  const distSitemapPath = path.resolve(distDir, 'sitemap.xml');
+  if (!fs.existsSync(distSitemapPath)) {
+    console.error('❌ ERROR: No se generó dist/sitemap.xml');
+    failedChecks++;
+  } else {
+    const smContent = fs.readFileSync(distSitemapPath, 'utf-8');
+    const locMatches = [...smContent.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
+    const uniqueLocs = new Set(locMatches);
+    if (
+      !smContent.startsWith('<?xml version="1.0" encoding="UTF-8"?>') ||
+      !smContent.includes('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">') ||
+      !smContent.includes('</urlset>') ||
+      smContent.includes('<changefreq>') ||
+      smContent.includes('<priority>') ||
+      smContent.includes('<lastmod>') ||
+      locMatches.length !== routes.length ||
+      uniqueLocs.size !== locMatches.length ||
+      locMatches.some((u) => !u.startsWith('https://victoriamaciass.vercel.app/') || u.includes('404') || u.includes('?') || u.includes('#'))
+    ) {
+      console.error('❌ ERROR: dist/sitemap.xml no cumple la validación estructural o de URLs canónicas únicas');
+      failedChecks++;
+    }
+  }
+
+  const distRobotsPath = path.resolve(distDir, 'robots.txt');
+  if (!fs.existsSync(distRobotsPath)) {
+    console.error('❌ ERROR: No se encontró dist/robots.txt');
+    failedChecks++;
+  } else {
+    const robotsContent = fs.readFileSync(distRobotsPath, 'utf-8');
+    if (
+      !robotsContent.includes('Allow: /') ||
+      !robotsContent.includes('Sitemap: https://victoriamaciass.vercel.app/sitemap.xml')
+    ) {
+      console.error('❌ ERROR: dist/robots.txt no conserva Allow: / o no referencia https://victoriamaciass.vercel.app/sitemap.xml');
       failedChecks++;
     }
   }
