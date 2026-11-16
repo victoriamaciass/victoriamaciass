@@ -177,16 +177,74 @@ async function prerender() {
     processedCount++;
   }
 
+  // 3b. Generar página estática 404.html para respuestas HTTP 404 reales en Vercel
+  const notFoundAppHtml = render('/404');
+  let notFoundHtml = rawTemplate;
+  notFoundHtml = notFoundHtml.replace(
+    /<div id="root">[\s\S]*?<\/div>/,
+    `<div id="root">${notFoundAppHtml}</div>`
+  );
+  notFoundHtml = notFoundHtml.replace(
+    /<title>.*?<\/title>/,
+    '<title>Página no encontrada (404) | Victoria Maciass</title>'
+  );
+  notFoundHtml = notFoundHtml.replace(
+    /<meta\s+name="description"\s+content=".*?"\s*\/?>/,
+    '<meta name="description" content="La página solicitada no está disponible. Explora el catálogo de libros y guías prácticas de Victoria Maciass o utiliza el buscador." />'
+  );
+  notFoundHtml = notFoundHtml.replace(
+    /<meta\s+name="robots"\s+content=".*?"\s*\/?>/,
+    '<meta name="robots" content="noindex, nofollow" />'
+  );
+  notFoundHtml = notFoundHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
+  notFoundHtml = notFoundHtml.replace(/\s*<link\s+rel="canonical"\s+href=".*?"\s*\/?>\r?\n?/, '\n');
+  notFoundHtml = notFoundHtml.replace(
+    /<meta\s+property="og:title"\s+content=".*?"\s*\/?>/,
+    '<meta property="og:title" content="Página no encontrada (404) | Victoria Maciass" />'
+  );
+  notFoundHtml = notFoundHtml.replace(
+    /<meta\s+property="og:description"\s+content=".*?"\s*\/?>/,
+    '<meta property="og:description" content="La dirección buscada no existe o no está disponible. Descubre otras publicaciones en el catálogo de Victoria Maciass." />'
+  );
+  notFoundHtml = notFoundHtml.replace(/\s*<meta\s+property="og:url"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
+  notFoundHtml = notFoundHtml.replace(
+    /<meta\s+name="twitter:title"\s+content=".*?"\s*\/?>/,
+    '<meta name="twitter:title" content="Página no encontrada (404) | Victoria Maciass" />'
+  );
+  notFoundHtml = notFoundHtml.replace(
+    /<meta\s+name="twitter:description"\s+content=".*?"\s*\/?>/,
+    '<meta name="twitter:description" content="La dirección buscada no existe o no está disponible. Descubre otras publicaciones en el catálogo de Victoria Maciass." />'
+  );
+  notFoundHtml = notFoundHtml.replace(/\s*<!--\s*Schema\.org[\s\S]*?<\/script>\r?\n?/, '\n');
+  fs.writeFileSync(path.resolve(distDir, '404.html'), notFoundHtml, 'utf-8');
+
   // 4. Limpiar directorio temporal dist-ssr
   if (fs.existsSync(distSsrDir)) {
     fs.rmSync(distSsrDir, { recursive: true, force: true });
   }
 
-  console.log(`✅ ${processedCount} archivos HTML generados con éxito en dist/.`);
+  console.log(`✅ ${processedCount} archivos HTML generados con éxito en dist/ (más dist/404.html).`);
 
   // 5. VERIFICACIÓN AUTOMATIZADA COMPLETA DE LAS 46 RUTAS
   console.log('\n🔍 Ejecutando verificación automática de calidad y SEO sobre las 46 rutas...');
   let failedChecks = 0;
+
+  // Verificación específica de dist/404.html
+  const notFoundPath = path.resolve(distDir, '404.html');
+  if (!fs.existsSync(notFoundPath)) {
+    console.error('❌ ERROR: No se generó dist/404.html');
+    failedChecks++;
+  } else {
+    const nfContent = fs.readFileSync(notFoundPath, 'utf-8');
+    if (
+      !nfContent.includes('Esta página no está disponible') ||
+      !nfContent.includes('noindex') ||
+      nfContent.includes('<link rel="canonical"')
+    ) {
+      console.error('❌ ERROR: dist/404.html no cumple los requisitos de contenido, noindex o ausencia de canonical');
+      failedChecks++;
+    }
+  }
 
   for (const route of routes) {
     const seo = getSeoForRoute(route)!;

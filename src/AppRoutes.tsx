@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { HomePage } from './pages/HomePage';
 import { CategoryPage } from './pages/CategoryPage';
 import { BookDetailPage } from './pages/BookDetailPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 import { ScrollToTop } from './components/ScrollToTop';
 import { ScrollToTopButton } from './components/ScrollToTopButton';
 
@@ -32,8 +33,9 @@ export const AppRoutes: React.FC = () => {
             ================================================================== */}
         <Route path="/:slug" element={<BookDetailPage />} />
 
-        {/* Redirección por defecto */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        {/* Página de error 404 personalizada */}
+        <Route path="/404" element={<NotFoundPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <ScrollToTopButton />
     </>

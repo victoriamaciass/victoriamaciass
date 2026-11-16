@@ -5,6 +5,7 @@ import { getCategoryByInternalId, getCategoryBySlug } from '../data/categoriesDa
 import { getBookCover } from '../data/bookCovers';
 import { getSeoForRoute } from '../data/seoRegistry';
 import { GlobalNavbar } from '../components/GlobalNavbar';
+import { NotFoundPage } from './NotFoundPage';
 import { Book, BookPurchaseLinks } from '../types/book';
 import { ArrowLeft, Check, ExternalLink, ChevronRight } from 'lucide-react';
 
@@ -226,31 +227,7 @@ export const BookDetailPage: React.FC = () => {
   };
 
   if (!book) {
-    return (
-      <div className="min-h-screen bg-[#fbfbf9] flex flex-col justify-between text-stone-900 font-sans">
-        <GlobalNavbar />
-
-        <main className="max-w-xl mx-auto px-6 py-24 text-center">
-          <h1 className="font-serif text-3xl font-bold text-stone-900 mb-3">
-            Libro no encontrado
-          </h1>
-          <p className="text-stone-600 text-sm mb-6 leading-relaxed">
-            La ruta <code>/{slug}</code> no corresponde a ningún libro registrado en el catálogo central.
-          </p>
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-stone-900 hover:bg-stone-800 text-white text-xs font-semibold rounded-lg shadow-2xs transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Volver a todos los libros</span>
-          </Link>
-        </main>
-
-        <footer className="border-t border-stone-200 py-6 text-center text-xs text-stone-500">
-          <p>© {new Date().getFullYear()} Victoria Maciass</p>
-        </footer>
-      </div>
-    );
+    return <NotFoundPage />;
   }
 
   // Párrafos de la descripción completa (exclusivamente datos oficiales de la obra)

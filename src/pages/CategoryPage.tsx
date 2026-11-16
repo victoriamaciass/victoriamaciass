@@ -12,6 +12,7 @@ import { CrecimientoPersonalCategoryView } from '../components/CrecimientoPerson
 import { CuerpoSaludCategoryView } from '../components/CuerpoSaludCategoryView';
 import { CocinaCategoryView } from '../components/CocinaCategoryView';
 import { ManosMisterioCategoryView } from '../components/ManosMisterioCategoryView';
+import { NotFoundPage } from './NotFoundPage';
 
 interface CategoryPageProps {
   categorySlug?: string;
@@ -70,28 +71,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug: propSl
   }, [categoryInfo?.slug]);
 
   if (!categoryInfo) {
-    return (
-      <div className="min-h-screen bg-[#fbfbf9] flex flex-col justify-between text-stone-900 font-sans">
-        <GlobalNavbar />
-        <main className="max-w-xl mx-auto px-6 py-24 text-center">
-          <h1 className="font-serif text-3xl font-bold text-stone-900 mb-3">
-            Categoría no encontrada
-          </h1>
-          <p className="text-stone-600 text-sm mb-6 leading-relaxed">
-            La categoría solicitada no existe o ha sido reubicada.
-          </p>
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-stone-900 hover:bg-stone-800 text-white text-xs font-semibold rounded-lg shadow-2xs transition-colors"
-          >
-            <span>Volver a la página de inicio</span>
-          </Link>
-        </main>
-        <footer className="border-t border-stone-200 py-6 text-center text-xs text-stone-500 bg-white">
-          <p>© {new Date().getFullYear()} Victoria Maciass</p>
-        </footer>
-      </div>
-    );
+    return <NotFoundPage />;
   }
 
   // Vista especializada y optimizada para Mascotas
