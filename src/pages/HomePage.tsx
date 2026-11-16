@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowDown, ArrowRight } from 'lucide-react';
 import { GlobalNavbar } from '../components/GlobalNavbar';
+import { CatalogSearchSection } from '../components/CatalogSearchSection';
 
 interface CategoryEditorialBlock {
   id: string;
@@ -112,6 +113,11 @@ export const HomePage: React.FC = () => {
       <GlobalNavbar />
 
       <main>
+        {/* ====================================================================
+            0. BUSCADOR GLOBAL DEL CATÁLOGO (inmediatamente tras cabecera, antes del H1)
+            ==================================================================== */}
+        <CatalogSearchSection />
+
         {/* ====================================================================
             1. HERO (identidad y propósito)
             Espaciado vertical equilibrado para acercar las categorías a la
