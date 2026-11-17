@@ -38,7 +38,7 @@ export const Footer: React.FC = () => {
         <div className="mt-4 pt-3.5 border-t border-stone-200/80">
           <nav
             aria-label="Enlaces legales"
-            className="flex flex-wrap items-center gap-x-5 sm:gap-x-6 gap-y-1 text-xs sm:text-[13px] text-stone-600 font-sans"
+            className="flex flex-wrap items-center justify-start sm:justify-end gap-x-5 sm:gap-x-6 gap-y-1 text-xs sm:text-[13px] text-stone-600 font-sans"
           >
             {LEGAL_ROUTES_ORDER.map((slug) => {
               const doc = LEGAL_DOCUMENTS[slug];
