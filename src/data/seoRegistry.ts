@@ -18,6 +18,7 @@ export interface RouteSeoData {
   twitterTitle?: string;
   twitterDescription?: string;
   keywords?: string;
+  robots?: string;
   schemaJsonLd: object;
 }
 
@@ -399,6 +400,7 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       ogUrl: `${BASE_URL}${legalDoc.route}`,
       ogType: 'website',
       twitterCard: 'summary_large_image',
+      robots: 'noindex, follow',
       schemaJsonLd: getLegalSchema(legalDoc),
     };
   }
@@ -1074,6 +1076,15 @@ export function useApplyRouteSeo(pathname: string) {
     if (canonical) {
       canonical.setAttribute('href', seo.canonical);
     }
+
+    // Robots (permite noindex, follow específico en páginas legales sin perder index, follow en el resto)
+    let metaRobots = document.querySelector('meta[name="robots"]');
+    if (!metaRobots) {
+      metaRobots = document.createElement('meta');
+      metaRobots.setAttribute('name', 'robots');
+      document.head.appendChild(metaRobots);
+    }
+    metaRobots.setAttribute('content', seo.robots || 'index, follow');
 
     // Meta Keywords
     if (seo.keywords) {

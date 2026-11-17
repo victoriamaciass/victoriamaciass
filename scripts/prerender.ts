@@ -56,6 +56,8 @@ async function prerender() {
   const { render } = await import(serverEntryUrl);
 
   const { getAllPublicRoutes, getSeoForRoute } = await import('../src/data/seoRegistry');
+  const { LEGAL_ROUTES_ORDER } = await import('../src/data/legalDocuments');
+  const excludedLegalRoutes = new Set<string>(LEGAL_ROUTES_ORDER.map((slug) => `/${slug}`));
 
   const routes = getAllPublicRoutes();
   console.log(`🌐 Prerenderizando ${routes.length} rutas públicas...`);
@@ -109,6 +111,12 @@ async function prerender() {
     } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas' || route === '/sabores-irresistibles' || route === '/recetas-pollo' || route === '/recetas-variadas' || route === '/cocina-deliciosa' || route === '/cocina-espanol' || route === '/freidora-aire' || route === '/galletas-epicas' || route === '/sistema-inmunologico' || route === '/politica-privacidad' || route === '/politica-cookies' || route === '/terminos-condiciones' || route === '/aviso-legal') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
+
+    // 3c. Reemplazar Meta Robots (noindex, follow en páginas legales; index, follow en páginas indexables)
+    pageHtml = pageHtml.replace(
+      /<meta\s+name="robots"\s+content=".*?"\s*\/?>/,
+      `<meta name="robots" content="${escapeHtml(seo.robots || 'index, follow')}" />`
+    );
 
     // 4. Reemplazar Canonical
     pageHtml = pageHtml.replace(
@@ -225,6 +233,8 @@ async function prerender() {
 
   for (const route of routes) {
     if (route === '/404') continue;
+    // Exclusión explícita de las cuatro páginas legales del sitemap XML
+    if (excludedLegalRoutes.has(route)) continue;
     const seo = getSeoForRoute(route);
     if (!seo || !seo.canonical) continue;
     if (!seo.canonical.startsWith('https://victoriamaciass.vercel.app/')) continue;
@@ -266,8 +276,9 @@ async function prerender() {
 
   console.log(`✅ ${processedCount} archivos HTML generados con éxito en dist/ (más dist/404.html y sitemap.xml con ${validSitemapUrls.length} URLs).`);
 
-  // 5. VERIFICACIÓN AUTOMATIZADA COMPLETA DE LAS 46 RUTAS
-  console.log('\n🔍 Ejecutando verificación automática de calidad y SEO sobre las 46 rutas...');
+  // 5. VERIFICACIÓN AUTOMATIZADA COMPLETA DE TODAS LAS RUTAS Y DEL SITEMAP
+  const expectedSitemapRoutes = routes.filter((r) => !excludedLegalRoutes.has(r));
+  console.log(`\n🔍 Ejecutando verificación automática de calidad y SEO (${routes.length} HTML públicos y ${expectedSitemapRoutes.length} URLs en sitemap.xml)...`);
   let failedChecks = 0;
 
   // Verificación específica de dist/404.html
@@ -296,6 +307,9 @@ async function prerender() {
     const smContent = fs.readFileSync(distSitemapPath, 'utf-8');
     const locMatches = [...smContent.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
     const uniqueLocs = new Set(locMatches);
+    const hasExcludedLegalInSitemap = [...excludedLegalRoutes].some((legalRoute) =>
+      uniqueLocs.has(`https://victoriamaciass.vercel.app${legalRoute}`)
+    );
     if (
       !smContent.startsWith('<?xml version="1.0" encoding="UTF-8"?>') ||
       !smContent.includes('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">') ||
@@ -303,11 +317,12 @@ async function prerender() {
       smContent.includes('<changefreq>') ||
       smContent.includes('<priority>') ||
       smContent.includes('<lastmod>') ||
-      locMatches.length !== routes.length ||
+      hasExcludedLegalInSitemap ||
+      locMatches.length !== expectedSitemapRoutes.length ||
       uniqueLocs.size !== locMatches.length ||
       locMatches.some((u) => !u.startsWith('https://victoriamaciass.vercel.app/') || u.includes('404') || u.includes('?') || u.includes('#'))
     ) {
-      console.error('❌ ERROR: dist/sitemap.xml no cumple la validación estructural o de URLs canónicas únicas');
+      console.error('❌ ERROR: dist/sitemap.xml no cumple la validación estructural, de exclusión legal o de URLs canónicas únicas');
       failedChecks++;
     }
   }
@@ -318,11 +333,15 @@ async function prerender() {
     failedChecks++;
   } else {
     const robotsContent = fs.readFileSync(distRobotsPath, 'utf-8');
+    const blocksLegalRoute = [...excludedLegalRoutes].some((legalRoute) =>
+      robotsContent.includes(`Disallow: ${legalRoute}`)
+    );
     if (
       !robotsContent.includes('Allow: /') ||
+      blocksLegalRoute ||
       !robotsContent.includes('Sitemap: https://victoriamaciass.vercel.app/sitemap.xml')
     ) {
-      console.error('❌ ERROR: dist/robots.txt no conserva Allow: / o no referencia https://victoriamaciass.vercel.app/sitemap.xml');
+      console.error('❌ ERROR: dist/robots.txt no conserva Allow: /, bloquea rutas legales o no referencia https://victoriamaciass.vercel.app/sitemap.xml');
       failedChecks++;
     }
   }
@@ -430,8 +449,12 @@ async function prerender() {
       }
     }
 
-    // F5. Comprobación específica de las cuatro páginas legales
+    // F5. Comprobación específica de las cuatro páginas legales y de indexabilidad diferenciada
     if (legalRoutes.includes(route)) {
+      if (!content.includes('<meta name="robots" content="noindex, follow" />')) {
+        console.error(`❌ ERROR: La página legal ${route} no incluye <meta name="robots" content="noindex, follow" />`);
+        failedChecks++;
+      }
       if (!content.includes('17 de noviembre de 2026') || !content.includes('custoni12@gmail.com')) {
         console.error(`❌ ERROR: La página legal ${route} carece de la fecha o correo de contacto requerido`);
         failedChecks++;
@@ -446,6 +469,11 @@ async function prerender() {
       }
       if (content.includes('<meta name="keywords"')) {
         console.error(`❌ ERROR: La página legal ${route} no debe heredar <meta name="keywords"> de la Home`);
+        failedChecks++;
+      }
+    } else {
+      if (!content.includes('<meta name="robots" content="index, follow" />') || content.includes('noindex')) {
+        console.error(`❌ ERROR: La página indexable ${route} no conserva <meta name="robots" content="index, follow" />`);
         failedChecks++;
       }
     }
