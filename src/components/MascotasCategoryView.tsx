@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronRight, BookOpen } from 'lucide-react';
 import { CategoryInfo, CATEGORIES_LIST } from '../data/categoriesData';
 import { GlobalNavbar } from './GlobalNavbar';
-import { LegalFooterBlock } from './LegalFooterBlock';
+import { Footer } from './Footer';
 
 interface MascotasCategoryViewProps {
   categoryInfo: CategoryInfo;
@@ -486,20 +486,7 @@ export const MascotasCategoryView: React.FC<MascotasCategoryViewProps> = ({ cate
         </nav>
       </main>
 
-      {/* Pie de página */}
-      <footer className="border-t border-stone-200 py-10 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-stone-600 font-sans">
-            <p className="font-serif text-lg sm:text-[20px] font-bold text-stone-900">
-              Victoria Maciass
-            </p>
-            <p className="text-xs sm:text-sm text-stone-500">
-              © {new Date().getFullYear()} Victoria Maciass. Todos los derechos reservados.
-            </p>
-          </div>
-          <LegalFooterBlock />
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

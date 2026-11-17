@@ -409,9 +409,15 @@ async function prerender() {
       failedChecks++;
     }
 
-    // F4. Bloque "Información legal" y los 4 enlaces legales presentes en el footer de todas las rutas
+    // F4. Footer global uniforme: sin "Información legal", con logo 64x64, descripción, copyright y los 4 enlaces legales
+    if (content.includes('Información legal')) {
+      console.error(`❌ ERROR: La ruta ${route} todavía contiene el texto eliminado "Información legal"`);
+      failedChecks++;
+    }
     const requiredLegalFooterStrings = [
-      'Información legal',
+      'icono7-victoriamaciass.jpg',
+      'Biblioteca práctica de guías y recetarios',
+      'Todos los derechos reservados.',
       'href="/politica-privacidad"',
       'href="/politica-cookies"',
       'href="/terminos-condiciones"',

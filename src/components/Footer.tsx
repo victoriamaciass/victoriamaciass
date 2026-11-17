@@ -1,122 +1,58 @@
 import React from 'react';
-import { ArrowUp, BookOpen, Heart } from 'lucide-react';
-import { CategoryId } from '../types/book';
+import { Link } from 'react-router-dom';
+import { LEGAL_DOCUMENTS, LEGAL_ROUTES_ORDER } from '../data/legalDocuments';
 
-interface FooterProps {
-  onSelectCategory?: (category: CategoryId) => void;
-  onScrollToTop?: () => void;
-}
-
-export const Footer: React.FC<FooterProps> = ({
-  onSelectCategory,
-  onScrollToTop,
-}) => {
+export const Footer: React.FC = () => {
   return (
-    <footer className="bg-stone-950 text-stone-400 text-xs border-t border-stone-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
-          {/* Brand Col */}
-          <div className="md:col-span-2">
-            <h3 className="font-serif text-xl font-bold text-stone-100 tracking-tight mb-2">
-              Victoria Maciass
-            </h3>
-            <p className="text-stone-400 text-xs sm:text-sm max-w-sm leading-relaxed mb-4">
-              Publicaciones oficiales, guías de vida práctica, bienestar somático y cocina consciente. Todas las obras disponibles en formatos digital, papel y audiolibro.
+    <footer className="border-t border-stone-200/85 bg-[#fbfbf9]">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 py-6 sm:py-7">
+        {/* Fila superior: identidad editorial y copyright */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6">
+          <div className="flex items-center gap-3.5 sm:gap-4">
+            <Link
+              to="/"
+              title="Victoria Maciass"
+              className="shrink-0 block rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#163a2b]"
+            >
+              <img
+                src="https://ik.imagekit.io/hr20qlpupi/victoria/icono7-victoriamaciass.jpg"
+                alt="Victoria Maciass"
+                width={64}
+                height={64}
+                referrerPolicy="no-referrer"
+                loading="lazy"
+                className="w-16 h-16 object-contain block rounded-md"
+              />
+            </Link>
+            <p className="text-sm text-stone-700 font-sans leading-snug min-w-0">
+              Biblioteca práctica de guías y recetarios
             </p>
-            <div className="flex items-center gap-4 text-xs text-stone-500">
-              <span>© {new Date().getFullYear()} Victoria Maciass</span>
-              <span aria-hidden="true">·</span>
-              <span>Todos los derechos reservados</span>
-            </div>
           </div>
 
-          {/* Quick Categories */}
-          <div>
-            <h4 className="text-stone-200 font-semibold uppercase tracking-wider text-[11px] mb-3">
-              Temáticas
-            </h4>
-            <ul className="space-y-2">
-              <li>
-                <button
-                  onClick={() => onSelectCategory?.('salud-mental')}
-                  className="hover:text-stone-100 transition-colors cursor-pointer text-left"
-                >
-                  Salud mental y bienestar
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onSelectCategory?.('desarrollo-personal')}
-                  className="hover:text-stone-100 transition-colors cursor-pointer text-left"
-                >
-                  Desarrollo personal
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onSelectCategory?.('salud-cuerpo')}
-                  className="hover:text-stone-100 transition-colors cursor-pointer text-left"
-                >
-                  Salud y cuerpo
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onSelectCategory?.('cocina-recetas')}
-                  className="hover:text-stone-100 transition-colors cursor-pointer text-left"
-                >
-                  Cocina y 18 recetarios
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onSelectCategory?.('mascotas')}
-                  className="hover:text-stone-100 transition-colors cursor-pointer text-left"
-                >
-                  Mascotas (gallinas, gatos, perros)
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onSelectCategory?.('manualidades-esoterismo')}
-                  className="hover:text-stone-100 transition-colors cursor-pointer text-left"
-                >
-                  Manualidades y esoterismo
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Platform Distribution & Actions */}
-          <div>
-            <h4 className="text-stone-200 font-semibold uppercase tracking-wider text-[11px] mb-3">
-              Distribución Oficial
-            </h4>
-            <ul className="space-y-2 text-stone-400">
-              <li>Amazon Kindle & KDP</li>
-              <li>Google Play Libros</li>
-              <li>Amazon Tapa Blanda</li>
-              <li>Audible / Amazon Audio</li>
-              <li className="pt-3">
-                <button
-                  onClick={onScrollToTop}
-                  className="inline-flex items-center gap-1.5 text-amber-300 hover:text-amber-200 font-medium cursor-pointer"
-                >
-                  <ArrowUp className="w-3.5 h-3.5" />
-                  <span>Volver al inicio</span>
-                </button>
-              </li>
-            </ul>
-          </div>
+          <p className="text-xs sm:text-[13px] text-stone-500 font-sans sm:text-right shrink-0">
+            © {new Date().getFullYear()} Victoria Maciass. Todos los derechos reservados.
+          </p>
         </div>
 
-        <div className="pt-6 border-t border-stone-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-stone-500 text-[11px]">
-          <p>
-            Diseño editorial para la obra literaria y práctica de Victoria Maciass.
-          </p>
-          <div className="flex items-center gap-1">
-            <span>Escrito con intención y dedicación</span>
-          </div>
+        {/* Línea divisoria sutil y fila inferior de enlaces legales */}
+        <div className="mt-4 pt-3.5 border-t border-stone-200/80">
+          <nav
+            aria-label="Enlaces legales"
+            className="flex flex-wrap items-center gap-x-5 sm:gap-x-6 gap-y-1 text-xs sm:text-[13px] text-stone-600 font-sans"
+          >
+            {LEGAL_ROUTES_ORDER.map((slug) => {
+              const doc = LEGAL_DOCUMENTS[slug];
+              return (
+                <Link
+                  key={doc.slug}
+                  to={doc.route}
+                  className="py-1 sm:py-0.5 hover:text-stone-950 hover:underline underline-offset-4 transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#163a2b]"
+                >
+                  {doc.navTitle}
+                </Link>
+              );
+            })}
+          </nav>
         </div>
       </div>
     </footer>

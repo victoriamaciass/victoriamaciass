@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowDown, ArrowRight } from 'lucide-react';
 import { GlobalNavbar } from '../components/GlobalNavbar';
 import { CatalogSearchSection } from '../components/CatalogSearchSection';
-import { LegalFooterBlock } from '../components/LegalFooterBlock';
+import { Footer } from '../components/Footer';
 
 interface CategoryEditorialBlock {
   id: string;
@@ -296,39 +296,7 @@ export const HomePage: React.FC = () => {
         </section>
       </main>
 
-      {/* ====================================================================
-          6. PIE DE PÁGINA EDITORIAL
-          Incorpora la logomarca oficial de Victoria Maciass como firma visual
-          discreta y elegante sin duplicar el nombre de la autora.
-          ==================================================================== */}
-      <footer className="border-t border-stone-200/90 py-12 bg-[#fbfbf9]">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 text-[14px] text-stone-600">
-            
-            {/* Logomarca oficial como firma visual de la marca */}
-            <div className="flex flex-col items-center sm:items-start">
-              <Link to="/" title="Victoria Maciass" className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-400 rounded-lg">
-                <img
-                  src="https://ik.imagekit.io/hr20qlpupi/victoria/icono8-victoriamaciass.jpg"
-                  alt="Victoria Maciass"
-                  referrerPolicy="no-referrer"
-                  className="h-14 sm:h-16 w-auto object-contain block"
-                  loading="lazy"
-                />
-              </Link>
-              <p className="text-[14px] text-stone-600 mt-2 text-center sm:text-left font-sans">
-                Biblioteca práctica de guías y recetarios
-              </p>
-            </div>
-
-            <p className="text-[14px] text-stone-600 font-sans text-center sm:text-right">
-              © {new Date().getFullYear()} Victoria Maciass. Todos los derechos reservados.
-            </p>
-          </div>
-
-          <LegalFooterBlock />
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

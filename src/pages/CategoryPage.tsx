@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { GlobalNavbar } from '../components/GlobalNavbar';
-import { LegalFooterBlock } from '../components/LegalFooterBlock';
+import { Footer } from '../components/Footer';
 import { BOOKS_DATA } from '../data/booksData';
 import { getCategoryBySlug, CATEGORIES_LIST, CategoryInfo } from '../data/categoriesData';
 import { getBookCover } from '../data/bookCovers';
@@ -304,20 +304,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug: propSl
         </section>
       </main>
 
-      {/* Pie de página sencillo */}
-      <footer className="border-t border-stone-200 py-10 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-stone-600">
-            <p className="font-serif text-lg sm:text-[20px] font-bold text-stone-900">
-              Victoria Maciass
-            </p>
-            <p className="text-xs sm:text-sm text-stone-500">
-              © {new Date().getFullYear()} Victoria Maciass. Todos los derechos reservados.
-            </p>
-          </div>
-          <LegalFooterBlock />
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
