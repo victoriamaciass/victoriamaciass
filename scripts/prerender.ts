@@ -1767,7 +1767,6 @@ async function prerender() {
         'https://www.amazon.com/dp/B09R3M4SB9',
         'https://www.amazon.com/dp/B0CM3Z54JC',
         'https://www.amazon.com/dp/B09PLJK5B5',
-        'https://books2read.com/u/me5yZY',
         '11-libro-de-cocina-600.jpg',
         'Portada de Libro De Cocina En Español, de Victoria Maciass',
         'Un recorrido gastronómico desde las primeras comidas hasta los platos de ocasión',
@@ -1792,6 +1791,10 @@ async function prerender() {
           console.error(`❌ ERROR: /cocina-espanol no contiene la cadena requerida: "${str}"`);
           failedChecks++;
         }
+      }
+      if (content.includes('books2read.com')) {
+        console.error('❌ ERROR: /cocina-espanol no debe incluir enlaces a books2read.com');
+        failedChecks++;
       }
       if (content.includes('<meta name="keywords"')) {
         console.error('❌ ERROR: /cocina-espanol no debe incluir <meta name="keywords">');
