@@ -3,6 +3,7 @@ import { BOOKS_DATA } from './booksData';
 import { Book } from '../types/book';
 import { CATEGORIES_LIST, CategoryInfo } from './categoriesData';
 import { getBookCover } from './bookCovers';
+import { LEGAL_DOCUMENTS, LEGAL_ROUTES_ORDER, LegalDocumentData } from './legalDocuments';
 
 export interface RouteSeoData {
   title: string;
@@ -210,6 +211,50 @@ function getBookSchema(book: Book): object {
 }
 
 /**
+ * Genera el Schema.org JSON-LD para una página legal
+ */
+function getLegalSchema(doc: LegalDocumentData): object {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': `${BASE_URL}${doc.route}#webpage`,
+        url: `${BASE_URL}${doc.route}`,
+        name: doc.seoTitle,
+        description: doc.seoDescription,
+        inLanguage: 'es',
+        dateModified: '2026-11-17',
+        isPartOf: {
+          '@id': `${BASE_URL}/#website`,
+        },
+        about: {
+          '@id': `${BASE_URL}/#author`,
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${BASE_URL}${doc.route}#breadcrumbs`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Inicio',
+            item: `${BASE_URL}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: doc.title,
+            item: `${BASE_URL}${doc.route}`,
+          },
+        ],
+      },
+    ],
+  };
+}
+
+/**
  * Obtiene los metadatos SEO unificados para cualquier ruta de la aplicación.
  * Esta es la ÚNICA FUENTE DE VERDAD para el prerenderizado y la navegación en React.
  */
@@ -337,6 +382,24 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
       ogType: 'website',
       twitterCard: 'summary_large_image',
       schemaJsonLd: getCategorySchema(cat, books),
+    };
+  }
+
+  // 7b. PÁGINAS LEGALES (4 RUTAS)
+  const legalSlugCandidate = cleanPath.replace(/^\//, '');
+  if ((LEGAL_ROUTES_ORDER as string[]).includes(legalSlugCandidate)) {
+    const legalDoc = LEGAL_DOCUMENTS[legalSlugCandidate as keyof typeof LEGAL_DOCUMENTS];
+    return {
+      title: legalDoc.seoTitle,
+      description: legalDoc.seoDescription,
+      canonical: `${BASE_URL}${legalDoc.route}`,
+      ogTitle: legalDoc.seoTitle,
+      ogDescription: legalDoc.seoDescription,
+      ogImage: 'https://ik.imagekit.io/hr20qlpupi/victoria/icono8-victoriamaciass.jpg',
+      ogUrl: `${BASE_URL}${legalDoc.route}`,
+      ogType: 'website',
+      twitterCard: 'summary_large_image',
+      schemaJsonLd: getLegalSchema(legalDoc),
     };
   }
 
@@ -972,7 +1035,7 @@ export function getSeoForRoute(pathname: string): RouteSeoData | undefined {
 }
 
 /**
- * Lista de todas las 46 rutas públicas del sitio
+ * Lista de todas las rutas públicas del sitio (Home, 6 categorías, 39 libros y 4 páginas legales)
  */
 export function getAllPublicRoutes(): string[] {
   const routes = ['/'];
@@ -981,6 +1044,9 @@ export function getAllPublicRoutes(): string[] {
   }
   for (const book of BOOKS_DATA) {
     routes.push(`/${book.slug}`);
+  }
+  for (const legalSlug of LEGAL_ROUTES_ORDER) {
+    routes.push(`/${legalSlug}`);
   }
   return routes;
 }

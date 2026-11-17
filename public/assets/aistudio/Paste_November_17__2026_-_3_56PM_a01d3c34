@@ -1,0 +1,653 @@
+# INSTRUCCIÓN PARA GOOGLE AI STUDIO — IMPLEMENTACIÓN DE LAS PÁGINAS LEGALES DE VICTORIA MACIASS
+
+## 1. OBJETIVO
+
+Implementar cuatro páginas legales completas en el sitio web de Victoria Maciass, incorporando sus rutas correspondientes y los enlaces de acceso en el footer global.
+
+Las páginas que deben crearse son:
+
+1. Política de privacidad.
+2. Política de cookies.
+3. Términos y condiciones de uso.
+4. Aviso legal.
+
+La implementación debe integrarse en la arquitectura actual del proyecto, respetando íntegramente el diseño visual, la identidad editorial, la navegación y el funcionamiento de las páginas existentes.
+
+**IMPORTANTE: Esta tarea consiste en incorporar las páginas legales. No es un rediseño del sitio ni una modificación de su arquitectura editorial.**
+
+## 2. REGLAS FUNDAMENTALES: PRESERVAR EL SITIO EXISTENTE
+
+Antes de realizar cambios, examina la estructura actual del proyecto y localiza:
+
+- El sistema de enrutamiento.
+- El componente global del footer.
+- Los componentes y estilos utilizados en las páginas existentes.
+- El sistema de metadatos SEO.
+- La configuración del sitemap.
+
+A continuación, implementa únicamente los cambios necesarios.
+
+### Elementos que deben permanecer intactos
+
+No modificar:
+
+- La página de inicio.
+- Las seis páginas de categorías.
+- Las 39 fichas de libros.
+- Los textos, descripciones, títulos y contenidos editoriales.
+- Las portadas y demás imágenes.
+- Los enlaces de compra de los libros.
+- El header y su navegación.
+- El buscador del catálogo.
+- El diseño de las tarjetas y componentes existentes.
+- Los colores, tipografías, tamaños y criterios visuales generales.
+- Las funcionalidades de favoritos, navegación y desplazamiento.
+- Las rutas públicas existentes.
+- La configuración de Google Analytics y Google Tag Manager.
+- Los documentos y configuraciones que no estén relacionados con esta tarea.
+
+No eliminar, sustituir, reorganizar ni simplificar componentes existentes para facilitar la implementación.
+
+No instalar dependencias nuevas si no son estrictamente necesarias.
+
+## 3. RUTAS QUE DEBEN CREARSE
+
+Crear exactamente estas cuatro rutas públicas:
+
+| Página | Ruta |
+|---|---|
+| Política de privacidad | `/politica-privacidad` |
+| Política de cookies | `/politica-cookies` |
+| Términos y condiciones | `/terminos-condiciones` |
+| Aviso legal | `/aviso-legal` |
+
+Cada ruta debe mostrar su correspondiente página legal, sin redirecciones a la Home ni a otras páginas.
+
+Las rutas deben funcionar tanto al navegar desde el footer como al acceder directamente desde el navegador o actualizar la página.
+
+Integrar las rutas en el sistema de enrutamiento existente, sin modificar ni romper ninguna ruta anterior.
+
+## 4. UBICACIÓN DE LOS ENLACES: FOOTER GLOBAL
+
+Esta es una decisión de diseño ya establecida y debe respetarse.
+
+Los cuatro enlaces legales deben aparecer agrupados en un bloque discreto dentro del footer global, bajo el título:
+
+**Información legal**
+
+El bloque debe contener estos cuatro enlaces:
+
+- Política de privacidad
+- Política de cookies
+- Términos y condiciones
+- Aviso legal
+
+### Criterios de presentación
+
+- Incorporar el bloque al footer que ya existe.
+- Mantener el mismo estilo visual del footer actual.
+- Utilizar una presentación discreta, limpia y elegante.
+- Mantener una jerarquía visual secundaria respecto al contenido editorial.
+- Separar visualmente el bloque de los demás elementos del footer de manera sutil.
+- Adaptar correctamente la disposición a pantallas móviles.
+- Garantizar que los cuatro enlaces sean legibles y fáciles de pulsar.
+
+**No colocar estos enlaces en el header, el menú principal, las fichas de libros ni las páginas de categorías.**
+
+No crear un menú legal independiente ni una sección destacada en la página de inicio.
+
+El bloque «Información legal» debe estar disponible en todas las páginas del sitio porque forma parte del footer global.
+
+## 5. DISEÑO DE LAS CUATRO PÁGINAS
+
+Las páginas legales deben utilizar el mismo lenguaje visual que el resto del sitio.
+
+### Identidad visual
+
+Respetar los elementos visuales existentes:
+
+- Verde bosque como color principal.
+- Fondos claros, marfil y tonos neutros.
+- Tipografía Lora para títulos, cuando corresponda al sistema existente.
+- Tipografía Inter para textos y elementos de interfaz.
+- Estética editorial, limpia, elegante y profesional.
+
+### Estructura de las páginas
+
+Cada página debe incluir:
+
+1. Un encabezado con el título correspondiente.
+2. La fecha de última actualización.
+3. El contenido legal completo, organizado en secciones.
+4. Una jerarquía clara de títulos y subtítulos.
+5. Espaciado cómodo para facilitar la lectura.
+6. El footer global existente.
+
+Los textos deben mostrarse con un ancho de lectura cómodo, buena separación entre párrafos y una estructura tipográfica coherente.
+
+No utilizar tarjetas excesivas, fondos de colores llamativos, iconos decorativos, ilustraciones, banners ni elementos que no tengan sentido en un documento legal.
+
+No convertir las páginas en artículos de blog.
+
+No añadir una tabla de contenidos, un buscador, llamadas comerciales ni botones de compra.
+
+El resultado debe parecer parte natural del sitio editorial, no una sección de otra web.
+
+### Adaptación responsive
+
+Las páginas deben visualizarse correctamente en:
+
+- Ordenadores.
+- Portátiles.
+- Tablets.
+- Teléfonos móviles.
+
+Evitar desbordamientos horizontales, columnas demasiado estrechas, tamaños de letra incómodos y bloques de texto excesivamente anchos.
+
+## 6. CONTENIDOS LEGALES
+
+Incorporar los siguientes textos completos. No resumirlos, no omitir apartados y no sustituirlos por textos genéricos.
+
+---
+
+# PÁGINA 1 — POLÍTICA DE PRIVACIDAD
+
+**Ruta:** `/politica-privacidad`
+
+**Título:** Política de privacidad
+
+**Fecha:** 17 de noviembre de 2026
+
+En Victoria Maciass respetamos la privacidad de las personas que visitan nuestro sitio web y procuramos tratar sus datos personales de forma responsable, transparente y limitada a lo necesario.
+
+Esta Política de privacidad explica qué información puede tratarse durante la navegación por https://victoriamaciass.vercel.app/, con qué finalidad y qué derechos pueden ejercer los visitantes.
+
+## 1. Responsable del tratamiento
+
+El sitio web y el proyecto editorial se gestionan bajo el nombre **Victoria Maciass**, seudónimo editorial utilizado para la publicación y presentación de libros.
+
+País de gestión: Brasil.
+
+Contacto para cuestiones de privacidad y protección de datos: **custoni12@gmail.com**.
+
+## 2. Qué datos pueden tratarse
+
+El sitio no dispone de formularios de registro, cuentas de usuario, newsletter ni sistemas propios de compra.
+
+Sin embargo, durante la navegación pueden tratarse determinados datos técnicos y de uso, entre ellos:
+
+- Dirección IP y datos técnicos del dispositivo y navegador.
+- Información sobre las páginas visitadas y la navegación por el sitio.
+- Fecha, hora y duración aproximada de las visitas.
+- Información estadística sobre el uso del sitio.
+- Datos almacenados localmente en el navegador para determinadas funciones, como los favoritos y la conservación de la posición de desplazamiento.
+
+No solicitamos deliberadamente datos personales sensibles ni información personal para permitir la consulta del catálogo.
+
+## 3. Finalidad del tratamiento
+
+La información técnica y estadística puede utilizarse para:
+
+- Mantener el funcionamiento y la seguridad del sitio.
+- Comprender cómo se utiliza el catálogo.
+- Obtener estadísticas generales de visitas y navegación.
+- Detectar errores y mejorar la experiencia de lectura y consulta.
+
+Los datos almacenados localmente para funciones como favoritos o conservación del desplazamiento se utilizan para ofrecer esas funcionalidades en el propio dispositivo.
+
+## 4. Google Analytics y Google Tag Manager
+
+Este sitio utiliza tecnologías de Google:
+
+- **Google Analytics 4:** identificador de medición `G-Z5543MKN77`, destinado a obtener estadísticas sobre el uso del sitio.
+- **Google Tag Manager:** identificador de contenedor `GTM-KZZCD2XP`, utilizado para gestionar etiquetas y herramientas de medición.
+
+Estas tecnologías pueden utilizar cookies y otros identificadores para recopilar información técnica y de navegación. La información puede ser tratada por Google conforme a sus propias condiciones y políticas de privacidad.
+
+El código actual del sitio carga los recursos de Google Analytics y Google Tag Manager durante la apertura de las páginas. La disponibilidad de esta información en esta política no significa que el visitante haya prestado consentimiento cuando este sea legalmente necesario.
+
+Más información:
+
+- https://policies.google.com/privacy
+- https://policies.google.com/technologies/cookies
+
+## 5. Proveedores y servicios externos
+
+Para mostrar y mantener el sitio pueden intervenir proveedores tecnológicos, entre ellos:
+
+- **Vercel:** alojamiento y distribución del sitio web.
+- **ImageKit:** alojamiento y entrega de imágenes.
+- **Google:** servicios de medición y gestión de etiquetas.
+- **Google Fonts:** distribución de tipografías.
+
+Estos proveedores pueden tratar determinados datos técnicos necesarios para prestar sus servicios, de acuerdo con sus propias políticas y condiciones.
+
+## 6. Enlaces a plataformas externas
+
+Las fichas de los libros pueden incluir enlaces a plataformas como Amazon, Google Play Books y otras tiendas o servicios de lectura.
+
+Al acceder a esos enlaces, el visitante abandona el sitio de Victoria Maciass y pasa a estar sujeto a las políticas de privacidad y condiciones de la plataforma correspondiente.
+
+Las compras, los pagos, los envíos, las descargas y cualquier gestión posterior se realizan directamente en dichas plataformas, no a través de un sistema de compra propio de este sitio.
+
+Victoria Maciass no recibe comisiones de afiliación por los enlaces publicados actualmente.
+
+## 7. Conservación de la información
+
+Los datos técnicos y estadísticos se conservan durante el tiempo necesario para las finalidades descritas y conforme a los plazos y configuraciones de los proveedores correspondientes.
+
+La información guardada localmente en el navegador puede permanecer hasta que el visitante la elimine o borre los datos del sitio desde la configuración de su dispositivo o navegador.
+
+## 8. Derechos de las personas
+
+De acuerdo con la legislación aplicable, especialmente la Ley General de Protección de Datos de Brasil (LGPD), las personas pueden solicitar información sobre el tratamiento de sus datos y ejercer los derechos que les correspondan, como:
+
+- Confirmación de la existencia de tratamiento.
+- Acceso a los datos personales.
+- Corrección de datos incompletos, inexactos o desactualizados.
+- Anonimización, bloqueo o eliminación cuando proceda legalmente.
+- Información sobre el uso compartido de datos.
+- Revocación del consentimiento, cuando el tratamiento se base en él.
+
+Para realizar una solicitud, escribe a **custoni12@gmail.com**, indicando el motivo de la consulta y la solicitud concreta.
+
+## 9. Seguridad
+
+Se adoptan medidas técnicas y organizativas razonables para proteger el sitio y la información tratada. No obstante, ningún sistema de transmisión o almacenamiento electrónico puede garantizar una seguridad absoluta.
+
+## 10. Cambios en esta política
+
+Esta política puede actualizarse cuando cambien las funcionalidades del sitio, los servicios utilizados o las disposiciones legales aplicables. La versión vigente estará disponible en esta página.
+
+## 11. Contacto
+
+Para cualquier consulta relacionada con esta Política de privacidad o con el tratamiento de datos personales:
+
+**Correo electrónico:** custoni12@gmail.com
+
+**Sitio web:** https://victoriamaciass.vercel.app/
+
+---
+
+# PÁGINA 2 — POLÍTICA DE COOKIES
+
+**Ruta:** `/politica-cookies`
+
+**Título:** Política de cookies
+
+**Fecha:** 17 de noviembre de 2026
+
+El sitio web de **Victoria Maciass** utiliza cookies y tecnologías similares que pueden ser necesarias para su funcionamiento y para obtener estadísticas sobre su utilización.
+
+Esta política explica qué son estas tecnologías, cuáles pueden utilizarse en el sitio y cómo gestionar su uso.
+
+## 1. ¿Qué son las cookies?
+
+Las cookies son pequeños archivos que un sitio web puede guardar en el navegador del visitante. Permiten recordar información sobre la navegación, mantener determinadas funciones y obtener estadísticas de utilización.
+
+También existen tecnologías similares, como el almacenamiento local del navegador (*localStorage*) y el almacenamiento de sesión (*sessionStorage*).
+
+## 2. Tecnologías utilizadas en este sitio
+
+### Google Analytics 4
+
+El sitio incorpora Google Analytics 4, con identificador `G-Z5543MKN77`, para obtener información estadística sobre las visitas y comprender cómo se utiliza el catálogo.
+
+Este servicio puede utilizar cookies u otros identificadores de medición.
+
+### Google Tag Manager
+
+El sitio utiliza Google Tag Manager, con identificador `GTM-KZZCD2XP`, para gestionar etiquetas y herramientas integradas.
+
+Google Tag Manager es un sistema de gestión de etiquetas. Las cookies que puedan instalarse dependerán de las etiquetas y servicios que se ejecuten a través del contenedor.
+
+### Almacenamiento local del navegador
+
+El código del sitio utiliza almacenamiento del navegador para algunas funciones propias:
+
+- Recordar los libros marcados como favoritos.
+- Conservar temporalmente la posición de desplazamiento durante la navegación.
+
+Estas funciones utilizan almacenamiento local o de sesión y no constituyen por sí mismas un sistema de seguimiento publicitario.
+
+## 3. ¿Para qué se utilizan?
+
+Las tecnologías descritas pueden servir para:
+
+- Mantener determinadas funciones del sitio.
+- Recordar preferencias o acciones del visitante.
+- Medir visitas y actividad general.
+- Analizar el funcionamiento y mejorar la experiencia de navegación.
+
+El sitio no utiliza actualmente enlaces de afiliación ni declara utilizar cookies para campañas publicitarias propias.
+
+## 4. Gestión de cookies
+
+El visitante puede consultar, bloquear o eliminar cookies desde la configuración de su navegador. También puede eliminar los datos locales almacenados por el sitio.
+
+La desactivación de determinadas tecnologías puede afectar al funcionamiento de algunas características.
+
+Ten en cuenta que bloquear cookies desde el navegador no garantiza necesariamente que todos los recursos externos dejen de recibir datos técnicos de conexión.
+
+## 5. Servicios de terceros
+
+Algunos recursos del sitio son proporcionados por terceros, como Google, Google Fonts, ImageKit y Vercel. Estos proveedores pueden tratar información técnica cuando el navegador solicita sus recursos.
+
+Las condiciones y prácticas de estos servicios se explican en sus respectivas políticas:
+
+- Google: https://policies.google.com/privacy
+- Google sobre cookies: https://policies.google.com/technologies/cookies
+
+## 6. Consentimiento y configuración
+
+El código actualmente auditado carga Google Analytics y Google Tag Manager durante la apertura de las páginas. La publicación de esta política no equivale a un mecanismo de consentimiento ni lo sustituye.
+
+Cuando la legislación aplicable exija consentimiento previo para determinadas cookies o tecnologías no esenciales, su utilización deberá ajustarse a ese requisito mediante la configuración técnica correspondiente.
+
+## 7. Actualizaciones
+
+Esta Política de cookies puede modificarse si se incorporan nuevas herramientas, cambian las tecnologías utilizadas o se producen cambios normativos.
+
+## 8. Contacto
+
+Para cualquier consulta sobre el uso de cookies y tecnologías similares:
+
+**Correo electrónico:** custoni12@gmail.com
+
+**Sitio web:** https://victoriamaciass.vercel.app/
+
+---
+
+# PÁGINA 3 — TÉRMINOS Y CONDICIONES DE USO
+
+**Ruta:** `/terminos-condiciones`
+
+**Título:** Términos y condiciones de uso
+
+**Fecha:** 17 de noviembre de 2026
+
+Bienvenido al sitio web de **Victoria Maciass**: https://victoriamaciass.vercel.app/.
+
+El acceso y la navegación por este sitio implican la aceptación de estos términos de uso. Si no estás de acuerdo con ellos, te recomendamos que no utilices el sitio.
+
+## 1. Finalidad del sitio
+
+Victoria Maciass es un proyecto editorial destinado a presentar un catálogo de libros, ofrecer información sobre sus publicaciones y facilitar el acceso a las plataformas externas donde pueden consultarse o adquirirse.
+
+El sitio funciona como catálogo informativo. No dispone de un sistema propio de pago, carrito de compra ni gestión de pedidos.
+
+## 2. Propiedad intelectual
+
+Los textos, descripciones, elementos gráficos, diseños, logotipos y demás contenidos propios del sitio están protegidos por las normas aplicables de propiedad intelectual.
+
+Salvo autorización expresa o excepción legal, no está permitida su reproducción, distribución, modificación o utilización comercial sin autorización de sus titulares.
+
+Las marcas, logotipos, portadas y materiales pertenecientes a terceros conservan sus respectivos derechos y titularidades.
+
+## 3. Información sobre los libros
+
+Se procura que la información presentada sobre los libros sea clara y esté actualizada. No obstante, pueden producirse cambios en las descripciones, ediciones, disponibilidad, formatos o condiciones ofrecidas por las plataformas externas.
+
+La información definitiva sobre precio, disponibilidad, formato, entrega y condiciones de compra será la que figure en la plataforma correspondiente en el momento de la consulta o adquisición.
+
+## 4. Compras en plataformas externas
+
+Los enlaces de compra pueden dirigir a Amazon, Google Play Books u otras plataformas independientes.
+
+Las compras se realizan directamente en esas plataformas y se rigen por sus propios términos, políticas de privacidad, condiciones comerciales y procedimientos de atención al cliente.
+
+Victoria Maciass no procesa pagos, no gestiona envíos y no interviene en las operaciones de compra efectuadas en sitios externos.
+
+## 5. Enlaces externos
+
+Este sitio puede incluir enlaces a páginas de terceros para facilitar información o acceso a servicios relacionados con los libros.
+
+La inclusión de un enlace no implica control sobre el contenido, disponibilidad, seguridad o políticas del sitio de destino. El visitante accede a esos servicios bajo su propia responsabilidad y conforme a las condiciones de sus respectivos proveedores.
+
+## 6. Uso adecuado del sitio
+
+El visitante se compromete a utilizar el sitio de forma lícita y a no realizar actividades que puedan perjudicar su funcionamiento, seguridad o disponibilidad.
+
+No está permitido intentar acceder sin autorización a sistemas, modificar contenidos, introducir código malicioso o utilizar el sitio para actividades fraudulentas o ilícitas.
+
+## 7. Disponibilidad y responsabilidad
+
+Se procura mantener el sitio disponible y correctamente operativo, pero no se garantiza que el acceso sea ininterrumpido o esté libre de errores técnicos.
+
+En la medida permitida por la legislación aplicable, Victoria Maciass no será responsable de interrupciones ajenas a su control, fallos de proveedores externos o decisiones comerciales adoptadas por las plataformas de venta.
+
+Nada de lo establecido en estos términos limita los derechos que la legislación aplicable reconoce a los consumidores o usuarios.
+
+## 8. Contenido informativo
+
+Los contenidos del catálogo tienen una finalidad principalmente editorial e informativa. La información de los libros no sustituye el asesoramiento individual de profesionales cualificados cuando este sea necesario, especialmente en cuestiones relacionadas con la salud.
+
+## 9. Modificaciones
+
+Estos términos pueden actualizarse para reflejar cambios en el sitio, en sus servicios o en la legislación aplicable. La versión vigente será la publicada en esta página.
+
+## 10. Legislación aplicable
+
+El proyecto se gestiona desde Brasil. Estos términos se interpretarán conforme a la legislación aplicable, sin perjuicio de las normas imperativas de protección de consumidores y usuarios que puedan corresponder según el lugar de residencia del visitante.
+
+## 11. Contacto
+
+Para consultas relacionadas con el sitio y estos términos:
+
+**Correo electrónico:** custoni12@gmail.com
+
+**Sitio web:** https://victoriamaciass.vercel.app/
+
+---
+
+# PÁGINA 4 — AVISO LEGAL
+
+**Ruta:** `/aviso-legal`
+
+**Título:** Aviso legal
+
+**Fecha:** 17 de noviembre de 2026
+
+## 1. Titularidad del proyecto editorial
+
+Este sitio web, disponible en https://victoriamaciass.vercel.app/, corresponde al proyecto editorial **Victoria Maciass**.
+
+Victoria Maciass es un seudónimo utilizado como identidad editorial para la presentación y publicación de libros.
+
+El proyecto se gestiona desde Brasil por una persona física. La identidad editorial pública se mantiene separada de la identidad personal de quien lo gestiona, dentro de los límites permitidos por la legislación aplicable.
+
+## 2. Contacto
+
+Para consultas generales, cuestiones relacionadas con el sitio o comunicaciones sobre privacidad y protección de datos:
+
+**Correo electrónico:** custoni12@gmail.com
+
+## 3. Actividad del sitio
+
+El sitio tiene como finalidad presentar el catálogo editorial de Victoria Maciass, proporcionar información sobre sus libros y facilitar enlaces a plataformas externas donde pueden encontrarse sus publicaciones.
+
+Las operaciones de compra se realizan en las plataformas de terceros correspondientes, no directamente en este sitio.
+
+## 4. Propiedad intelectual e identidad editorial
+
+La identidad gráfica, los textos originales, el diseño y los contenidos propios de este sitio están protegidos por la legislación aplicable en materia de propiedad intelectual.
+
+Victoria Maciass es una denominación editorial. Las marcas y materiales de terceros que puedan aparecer en el sitio pertenecen a sus respectivos titulares.
+
+## 5. Responsabilidad sobre enlaces externos
+
+Los enlaces a plataformas externas se facilitan para comodidad de los visitantes. Cada plataforma es responsable de sus propios contenidos, servicios, operaciones y condiciones de uso.
+
+## 6. Actualizaciones
+
+Este aviso puede modificarse cuando resulte necesario para reflejar cambios en la actividad editorial, el sitio web o la normativa aplicable.
+
+---
+
+## 7. SEO Y METADATOS
+
+Cada página debe contar con metadatos propios y coherentes con su contenido.
+
+Utilizar estos títulos y descripciones:
+
+### Política de privacidad
+
+Title:
+`Política de privacidad | Victoria Maciass`
+
+Meta description:
+`Consulta la política de privacidad de Victoria Maciass y conoce cómo se trata la información durante la navegación por nuestro sitio web.`
+
+### Política de cookies
+
+Title:
+`Política de cookies | Victoria Maciass`
+
+Meta description:
+`Información sobre las cookies y tecnologías similares utilizadas en el sitio web de Victoria Maciass y cómo gestionar su uso.`
+
+### Términos y condiciones
+
+Title:
+`Términos y condiciones de uso | Victoria Maciass`
+
+Meta description:
+`Consulta las condiciones de uso del sitio web de Victoria Maciass, su catálogo editorial y los enlaces a plataformas externas.`
+
+### Aviso legal
+
+Title:
+`Aviso legal | Victoria Maciass`
+
+Meta description:
+`Información sobre la identidad editorial, titularidad, actividad y contacto del proyecto Victoria Maciass.`
+
+### Canonical
+
+Cada página debe tener su propia URL canónica absoluta:
+
+- `https://victoriamaciass.vercel.app/politica-privacidad`
+- `https://victoriamaciass.vercel.app/politica-cookies`
+- `https://victoriamaciass.vercel.app/terminos-condiciones`
+- `https://victoriamaciass.vercel.app/aviso-legal`
+
+No utilizar como canonical la página de inicio ni otra página distinta.
+
+No establecer `noindex` en estas páginas por defecto. Mantener una configuración coherente con el resto de páginas públicas, salvo que exista una directriz SEO global ya establecida que indique lo contrario.
+
+## 8. SITEMAP
+
+Actualizar el sitemap XML existente para incorporar las cuatro nuevas rutas públicas.
+
+Conservar todas las rutas actuales y sus datos válidos.
+
+No duplicar URLs ni introducir rutas de búsqueda, parámetros, fragmentos o páginas inexistentes.
+
+Las cuatro páginas deben aparecer una sola vez cada una:
+
+- `/politica-privacidad`
+- `/politica-cookies`
+- `/terminos-condiciones`
+- `/aviso-legal`
+
+Mantener el formato y la estructura actual del sitemap.
+
+No modificar robots.txt salvo que sea estrictamente necesario para mantener la coherencia con el sitemap existente.
+
+## 9. ACCESIBILIDAD Y NAVEGACIÓN
+
+Garantizar que:
+
+- Los cuatro enlaces del footer sean enlaces reales y navegables.
+- Las páginas puedan abrirse directamente mediante sus respectivas rutas.
+- El título principal de cada página sea un H1.
+- Los títulos de secciones sigan una jerarquía correcta de encabezados.
+- Los enlaces tengan textos descriptivos.
+- El contraste y el tamaño de letra permitan una lectura cómoda.
+- La navegación mediante teclado funcione correctamente.
+- El comportamiento responsive se mantenga.
+
+No crear enlaces que simulen botones ni elementos decorativos que parezcan interactivos.
+
+## 10. CONTROL DE CALIDAD Y PRUEBAS
+
+Después de implementar los cambios, realizar una comprobación completa.
+
+### Rutas
+
+Verificar que las cuatro rutas abren correctamente:
+
+- `/politica-privacidad`
+- `/politica-cookies`
+- `/terminos-condiciones`
+- `/aviso-legal`
+
+Comprobar también que una actualización directa del navegador no provoca errores ni redirecciones incorrectas.
+
+### Footer
+
+Verificar que el bloque «Información legal»:
+
+- Aparece en el footer global.
+- Está presente en Home.
+- Está presente en las seis categorías.
+- Está presente en las fichas de libros.
+- Está presente en las cuatro nuevas páginas legales.
+- Mantiene una presentación discreta y coherente.
+- Funciona correctamente en ordenador y móvil.
+
+### Contenido
+
+Comprobar que los cuatro textos están completos, que no faltan apartados y que los datos de contacto e identificadores son correctos.
+
+### SEO
+
+Verificar títulos, descripciones, canonical y presencia de las cuatro rutas en el sitemap.
+
+### Integridad del sitio
+
+Comprobar que siguen funcionando:
+
+- Home y las seis categorías.
+- Las 39 fichas de libros.
+- El buscador del catálogo.
+- Los enlaces de compra.
+- El header y el footer.
+- La navegación y el botón de volver arriba.
+- Las páginas 404.
+- El sistema de generación estática y el despliegue en Vercel.
+
+No dar por completada la tarea si las rutas funcionan únicamente en navegación interna, pero fallan al abrirse directamente.
+
+## 11. RESTRICCIONES FINALES
+
+- No reescribir los textos legales.
+- No resumir ni eliminar secciones.
+- No inventar datos personales, domicilios, nombres legales o identificadores.
+- No añadir declaraciones de afiliación: actualmente no existen enlaces de afiliación.
+- No incorporar formularios de contacto, newsletter, registro ni sistemas de compra.
+- No instalar un banner de cookies ni modificar Google Analytics o Google Tag Manager como parte de esta tarea.
+- No alterar los scripts de seguimiento existentes.
+- No cambiar el diseño general.
+- No crear enlaces legales en el menú principal.
+- No introducir elementos comerciales en estas páginas.
+- No modificar contenido editorial de libros o categorías.
+
+## 12. RESULTADO ESPERADO
+
+Al terminar, el sitio debe conservar exactamente su identidad visual y su estructura editorial actual, pero disponer de cuatro páginas legales completas, accesibles desde sus rutas individuales y desde un único bloque discreto llamado «Información legal» en el footer global.
+
+La incorporación debe ser limpia, coherente, responsive y compatible con React, TypeScript, Vite, React Router, la generación estática existente y el despliegue en Vercel.
+
+**Prioridad absoluta: implementar las páginas legales sin romper, alterar ni degradar ninguna funcionalidad o contenido existente.**
+
+Al finalizar, presentar un resumen breve indicando:
+
+1. Las cuatro páginas creadas.
+2. Las rutas incorporadas.
+3. La ubicación del bloque «Información legal».
+4. La actualización del sitemap.
+5. Las pruebas realizadas y sus resultados.
+6. Cualquier problema que no haya podido resolverse.
+
+No afirmar que una prueba se ha superado si no se ha ejecutado realmente.

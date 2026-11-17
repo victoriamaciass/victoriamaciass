@@ -106,7 +106,7 @@ async function prerender() {
           `  <meta name="keywords" content="${escapeHtml(seo.keywords)}" />\n</head>`
         );
       }
-    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas' || route === '/sabores-irresistibles' || route === '/recetas-pollo' || route === '/recetas-variadas' || route === '/cocina-deliciosa' || route === '/cocina-espanol' || route === '/freidora-aire' || route === '/galletas-epicas' || route === '/sistema-inmunologico') {
+    } else if (route === '/motivacion' || route === '/mente' || route === '/numeros' || route === '/varices' || route === '/sudoracion' || route === '/celulitis' || route === '/metabolismo' || route === '/desintoxica' || route === '/desintoxicar-peso' || route === '/fertilidad' || route === '/conjuros' || route === '/ensaladas-sabores' || route === '/ensaladas-150' || route === '/recetas-bajar-peso' || route === '/recetas-fitness' || route === '/recetas-quinoa' || route === '/aderezos' || route === '/arte-paella' || route === '/paellas-100' || route === '/arroces-alma' || route === '/carnes-rojas' || route === '/sabores-irresistibles' || route === '/recetas-pollo' || route === '/recetas-variadas' || route === '/cocina-deliciosa' || route === '/cocina-espanol' || route === '/freidora-aire' || route === '/galletas-epicas' || route === '/sistema-inmunologico' || route === '/politica-privacidad' || route === '/politica-cookies' || route === '/terminos-condiciones' || route === '/aviso-legal') {
       pageHtml = pageHtml.replace(/\s*<meta\s+name="keywords"\s+content=".*?"\s*\/?>\r?\n?/, '\n');
     }
 
@@ -387,7 +387,8 @@ async function prerender() {
 
     // F2. Botón CTA "Comprar ahora" y ancla "opciones-compra" en las 39 fichas individuales
     const categoryRoutes = ['/cocina', '/mascotas', '/mente-emociones', '/crecimiento-personal', '/cuerpo-salud', '/manos-misterio'];
-    if (route !== '/' && !categoryRoutes.includes(route)) {
+    const legalRoutes = ['/politica-privacidad', '/politica-cookies', '/terminos-condiciones', '/aviso-legal'];
+    if (route !== '/' && !categoryRoutes.includes(route) && !legalRoutes.includes(route)) {
       if (!content.includes('Comprar ahora')) {
         console.error(`❌ ERROR: No se encontró el botón "Comprar ahora" en la ficha ${route}`);
         failedChecks++;
@@ -402,10 +403,45 @@ async function prerender() {
       }
     }
 
-    // F3. Botón flotante "Volver arriba" presente en las 46 rutas públicas
+    // F3. Botón flotante "Volver arriba" presente en todas las rutas públicas
     if (!content.includes('aria-label="Volver al inicio de la página"')) {
       console.error(`❌ ERROR: No se encontró el botón flotante "Volver arriba" en la ruta ${route}`);
       failedChecks++;
+    }
+
+    // F4. Bloque "Información legal" y los 4 enlaces legales presentes en el footer de todas las rutas
+    const requiredLegalFooterStrings = [
+      'Información legal',
+      'href="/politica-privacidad"',
+      'href="/politica-cookies"',
+      'href="/terminos-condiciones"',
+      'href="/aviso-legal"',
+    ];
+    for (const legalStr of requiredLegalFooterStrings) {
+      if (!content.includes(legalStr)) {
+        console.error(`❌ ERROR: La ruta ${route} no incluye "${legalStr}" en el footer`);
+        failedChecks++;
+      }
+    }
+
+    // F5. Comprobación específica de las cuatro páginas legales
+    if (legalRoutes.includes(route)) {
+      if (!content.includes('17 de noviembre de 2026') || !content.includes('custoni12@gmail.com')) {
+        console.error(`❌ ERROR: La página legal ${route} carece de la fecha o correo de contacto requerido`);
+        failedChecks++;
+      }
+      if (
+        (route === '/politica-privacidad' || route === '/politica-cookies') &&
+        (!content.includes('href="https://policies.google.com/privacy"') ||
+          !content.includes('href="https://policies.google.com/technologies/cookies"'))
+      ) {
+        console.error(`❌ ERROR: La página legal ${route} tiene enlaces incompletos a políticas de Google`);
+        failedChecks++;
+      }
+      if (content.includes('<meta name="keywords"')) {
+        console.error(`❌ ERROR: La página legal ${route} no debe heredar <meta name="keywords"> de la Home`);
+        failedChecks++;
+      }
     }
 
     // G. Comprobación exhaustiva específica para /cocina

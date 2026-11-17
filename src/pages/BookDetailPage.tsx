@@ -6,6 +6,7 @@ import { getBookCover } from '../data/bookCovers';
 import { getSeoForRoute } from '../data/seoRegistry';
 import { GlobalNavbar } from '../components/GlobalNavbar';
 import { NotFoundPage } from './NotFoundPage';
+import { LegalFooterBlock } from '../components/LegalFooterBlock';
 import { Book, BookPurchaseLinks } from '../types/book';
 import { ArrowLeft, Check, ExternalLink, ChevronRight } from 'lucide-react';
 
@@ -832,13 +833,16 @@ export const BookDetailPage: React.FC = () => {
           PIE DE PÁGINA SENCILLO
           ==================================================================== */}
       <footer className="border-t border-stone-200 py-10 bg-white">
-        <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-stone-600">
-          <p className="font-serif text-lg sm:text-[20px] font-bold text-stone-900">
-            Victoria Maciass
-          </p>
-          <p className="text-xs sm:text-sm text-stone-500">
-            © {new Date().getFullYear()} Victoria Maciass. Todos los derechos reservados.
-          </p>
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-stone-600">
+            <p className="font-serif text-lg sm:text-[20px] font-bold text-stone-900">
+              Victoria Maciass
+            </p>
+            <p className="text-xs sm:text-sm text-stone-500">
+              © {new Date().getFullYear()} Victoria Maciass. Todos los derechos reservados.
+            </p>
+          </div>
+          <LegalFooterBlock />
         </div>
       </footer>
     </div>

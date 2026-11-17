@@ -4,6 +4,7 @@ import { HomePage } from './pages/HomePage';
 import { CategoryPage } from './pages/CategoryPage';
 import { BookDetailPage } from './pages/BookDetailPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { LegalPage } from './pages/LegalPage';
 import { ScrollToTop } from './components/ScrollToTop';
 import { ScrollToTopButton } from './components/ScrollToTopButton';
 
@@ -27,6 +28,14 @@ export const AppRoutes: React.FC = () => {
         <Route path="/cuerpo-salud" element={<CategoryPage categorySlug="cuerpo-salud" />} />
         <Route path="/cocina" element={<CategoryPage categorySlug="cocina" />} />
         <Route path="/manos-misterio" element={<CategoryPage categorySlug="manos-misterio" />} />
+
+        {/* ==================================================================
+            PÁGINAS LEGALES
+            ================================================================== */}
+        <Route path="/politica-privacidad" element={<LegalPage slug="politica-privacidad" />} />
+        <Route path="/politica-cookies" element={<LegalPage slug="politica-cookies" />} />
+        <Route path="/terminos-condiciones" element={<LegalPage slug="terminos-condiciones" />} />
+        <Route path="/aviso-legal" element={<LegalPage slug="aviso-legal" />} />
 
         {/* ==================================================================
             NIVEL 3: Páginas de Libro individuales (ej. /varices, /gallinas, /gatos)
